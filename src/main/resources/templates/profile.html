@@ -60,7 +60,7 @@
         <tr th:each="event : ${events}">
 
             <td>
-                <a th:href="@{/event/reviews/{eventId} (eventId=${event.eventId})}" th:text="${event.title}"></a>
+                <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}" th:text="${event.title}"></a>
             </td>
 
 

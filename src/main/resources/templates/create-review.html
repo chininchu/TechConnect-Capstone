@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Event Review</title>
+</head>
+
+<body>
+<h2>Create Event Review</h2>
+<form th:action="@{/event/reviews/create}" method="post" th:object="${review}">
+    <input type="hidden" th:field="*{event.eventId}" />
+    <input type="hidden" th:field="*{event.host}" />
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" th:field="*{title}" />
+
+    <label for="description">Description:</label>
+    <textarea id="description" th:field="*{description}"></textarea>
+
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" th:field="*{rating}" min="1" max="5" />
+
+    <button type="submit">Save Review</button>
+</form>
+</body>
+
+</html>
+
+

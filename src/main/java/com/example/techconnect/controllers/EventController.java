@@ -3,6 +3,7 @@ package com.example.techconnect.controllers;
 import com.example.techconnect.models.Event;
 
 import com.example.techconnect.models.Interest;
+import com.example.techconnect.models.Review;
 import com.example.techconnect.models.User;
 import com.example.techconnect.repositories.EventRepository;
 import com.example.techconnect.repositories.InterestRepository;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -31,7 +34,7 @@ public class EventController {
     private final ReviewRepository reviewRepository;
 
 
-    public EventController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository,ReviewRepository reviewRepository) {
+    public EventController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository, ReviewRepository reviewRepository) {
 
         this.eventRepository = eventRepository;
 //      this.addressUtility = addressUtility;
@@ -46,7 +49,6 @@ public class EventController {
     public String viewAllEventsWithAjax() {
         return "/apitester";
     }
-
 
 
     // I want to login to the website
@@ -72,7 +74,6 @@ public class EventController {
 //
 //
 //    }
-
 
 
     // We need the user's session key from when they login
@@ -121,8 +122,6 @@ public class EventController {
 
 
         eventRepository.save(event);
-
-
 
 
         return "redirect:/profile";
@@ -180,7 +179,13 @@ public class EventController {
 
     }
 
-    @GetMapping("/event/reviews/{eventId}")
+
+    //----------------------------------Review Entity -----------------------------------------------//
+
+
+//----Review(Read)----//
+
+    @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
         // Retrieve the reviews for the specified event from the database
 
@@ -190,6 +195,46 @@ public class EventController {
 
 
     }
+
+
+    @GetMapping("/event/reviews/create")
+    public String createEventReview( Model model) {
+
+//        model.addAttribute("eventId", eventRepository.findById(eventId).get());
+        model.addAttribute("review", new Review());
+        return "create-review";
+
+    }
+
+
+    @PostMapping("/event/reviews/{eventId}/create")
+    public String saveEventReview(@PathVariable long eventId, @ModelAttribute("review") Review review) {
+
+        // Set the event ID for the new review
+        review.setEvent((Event) reviewRepository.findByEventId(eventId));
+        review.setDescription(review.getDescription());
+        review.setTitle(review.getTitle());
+        review.setRating(review.getRating());
+
+
+        reviewRepository.save(review);
+
+        return "event-reviews";
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
 
 
 
