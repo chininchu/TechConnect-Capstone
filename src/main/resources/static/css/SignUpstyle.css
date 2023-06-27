@@ -1,0 +1,71 @@
+html, body {
+    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+
+#site-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 50px;
+    border: 1px;
+}
+
+
+
+.submit-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 300px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 80px;
+    color: white;
+    position: relative;
+    margin-right: 100px;
+}
+
+.heading {
+    margin-top: 50px;
+}
+
+.input-group-text{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 25px;
+    margin-right: 125px;
+    width: 150px;
+    height: 150px;
+}
+
+
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 10px;
+
+
+}
+
+.vertical-line {
+    position: absolute;
+    top: 0;
+    left: 53%;
+    width: 1px;
+    height: 1000%;
+    background-color: gray;
+}
+

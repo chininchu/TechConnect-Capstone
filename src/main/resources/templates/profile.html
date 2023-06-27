@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>PROFILE</title>
+</head>
+<body>
+<h1>User Profile</h1>
+
+<h2>Welcome, <span th:text="${user.username}"></span>!</h2>
+
+<!-- Add this block at the beginning of your profile.html template -->
+<div th:if="${param.error}">
+    <p style="color: red;">Incorrect password. Please try again.</p>
+</div>
+
+
+<div>
+    <h3>Profile Information:</h3>
+    <ul>
+        <li><img th:src="@{${user.profilePicture}}"></li>
+
+
+        <li>First Name: <span th:text="${user.firstName}"></span></li>
+        <li>Last Name: <span th:text="${user.lastName}"></span></li>
+        <li>Email: <span th:text="${user.email}"></span></li>
+        <!-- Add other profile fields as needed -->
+    </ul>
+
+</div>
+
+<div>
+    <a th:href="@{/editProfile}">Edit Profile</a>
+    <form th:action="@{/deleteProfile}" method="post">
+        <button type="submit">Delete Profile</button>
+    </form>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
+    <!--    This form displays events to the user -->
+
+    <h2>Your Events:</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Event Name</th>
+            <th>Date and Time</th>
+            <th>Description</th>
+            <th>Location</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <!--            ${events} is referring to the object instance. The HTML table will forward the event information so that it can be edited -->
+        <tr th:each="event : ${events}">
+
+            <td>
+                <a th:href="@{/event/reviews/{eventId} (eventId=${event.eventId})}" th:text="${event.title}"></a>
+            </td>
+            <td th:text="${event.dateTime}"></td>
+            <td th:text="${event.description}"></td>
+            <td th:text="${event.location}"></td>
+            <td><a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
+                <button>Edit</button>
+            </a></td>
+            <td>
+                <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
+
+                    <input type="hidden" name="hostId" th:value="${event.host}"/>
+                    <input type="hidden" name="interestId" th:value="${event.interest}"/>
+                    <button type="submit">Delete</button>
+
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+</body>
+</html>

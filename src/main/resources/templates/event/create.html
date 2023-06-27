@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--This is a test form -->
+<!--The naming convention has been changed from /event to /event/create-->
+
+<form th:action="@{/event/create}" th:object="${event}" method="post">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" th:field="*{title}" required>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}" required></textarea>
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+    </div>
+
+        <div>
+            <label for="location">Location:</label>
+            <input type="text" id="location" th:field="*{location}" required>
+            <!--        <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></span>-->
+        </div>
+
+
+<!--    <div>-->
+<!--        <label for="street">Street:</label>-->
+<!--        <input type="text" id="street" name="street" required>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <label for="city">City:</label>-->
+<!--        <input type="text" id="city" name="city" required>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <label for="state">State:</label>-->
+<!--        <input type="text" id="state" name="state" required>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <label for="country">Country:</label>-->
+<!--        <input type="text" id="country" name="country" required>-->
+<!--    </div>-->
+
+
+    <div>
+        <label for="dateTime">Date and Time:</label>
+        <input type="datetime-local" id="dateTime" th:field="*{dateTime}" required>
+        <span th:if="${#fields.hasErrors('dateTime')}" th:errors="*{dateTime}"></span>
+    </div>
+
+    <!--    Create a picklist that allows user to select a value for the type of event they are creating -->
+
+    <label>
+        <select th:field="*{interest}">
+            <option value="">-- Select an Interest --</option>
+            <option th:each="interest : ${interests}" th:value="${interest.id}" th:text="${interest.interest}"></option>
+        </select>
+    </label>
+
+
+    <!-- Other event form fields -->
+
+    <button type="submit">Submit</button>
+</form>
+
+
+</body>
+</html>
+

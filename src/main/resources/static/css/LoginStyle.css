@@ -1,0 +1,74 @@
+html, body {
+    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.login-form {
+    margin-top: 40px;
+    margin-left: 575px;
+    width: 300px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.navbar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: darkgray;
+}
+
+.navbar-brand {
+    margin-left: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-banner {
+    width: 1400px; /* Adjust the width as needed */
+    height: 100px;
+
+}
+
+.container-fluid {
+    color: white;
+}
+
+.title {
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.navbar-brand-text{
+    margin-left: 10px;
+    margin-top: 10px;
+    font-family: "PT Serif";
+    color: white;
+
+
+}

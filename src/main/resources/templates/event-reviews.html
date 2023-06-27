@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>Event Reviews</title>
+</head>
+<body>
+<h1>Event Reviews</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="review : ${reviews}">
+        <td th:text="${review.title}"></td>
+        <td th:text="${review.description}"></td>
+        <td th:text="${review.rating}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
