@@ -17,8 +17,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findAllByEventId(long id);
 
 
-    @Query("from Review r where r.event.EventId = ?1")
-    List<Review> findByEventId(long id);
+
 
 
 
