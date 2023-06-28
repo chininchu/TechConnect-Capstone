@@ -2,76 +2,95 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/CreateEventStyle.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Title</title>
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg bg-body-light">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="#">TechCon</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home" aria-current="page" href="#">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="profile" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <!--This is a test form -->
 <!--The naming convention has been changed from /event to /event/create-->
 
+
+
+
+<!--        <div class="col-md-6">-->
+<!--            <div class="upload-container">-->
+<!--                <input type="file" id="image-upload" accept="image/*">-->
+<!--                <button class="button">Upload Image</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
 <form th:action="@{/event/create}" th:object="${event}" method="post">
-    <div>
-        <label for="title">Title:</label>
-        <input type="text" id="title" th:field="*{title}" required>
-        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="upload-container">
+                    <input type="file" id="image-upload" accept="image/*">
+                    <button class="button">Upload Image</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="event-container">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" th:field="*{title}" required>
+                    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
 
-    <div>
-        <label for="description">Description:</label>
-        <textarea id="description" th:field="*{description}" required></textarea>
-        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-    </div>
+                    <label for="dateTime">Date and Time:</label>
+                    <input type="datetime-local" id="dateTime" th:field="*{dateTime}" required>
+                    <span th:if="${#fields.hasErrors('dateTime')}" th:errors="*{dateTime}"></span>
 
-        <div>
-            <label for="location">Location:</label>
-            <input type="text" id="location" th:field="*{location}" required>
-            <!--        <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></span>-->
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" th:field="*{location}" required>
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" th:field="*{description}" required></textarea>
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+
+                    <label>
+                        <select th:field="*{interest}">
+                            <option value="">-- Select an Interest --</option>
+                            <option th:each="interest : ${interests}" th:value="${interest.id}" th:text="${interest.interest}"></option>
+                        </select>
+                    </label>
+
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
         </div>
-
-
-<!--    <div>-->
-<!--        <label for="street">Street:</label>-->
-<!--        <input type="text" id="street" name="street" required>-->
-<!--    </div>-->
-
-<!--    <div>-->
-<!--        <label for="city">City:</label>-->
-<!--        <input type="text" id="city" name="city" required>-->
-<!--    </div>-->
-
-<!--    <div>-->
-<!--        <label for="state">State:</label>-->
-<!--        <input type="text" id="state" name="state" required>-->
-<!--    </div>-->
-
-<!--    <div>-->
-<!--        <label for="country">Country:</label>-->
-<!--        <input type="text" id="country" name="country" required>-->
-<!--    </div>-->
-
-
-    <div>
-        <label for="dateTime">Date and Time:</label>
-        <input type="datetime-local" id="dateTime" th:field="*{dateTime}" required>
-        <span th:if="${#fields.hasErrors('dateTime')}" th:errors="*{dateTime}"></span>
     </div>
-
-    <!--    Create a picklist that allows user to select a value for the type of event they are creating -->
-
-    <label>
-        <select th:field="*{interest}">
-            <option value="">-- Select an Interest --</option>
-            <option th:each="interest : ${interests}" th:value="${interest.id}" th:text="${interest.interest}"></option>
-        </select>
-    </label>
-
-
-    <!-- Other event form fields -->
-
-    <button type="submit">Submit</button>
 </form>
 
+    </div>
+</div>
 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
 

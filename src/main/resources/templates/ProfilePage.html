@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/ProfileStyle.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/ProfileStyle.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
 
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand text-light">TechCon</a>
@@ -24,22 +25,54 @@
         </div>
     </div>
 </nav>
+
+<div class="welcome">
+<h2>Welcome, <span th:text="${user.username}"></span>!</h2>
+</div>
+
+<div th:if="${param.error}">
+    <p style="color: red;">Incorrect password. Please try again.</p>
+</div>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <div class="vertical-line"></div>
         </div>
         <div class="col-md-4">
-            <div class="image-box">
-                <!-- Add the uploaded image here -->
-            </div>
+            <h3>Profile Information:</h3>
+            <ul>
+                <li><img th:src="@{${user.profilePicture}}"></li>
+
+
+                <li>First Name: <span th:text="${user.firstName}"></span></li>
+                <li>Last Name: <span th:text="${user.lastName}"></span></li>
+                <li>Email: <span th:text="${user.email}"></span></li>
+                <!-- Add other profile fields as needed -->
+            </ul>
+
+        </div>
+
+
+<!--            <div class="image-box">-->
+<!--                &lt;!&ndash; Add the uploaded image here &ndash;&gt;-->
+<!--            </div>-->
         <div class="col-md-12">
             <div class="button-group">
+
+                <a th:href="@{/editProfile}">Edit Profile</a>
+                <form th:action="@{/deleteProfile}" method="post">
                 <button class="btn btn-light" id="editbtn">Edit Profile</button>
+                </form>
+                <form th:action="@{/logout}" method="post">
                 <button class="btn btn-light" id="deletebtn">Delete Profile</button>
+                </form>
+
                 <button class="btn btn-light" id="changebtn">Upload Photo</button>
             </div>
         </div>
+
             <div class="col-md-12">
                 <div class="about-section">
                     <h2>About Me/Bio:</h2>
@@ -49,7 +82,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
 </body>
