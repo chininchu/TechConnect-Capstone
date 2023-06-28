@@ -189,7 +189,7 @@ public class EventController {
     public String showEventReviews(@PathVariable long eventId, Model model) {
         // Retrieve the reviews for the specified event from the database
 
-        model.addAttribute("eventId", eventRepository.findById(eventId).get());
+        model.addAttribute("event", eventRepository.findById(eventId).get());
         model.addAttribute("reviews", reviewRepository.findAllByEventId(eventId));
         model.addAttribute("review", new Review());
         return "event-reviews";
@@ -198,10 +198,26 @@ public class EventController {
     }
 
 
+    @PostMapping("/event/{eventId}/reviews/create")
+    public String saveReview(@PathVariable("eventId") long eventId, @ModelAttribute("review") Review review) {
 
 
+        // Set the user and event for the review
+
+        Event event = eventRepository.findById(eventId).get();
+
+        review.setEvent(event);
+
+        reviewRepository.save(review);
 
 
+        return "redirect:/event/{eventId}/reviews";
+
+
+        // Save the review to the database
+
+
+    }
 
 
 }
