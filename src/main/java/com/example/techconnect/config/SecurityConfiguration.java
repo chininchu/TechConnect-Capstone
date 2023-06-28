@@ -50,9 +50,15 @@ public class SecurityConfiguration {
                         // Cole, Johnny has recommended to only use one .requestMatchers for .authenticated().Also, I have added the following paths
                         // event/edit/{id}
                         //"/event/edit"
+
+                // Reviews also may need to fall under the permit all method sin ce attends don't have a login
+
+
                        // "/event-reviews/{id}"
 
                         // "/event/{eventId}/delete"
+                      //  "/event/{eventId}/reviews"
+
 
 
 
@@ -63,10 +69,11 @@ public class SecurityConfiguration {
                                 "/event/{profId}/editProfile",
                                 "/profile",
                                 "/editProfile",
-                                "/event/reviews/{id}",
+                                "/event/{eventId}/reviews/create",
                                 "/event/{eventId}/delete").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
+                // /event/reviews/create is a public page and can be visited by anyone
                         .requestMatchers("/",
                                 "/events",
                                 "/events/*",
@@ -85,8 +92,8 @@ public class SecurityConfiguration {
                                 "/events/profEvents",
                                 "/events/ajax",
                                 "/events/search",
-                                "/events/userEvents").permitAll()
-
+                                "/events/userEvents",
+                                "/event/{eventId}/reviews").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 )
