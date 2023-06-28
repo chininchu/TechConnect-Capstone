@@ -46,8 +46,19 @@ public class EventController {
     }
 
     @GetMapping("/events/ajax")
-    public String viewAllEventsWithAjax() {
+    public String viewAllEventsWithAjax(Model model) {
+        model.addAttribute("interests",interestRepository.findAll());
         return "/apitester";
+    }
+    @GetMapping("/events/userpro")
+    public String viewUserPro(Model model) {
+        model.addAttribute("interests",interestRepository.findAll());
+        return "/api_profile_test";
+    }
+    @GetMapping("/events/allevent")
+    public String viewAllEvents(Model model) {
+        model.addAttribute("interests",interestRepository.findAll());
+        return "/api_eventsp_test";
     }
 
 

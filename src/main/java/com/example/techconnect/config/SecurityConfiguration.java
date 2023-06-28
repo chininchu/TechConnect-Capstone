@@ -66,6 +66,7 @@ public class SecurityConfiguration {
                          * only authenticated users can create and edit events */
                         .requestMatchers("/event/create",
                                 "/event/{id}/edit",
+                                "/event/{profId}/editProfile",
                                 "/profile",
                                 "/editProfile",
                                 "/event/{eventId}/reviews/create",
@@ -76,6 +77,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/",
                                 "/events",
                                 "/events/*",
+                                "/events/userpro",
+                                "/events/allevent",
                                 "/SignUpPage",
                                 "/LoginPage",
                                 "/events.json",
@@ -88,9 +91,9 @@ public class SecurityConfiguration {
                                 "/events.json",
                                 "/events/profEvents",
                                 "/events/ajax",
+                                "/events/search",
                                 "/events/userEvents",
                                 "/event/{eventId}/reviews").permitAll()
-
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 )

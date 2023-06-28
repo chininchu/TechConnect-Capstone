@@ -30,7 +30,7 @@
 </div>
 
 <div>
-    <a th:href="@{/editProfile}">Edit Profile</a>
+    <a th:href="@{/event/{id}/editProfile (id=${user.id})}">Edit Profile</a>
     <form th:action="@{/deleteProfile}" method="post">
         <button type="submit">Delete Profile</button>
     </form>
