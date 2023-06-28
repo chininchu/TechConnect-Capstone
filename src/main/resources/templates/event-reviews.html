@@ -21,18 +21,14 @@
     </tr>
     </thead>
     <tbody>
-
-    <tr th:each="event : ${eventId}">
-
+    <tr>
         <td th:text="${event.title}"></td>
         <td th:text="${event.dateTime}"></td>
         <td th:text="${event.description}"></td>
         <td th:text="${event.location}"></td>
-
-
     </tr>
 
-
+    <!--        All Reviews need to be pushed in the bottom of the form -->
     <tr th:each="review : ${reviews}">
         <td th:text="${review.title}"></td>
         <td th:text="${review.description}"></td>
@@ -49,11 +45,12 @@
 
     <h2>Create Event Review</h2>
 
-    <form th:action="@{/event/{eventId}/reviews/create(eventId=${event.eventId})}" method="post" th:object="${review}">
+    <form th:action="@{/event/{eventId}/reviews/create(eventId=${event.eventId})}" method="post"
+          th:object="${review}">
 
-<!--        Intakes the user id as a hidden input-->
+        <!--        Intakes the user id as a hidden input-->
 
-        <input type="hidden" th:field="*{user}"/>
+<!--        <input type="hidden" th:value="${loggedUserid}" th:field="*{user}"/>-->
 
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" th:field="*{title}"/>
