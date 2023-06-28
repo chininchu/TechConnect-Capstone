@@ -191,43 +191,22 @@ public class EventController {
 
         model.addAttribute("eventId", eventRepository.findById(eventId).get());
         model.addAttribute("reviews", reviewRepository.findAllByEventId(eventId));
+        model.addAttribute("review", new Review());
         return "event-reviews";
 
 
     }
 
-    // A form "/event/reviews/create" populates in front of the attendee which allows them to submit a review without any authentication. The form will ask the attendee for the following inputs
-
-    // Interest (This will be a picklist of values coming from the Interest table)
-    // The host of the event (This is a dependable picklist based on the selection within the Interest picklist)
-    //Title
-    // Description
-    // Rating
-
-
-
-
-    @GetMapping("/event/reviews/create")
-    public String createEventReview(Model model) {
-
-//        List<Interest> interests = interestRepository.findAll();
-//        List<User> users = userRepository.findAll();
-        List<Event> events = eventRepository.findAll();
-
-//        model.addAttribute("interests", interests);
-//        model.addAttribute("users", users);
-        model.addAttribute("events",events);
-        model.addAttribute("review", new Review());
-        return "create-review";
 
 
 
 
 
-    }
 
 
 }
+
+
 
 
 

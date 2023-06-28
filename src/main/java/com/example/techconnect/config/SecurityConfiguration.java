@@ -68,7 +68,7 @@ public class SecurityConfiguration {
                                 "/event/{id}/edit",
                                 "/profile",
                                 "/editProfile",
-                                "/event/{eventId}/reviews",
+                                "/event/{eventId}/reviews/create",
                                 "/event/{eventId}/delete").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
@@ -89,7 +89,7 @@ public class SecurityConfiguration {
                                 "/events/profEvents",
                                 "/events/ajax",
                                 "/events/userEvents",
-                                "/event/reviews/create").permitAll()
+                                "/event/{eventId}/reviews").permitAll()
 
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
