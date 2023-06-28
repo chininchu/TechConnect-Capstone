@@ -1,90 +1,258 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>PROFILE</title>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>User Profile</h1>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<h2>Welcome, <span th:text="${user.username}"></span>!</h2>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash; Add this block at the beginning of your profile.html template &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<div th:if="${param.error}">&ndash;&gt;-->
+<!--&lt;!&ndash;    <p style="color: red;">Incorrect password. Please try again.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h3>Profile Information:</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;    <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li><img th:src="@{${user.profilePicture}}"></li>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        <li>First Name: <span th:text="${user.firstName}"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li>Last Name: <span th:text="${user.lastName}"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li>Email: <span th:text="${user.email}"></span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash; Add other profile fields as needed &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </ul>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a th:href="@{/editProfile}">Edit Profile</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <form th:action="@{/deleteProfile}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button type="submit">Delete Profile</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;    <form th:action="@{/logout}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button type="submit">Logout</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash;    This form displays events to the user &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <h2>Your Events:</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;    <table>&ndash;&gt;-->
+<!--&lt;!&ndash;        <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Event Name</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Date and Time</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Description</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th>Location</th>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;        <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash;            ${events} is referring to the object instance. The HTML table will forward the event information so that it can be edited &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <tr th:each="event : ${events}">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a th:href="@{/event/reviews/{eventId} (eventId=${event.eventId})}" th:text="${event.title}"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td th:text="${event.dateTime}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td th:text="${event.description}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td th:text="${event.location}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td><a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <button>Edit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <input type="hidden" name="hostId" th:value="${event.host}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="hidden" name="interestId" th:value="${event.interest}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button type="submit">Delete</button>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </td>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;    </table>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash; profile.html &ndash;&gt;-->
+
 <!--<!DOCTYPE html>-->
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
 <!--<head>-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/ProfileStyle.css}">-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"-->
+<!--          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">-->
 <!--    <meta charset="UTF-8">-->
-<!--    <title>PROFILE</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Profile Page</title>-->
+
 <!--</head>-->
 <!--<body>-->
-<!--<h1>User Profile</h1>-->
+
+<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand text-light">TechCon</a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"-->
+<!--                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
+<!--            <div class="navbar-nav">-->
+<!--                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>-->
+<!--                <a class="nav-link" id="event-input" href="#">Create an Event</a>-->
+<!--                <a class="nav-link" id="logout-input" href="#">Logout</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
 <!--<h2>Welcome, <span th:text="${user.username}"></span>!</h2>-->
 
-<!--&lt;!&ndash; Add this block at the beginning of your profile.html template &ndash;&gt;-->
 <!--<div th:if="${param.error}">-->
 <!--    <p style="color: red;">Incorrect password. Please try again.</p>-->
 <!--</div>-->
 
 
-<!--<div>-->
-<!--    <h3>Profile Information:</h3>-->
-<!--    <ul>-->
-<!--        <li><img th:src="@{${user.profilePicture}}"></li>-->
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-8">-->
+<!--            <div class="vertical-line"></div>-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--            <div class="profileinfo">-->
+<!--                <h3>Profile Information:</h3>-->
+<!--                <ul>-->
+<!--                    <li><img th:src="@{${user.profilePicture}}"></li>-->
 
 
-<!--        <li>First Name: <span th:text="${user.firstName}"></span></li>-->
-<!--        <li>Last Name: <span th:text="${user.lastName}"></span></li>-->
-<!--        <li>Email: <span th:text="${user.email}"></span></li>-->
-<!--        &lt;!&ndash; Add other profile fields as needed &ndash;&gt;-->
-<!--    </ul>-->
+<!--                    <li>First Name: <span th:text="${user.firstName}"></span></li>-->
+<!--                    <li>Last Name: <span th:text="${user.lastName}"></span></li>-->
+<!--                    <li>Email: <span th:text="${user.email}"></span></li>-->
+<!--                    &lt;!&ndash; Add other profile fields as needed &ndash;&gt;-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
 
-<!--</div>-->
 
-<!--<div>-->
-<!--    <a th:href="@{/editProfile}">Edit Profile</a>-->
-<!--    <form th:action="@{/deleteProfile}" method="post">-->
-<!--        <button type="submit">Delete Profile</button>-->
-<!--    </form>-->
-<!--    <form th:action="@{/logout}" method="post">-->
-<!--        <button type="submit">Logout</button>-->
-<!--    </form>-->
+<!--        &lt;!&ndash;            <div class="image-box">&ndash;&gt;-->
+<!--        &lt;!&ndash;                &lt;!&ndash; Add the uploaded image here &ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--        <div class="col-md-12">-->
+<!--            <div class="button-group">-->
 
-<!--    &lt;!&ndash;    This form displays events to the user &ndash;&gt;-->
-
-<!--    <h2>Your Events:</h2>-->
-<!--    <table>-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Event Name</th>-->
-<!--            <th>Date and Time</th>-->
-<!--            <th>Description</th>-->
-<!--            <th>Location</th>-->
-
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        &lt;!&ndash;            ${events} is referring to the object instance. The HTML table will forward the event information so that it can be edited &ndash;&gt;-->
-<!--        <tr th:each="event : ${events}">-->
-
-<!--            <td>-->
-<!--                <a th:href="@{/event/reviews/{eventId} (eventId=${event.eventId})}" th:text="${event.title}"></a>-->
-<!--            </td>-->
-<!--            <td th:text="${event.dateTime}"></td>-->
-<!--            <td th:text="${event.description}"></td>-->
-<!--            <td th:text="${event.location}"></td>-->
-<!--            <td><a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">-->
-<!--                <button>Edit</button>-->
-<!--            </a></td>-->
-<!--            <td>-->
-<!--                <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">-->
-
-<!--                    <input type="hidden" name="hostId" th:value="${event.host}"/>-->
-<!--                    <input type="hidden" name="interestId" th:value="${event.interest}"/>-->
-<!--                    <button type="submit">Delete</button>-->
-
+<!--                <form th:action="@{/editProfile}" method="post">-->
+<!--                    &lt;!&ndash;                <form th:action="@{/deleteProfile}" method="post">&ndash;&gt;-->
+<!--                    <button class="btn btn-light" id="editbtn">Edit Profile</button>-->
 <!--                </form>-->
-<!--            </td>-->
+<!--                <form th:action="@{/deleteProfile}" method="post">-->
+<!--                    <button class="btn btn-light" id="deletebtn">Delete Profile</button>-->
 
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
+<!--                    <div>-->
+<!--                        <h3>Profile Information:</h3>-->
+<!--                        <ul>-->
+<!--                            <li><img th:src="@{${user.profilePicture}}"></li>-->
 
 
-<!--</div>-->
+<!--                            <li>First Name: <span th:text="${user.firstName}"></span></li>-->
+<!--                            <li>Last Name: <span th:text="${user.lastName}"></span></li>-->
+<!--                            <li>Email: <span th:text="${user.email}"></span></li>-->
+<!--                            &lt;!&ndash; Add other profile fields as needed &ndash;&gt;-->
+<!--                        </ul>-->
+
+<!--                    </div>-->
+
+<!--                    <div>-->
+<!--                        <a th:href="@{/event/{id}/editProfile (id=${user.id})}">Edit Profile</a>-->
+<!--                        <form th:action="@{/deleteProfile}" method="post">-->
+<!--                            <button type="submit">Delete Profile</button>-->
+<!--                        </form>-->
+<!--                        <form th:action="@{/logout}" method="post">-->
+<!--                            <button type="submit">Logout</button>-->
+<!--                        </form>-->
+
+<!--                        &lt;!&ndash;    This form displays events to the user &ndash;&gt;-->
+
+<!--                        <h2>Your Events:</h2>-->
+
+<!--                        <h2>Give us your review by clicking on the Event Name:</h2>-->
+
+
+<!--                        <table>-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>Event Name</th>-->
+<!--                                <th>Date and Time</th>-->
+<!--                                <th>Description</th>-->
+<!--                                <th>Location</th>-->
+
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            &lt;!&ndash;            ${events} is referring to the object instance. The HTML table will forward the event information so that it can be edited &ndash;&gt;-->
+<!--                            <tr th:each="event : ${events}">-->
+
+<!--                                <td>-->
+<!--                                    <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}"-->
+<!--                                       th:text="${event.title}"></a>-->
+<!--                                </td>-->
+
+
+<!--                                <td th:text="${event.dateTime}"></td>-->
+<!--                                <td th:text="${event.description}"></td>-->
+<!--                                <td th:text="${event.location}"></td>-->
+<!--                                <td><a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">-->
+<!--                                    <button>Edit</button>-->
+<!--                                </a></td>-->
+
+
+<!--                                <td>-->
+<!--                                    <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}"-->
+<!--                                          method="post">-->
+
+<!--                                        <input type="hidden" name="hostId" th:value="${event.host}"/>-->
+<!--                                        <input type="hidden" name="interestId" th:value="${event.interest}"/>-->
+<!--                                        <button type="submit">Delete</button>-->
+
+<!--                                    </form>-->
+
+<!--                                    <button class="btn btn-light" id="changebtn">Upload Photo</button>-->
+<!--                    </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-md-12">-->
+<!--                <div class="about-section">-->
+<!--                    <h2>About Me/Bio:</h2>-->
+<!--                    <textarea class="form-control" rows="5" id="about-me-input"-->
+<!--                              placeholder="Tell Us About You"></textarea>-->
+<!--                    <button class="btn btn-light mt-2" id="post-button">Post</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Add the button for creating an event &ndash;&gt;-->
+<!--    <div>-->
+<!--        <a th:href="@{/event/create}">-->
+<!--            <button>Create Event</button>-->
+<!--        </a>-->
+<!--    </div>-->
+
+
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"-->
+<!--            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>-->
 <!--</body>-->
 <!--</html>-->
 
-
-<!-- profile.html -->
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -94,10 +262,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
-
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand text-light">TechCon</a>
@@ -116,10 +282,9 @@
 
 <h2>Welcome, <span th:text="${user.username}"></span>!</h2>
 
-<div th:if="${param.error}">
+<div th:if="${param.error}" class="container">
     <p style="color: red;">Incorrect password. Please try again.</p>
 </div>
-
 
 <div class="container">
     <div class="row">
@@ -128,121 +293,86 @@
         </div>
         <div class="col-md-4">
             <div class="profileinfo">
-            <h3>Profile Information:</h3>
-            <ul>
-                <li><img th:src="@{${user.profilePicture}}"></li>
-
-
-                <li>First Name: <span th:text="${user.firstName}"></span></li>
-                <li>Last Name: <span th:text="${user.lastName}"></span></li>
-                <li>Email: <span th:text="${user.email}"></span></li>
-                <!-- Add other profile fields as needed -->
-            </ul>
-            </div>
-        </div>
-
-
-        <!--            <div class="image-box">-->
-        <!--                &lt;!&ndash; Add the uploaded image here &ndash;&gt;-->
-        <!--            </div>-->
-        <div class="col-md-12">
-            <div class="button-group">
-
-                <form th:action="@{/editProfile}" method="post">
-<!--                <form th:action="@{/deleteProfile}" method="post">-->
-                    <button class="btn btn-light" id="editbtn">Edit Profile</button>
-                </form>
-                <form th:action="@{/deleteProfile}" method="post">
-                    <button class="btn btn-light" id="deletebtn">Delete Profile</button>
-
-<div>
-    <h3>Profile Information:</h3>
-    <ul>
-        <li><img th:src="@{${user.profilePicture}}"></li>
-
-
-        <li>First Name: <span th:text="${user.firstName}"></span></li>
-        <li>Last Name: <span th:text="${user.lastName}"></span></li>
-        <li>Email: <span th:text="${user.email}"></span></li>
-        <!-- Add other profile fields as needed -->
-    </ul>
-
-</div>
-
-<div>
-    <a th:href="@{/event/{id}/editProfile (id=${user.id})}">Edit Profile</a>
-    <form th:action="@{/deleteProfile}" method="post">
-        <button type="submit">Delete Profile</button>
-    </form>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Logout</button>
-    </form>
-
-    <!--    This form displays events to the user -->
-
-    <h2>Your Events:</h2>
-
-    <h2>Give us your review by clicking on the Event Name:</h2>
-
-
-    <table>
-        <thead>
-        <tr>
-            <th>Event Name</th>
-            <th>Date and Time</th>
-            <th>Description</th>
-            <th>Location</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <!--            ${events} is referring to the object instance. The HTML table will forward the event information so that it can be edited -->
-        <tr th:each="event : ${events}">
-
-            <td>
-                <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}" th:text="${event.title}"></a>
-            </td>
-
-
-            <td th:text="${event.dateTime}"></td>
-            <td th:text="${event.description}"></td>
-            <td th:text="${event.location}"></td>
-            <td><a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
-                <button>Edit</button>
-            </a></td>
-
-
-            <td>
-                <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
-
-                    <input type="hidden" name="hostId" th:value="${event.host}"/>
-                    <input type="hidden" name="interestId" th:value="${event.interest}"/>
-                    <button type="submit">Delete</button>
-
-                </form>
-
-                <button class="btn btn-light" id="changebtn">Upload Photo</button>
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="about-section">
-                <h2>About Me/Bio:</h2>
-                <textarea class="form-control" rows="5" id="about-me-input" placeholder="Tell Us About You"></textarea>
-                <button class="btn btn-light mt-2" id="post-button">Post</button>
+                <h3>Profile Information:</h3>
+                <ul>
+                    <li><img th:src="@{${user.profilePicture}}"></li>
+                    <li>First Name: <span th:text="${user.firstName}"></span></li>
+                    <li>Last Name: <span th:text="${user.lastName}"></span></li>
+                    <li>Email: <span th:text="${user.email}"></span></li>
+                    <!-- Add other profile fields as needed -->
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
-    <!-- Add the button for creating an event -->
-    <div>
-        <a th:href="@{/event/create}">
-            <button>Create Event</button>
-        </a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form th:action="@{/editProfile}" method="post">
+                <button class="btn btn-light" id="editbtn">Edit Profile</button>
+            </form>
+            <form th:action="@{/deleteProfile}" method="post">
+                <button class="btn btn-light" id="deletebtn">Delete Profile</button>
+            </form>
+        </div>
     </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Your Events:</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Date and Time</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="event : ${events}">
+                    <td>
+                        <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}" th:text="${event.title}"></a>
+                    </td>
+                    <td th:text="${event.dateTime}"></td>
+                    <td th:text="${event.description}"></td>
+                    <td th:text="${event.location}"></td>
+                    <td>
+                        <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
+                            <button class="btn btn-light">Edit</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
+                            <input type="hidden" name="hostId" th:value="${event.host}"/>
+                            <input type="hidden" name="interestId" th:value="${event.interest}"/>
+                            <button type="submit" class="btn btn-light">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a th:href="@{/event/create}">
+        <button class="btn btn-light">Create Event</button>
+    </a>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
