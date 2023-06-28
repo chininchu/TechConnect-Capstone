@@ -41,6 +41,10 @@
     <!--    This form displays events to the user -->
 
     <h2>Your Events:</h2>
+
+    <h2>Give us your review by clicking on the Event Name:</h2>
+
+
     <table>
         <thead>
         <tr>
@@ -56,14 +60,18 @@
         <tr th:each="event : ${events}">
 
             <td>
-                <a th:href="@{/event/reviews/{eventId} (eventId=${event.eventId})}" th:text="${event.title}"></a>
+                <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}" th:text="${event.title}"></a>
             </td>
+
+
             <td th:text="${event.dateTime}"></td>
             <td th:text="${event.description}"></td>
             <td th:text="${event.location}"></td>
             <td><a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
                 <button>Edit</button>
             </a></td>
+
+
             <td>
                 <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
 
@@ -77,6 +85,13 @@
         </tr>
         </tbody>
     </table>
+
+    <!-- Add the button for creating an event -->
+    <div>
+        <a th:href="@{/event/create}">
+            <button>Create Event</button>
+        </a>
+    </div>
 
 
 </div>
