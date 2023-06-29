@@ -47,17 +47,19 @@ public class EventController {
 
     @GetMapping("/events/ajax")
     public String viewAllEventsWithAjax(Model model) {
-        model.addAttribute("interests",interestRepository.findAll());
+        model.addAttribute("interests", interestRepository.findAll());
         return "/apitester";
     }
+
     @GetMapping("/events/userpro")
     public String viewUserPro(Model model) {
-        model.addAttribute("interests",interestRepository.findAll());
+        model.addAttribute("interests", interestRepository.findAll());
         return "/api_profile_test";
     }
+
     @GetMapping("/events/allevent")
     public String viewAllEvents(Model model) {
-        model.addAttribute("interests",interestRepository.findAll());
+        model.addAttribute("interests", interestRepository.findAll());
         return "/api_eventsp_test";
     }
 
@@ -237,6 +239,19 @@ public class EventController {
         // Save the review to the database
 
 
+    }
+
+
+    // The DeleteMapping method to delete the review from the database
+
+    @PostMapping("/event/{eventId}/reviews/{reviewId}/delete")
+    public String deleteReview(@PathVariable("eventId") long eventId,
+                               @PathVariable("reviewId") long reviewId, Model model) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid review Id:" + reviewId));
+        reviewRepository.delete(review);
+
+        return "redirect:/event/{eventId}/reviews";
     }
 
 
