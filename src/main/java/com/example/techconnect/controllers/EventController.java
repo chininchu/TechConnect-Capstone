@@ -201,13 +201,11 @@ public class EventController {
     @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
         // Retrieve the reviews for the specified event from the database
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Event event = eventRepository.findById(eventId).get();
 
         model.addAttribute("event", event);
         model.addAttribute("reviews", reviewRepository.findAllByEventId(eventId));
-        model.addAttribute("loggedUserid", loggedIn.getId());
         model.addAttribute("review", new Review());
 
         return "event-reviews";
