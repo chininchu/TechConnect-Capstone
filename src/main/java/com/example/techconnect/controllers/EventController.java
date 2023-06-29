@@ -253,7 +253,23 @@ public class EventController {
     }
 
 
+    // Edit review
+
+    @PostMapping("/event/{eventId}/reviews/{reviewId}/edit")
+    public String editReview(@PathVariable Long eventId, @PathVariable Long reviewId,
+                             @RequestParam("title") String title, @RequestParam("description") String description) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid review Id:" + reviewId));
+        review.setTitle(title);
+        review.setDescription(description);
+        reviewRepository.save(review);
+        return "redirect:/event/{eventId}/reviews";
+    }
+
+
 }
+
+
 
 
 
