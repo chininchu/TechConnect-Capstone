@@ -58,7 +58,7 @@ public class UserController {
         //------------------------------------------------------------------//
 
 
-        // Hash the password
+      // Hash the password
         String hash = encoder.encode(user.getPassword());
         // Set the hashed password BEFORE saving to the database
         user.setPassword(hash);
