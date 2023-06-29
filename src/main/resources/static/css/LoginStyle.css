@@ -49,7 +49,8 @@ html, body {
 
 .navbar-banner {
     width: 1400px; /* Adjust the width as needed */
-    height: 100px;
+    height: 130px;
+    object-fit: cover;
 
 }
 

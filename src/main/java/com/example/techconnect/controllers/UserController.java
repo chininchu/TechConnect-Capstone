@@ -130,7 +130,7 @@ public class UserController {
 
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
-        return "/profile";
+        return "/profile"; //change back to profile before push//
     }
 
 

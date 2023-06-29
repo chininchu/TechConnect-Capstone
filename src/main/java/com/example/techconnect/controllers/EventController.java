@@ -14,11 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
 
 @Controller
 public class EventController {
@@ -115,7 +110,7 @@ public class EventController {
 
         model.addAttribute("event", new Event());
 
-        return "/event/create";
+        return "/event/create"; // change back to /event/create before push
     }
 
     @PostMapping("/event/create")
