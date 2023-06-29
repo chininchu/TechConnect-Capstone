@@ -3,35 +3,30 @@ import com.example.techconnect.models.User;
 import com.example.techconnect.repositories.EventRepository;
 import com.example.techconnect.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.web.bind.annotation.RequestParam;
+import java.util.*;
+
 import org.springframework.web.multipart.MultipartFile;
-import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.UUID;
+
 @Controller
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder encoder;
+
 //    @Value("file-upload-path")
 //    private String uploadPath;
 
     private EventRepository eventRepository;
-    public UserController(UserRepository userDao, PasswordEncoder encoder,EventRepository eventRepository) {
+    public UserController(UserRepository userDao, PasswordEncoder encoder, EventRepository eventRepository) {
         this.userDao = userDao;
         this.encoder = encoder;
         this.eventRepository = eventRepository;
@@ -43,10 +38,7 @@ public class UserController {
         return "/SignUpPage";
     }
     @PostMapping("/SignUpPage")
-    public String registerUser(
-            @ModelAttribute User user,
-            Model model,@RequestParam(name = "profilePicture") String profilePicture
-    ) {
+    public String registerUser(@ModelAttribute User user, Model model,@RequestParam(name = "profilePicture") String profilePicture) {
         // Hash the password
         String hash = encoder.encode(user.getPassword());
         // Set the hashed password BEFORE saving to the database
@@ -54,7 +46,6 @@ public class UserController {
         // Save the profile picture to the database or perform any necessary operations
 //        String fileUrl = saveProfilePictureToDatabase(profilePicture);
 //        user.setProfilePicture(fileUrl);
-
         // The code below grabs the attribute name from the @RequestParam and sets it to the profile picture.
         user.setProfilePicture(profilePicture);
         // Set the user attribute in the session
@@ -63,6 +54,9 @@ public class UserController {
         userDao.save(user);
         return "redirect:/profile";
     }
+
+
+
     private String saveProfilePictureToDatabase(MultipartFile profilePicture) {
         // Implement the logic to save the profile picture to the database
         // Here, you can use your preferred method or framework to store the file and return the URL or identifier of the saved picture
@@ -85,14 +79,7 @@ public class UserController {
         }
         return fileUrl;
     }
-    //  @GetMapping(“/user.json”)
-//  public @ResponseBody List<User> viewUsersInJson(){
-//     return userDao.findAll();
-//  }
-//  @GetMapping(“/users/ajax”)
-//  public String viewAllUsersWithAjax() {
-//    return “users/ajax”;
-//  }
+
     @PostMapping("/LoginPage")
     public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
         // Retrieve the user object from the database based on the provided username
@@ -107,6 +94,9 @@ public class UserController {
         // if Authentication failed, redirect back to the login page with an error message
         return "redirect:LoginPage";
     }
+
+
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
@@ -116,17 +106,14 @@ public class UserController {
     public String showProfile(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        model.addAttribute("user", loggedInUser);
-
-
-
         model.addAttribute("user",userDao.findById(loggedInUser.getId()).get());
-
-
 
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
         return "/profile";
     }
+
+
     @PostMapping("/profile")
     public String updateProfile(@ModelAttribute User user, Model model) {
         // Retrieve the user object from the database based on the provided username
@@ -140,41 +127,60 @@ public class UserController {
         // if Authentication failed, redirect back to the login page with an error message
         return "redirect:/LoginPage?error";
     }
-    @GetMapping("/editProfile")
-    public String showEditProfileForm(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", loggedInUser);
-        return "editProfile"; // Return the name of the template
+
+
+
+    @GetMapping("/event/{id}/editProfile")
+    public String showEditProfileForm(@PathVariable long id,Model model) {
+         User user = userDao.findById(id).get();
+         model.addAttribute("user", user);
+         return "/editProfile";
     }
-    @PostMapping("/editProfile")
-    public String editProfile(@ModelAttribute User user, Model model, @RequestParam(name = "image-upload") MultipartFile profilePicture) {
-        // Retrieve the currently logged-in user
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User editedUser = userDao.findById(loggedInUser.getId()).get();
-        // Update the relevant fields of the logged-in user with the new information
-        editedUser.setEmail(user.getEmail());
-        editedUser.setFirstName(user.getFirstName());
-        editedUser.setLastName(user.getLastName());
-        editedUser.setUsername(user.getUsername());
-        editedUser.setPassword(user.getPassword());
-        editedUser.setProfilePicture(user.getProfilePicture());
-        // Check if the provided password matches the user’s current password
-        if (encoder.matches(user.getPassword(), editedUser.getPassword())) {
-            // Save the updated user to the database
-            userDao.save(editedUser);
-            model.addAttribute("user", editedUser);
+
+
+
+
+//    private boolean validatePassword(String password) {
+//        if (password.length() < 4) {
+//            return "Password must be at least 4 characters long.";
+//        }
+//
+//        if (!password.matches(".*\\d.*")) {
+//            return "Password must contain at least one digit.";
+//        }
+//
+//        if (!password.matches(".*[A-Z].*")) {
+//            return "Password must contain at least one uppercase letter.";
+//        }
+//
+//        if (!password.matches(".*[@#$%^&+=].*")) {
+//            return "Password must contain at least one special character.";
+//        }
+//
+//        return "";
+//    }
+    @PostMapping("/event/{id}/editProfile")
+    public String editProfile(@ModelAttribute User user,@PathVariable long id,@RequestParam(name = "profilePicture") String profilePicture) {
+        user.setEmail(user.getEmail());
+        user.setId(id);
+        user.setFirstName(user.getFirstName());
+        user.setLastName(user.getLastName());
+        user.setUsername(user.getUsername());
+        user.setProfilePicture(user.getProfilePicture());
+        String hash = encoder.encode(user.getPassword());
+        user.setPassword(hash);
+        userDao.save(user);
             return "redirect:/profile";
-        }
-        // If the provided password doesn’t match, redirect back to the profile page with an error message
-        return "redirect:/profile?error";
+
     }
+
+
+
     @PostMapping("/deleteProfile")
     public String deleteProfile() {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User deletedUser = userDao.findById(loggedInUser.getId()).get();
-        // Perform the deletion operation on the user’s profile using the userRepository
         userDao.delete(deletedUser);
-        // Redirect to a different page after the deletion, e.g., the homepage
         return "redirect:/LoginPage";
     }
 }

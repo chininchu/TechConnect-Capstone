@@ -3,6 +3,7 @@ package com.example.techconnect.controllers;
 import com.example.techconnect.models.Event;
 
 import com.example.techconnect.models.Interest;
+import com.example.techconnect.models.Review;
 import com.example.techconnect.models.User;
 import com.example.techconnect.repositories.EventRepository;
 import com.example.techconnect.repositories.InterestRepository;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -31,7 +34,7 @@ public class EventController {
     private final ReviewRepository reviewRepository;
 
 
-    public EventController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository,ReviewRepository reviewRepository) {
+    public EventController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository, ReviewRepository reviewRepository) {
 
         this.eventRepository = eventRepository;
 //      this.addressUtility = addressUtility;
@@ -43,10 +46,20 @@ public class EventController {
     }
 
     @GetMapping("/events/ajax")
-    public String viewAllEventsWithAjax() {
+    public String viewAllEventsWithAjax(Model model) {
+        model.addAttribute("interests",interestRepository.findAll());
         return "/apitester";
     }
-
+    @GetMapping("/events/userpro")
+    public String viewUserPro(Model model) {
+        model.addAttribute("interests",interestRepository.findAll());
+        return "/api_profile_test";
+    }
+    @GetMapping("/events/allevent")
+    public String viewAllEvents(Model model) {
+        model.addAttribute("interests",interestRepository.findAll());
+        return "/api_eventsp_test";
+    }
 
 
     // I want to login to the website
@@ -72,7 +85,6 @@ public class EventController {
 //
 //
 //    }
-
 
 
     // We need the user's session key from when they login
@@ -121,8 +133,6 @@ public class EventController {
 
 
         eventRepository.save(event);
-
-
 
 
         return "redirect:/profile";
@@ -180,20 +190,69 @@ public class EventController {
 
     }
 
-    @GetMapping("/event/reviews/{eventId}")
+
+    //----------------------------------Review Entity -----------------------------------------------//
+
+
+//----Review(Read)----//
+
+    @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
         // Retrieve the reviews for the specified event from the database
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        model.addAttribute("eventId", eventRepository.findById(eventId).get());
+        Event event = eventRepository.findById(eventId).get();
+
+        model.addAttribute("event", event);
         model.addAttribute("reviews", reviewRepository.findAllByEventId(eventId));
+        model.addAttribute("loggedUserid", loggedIn.getId());
+        model.addAttribute("review", new Review());
+
         return "event-reviews";
 
 
     }
 
 
+    @PostMapping("/event/{eventId}/reviews/create")
+    public String saveReview(@PathVariable("eventId") long eventId, @ModelAttribute("review") Review review) {
 
 
+        // Set the user and event for the review
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+        Event event = eventRepository.findById(eventId).get();
+
+
+        review.setEvent(event);
+        review.setUser(loggedIn);
+
+        reviewRepository.save(review);
+
+
+        return "redirect:/event/{eventId}/reviews";
+
+
+        // Save the review to the database
+
+
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
