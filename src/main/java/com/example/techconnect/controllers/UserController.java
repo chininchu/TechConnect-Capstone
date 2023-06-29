@@ -22,6 +22,8 @@ public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder encoder;
 
+//    @Value("file-upload-path")
+//    private String uploadPath;
 
     private EventRepository eventRepository;
     public UserController(UserRepository userDao, PasswordEncoder encoder, EventRepository eventRepository) {
