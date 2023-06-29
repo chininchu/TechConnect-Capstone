@@ -16,8 +16,9 @@
     margin-bottom: 20px;
     border-radius: 55px;
     margin-top: 20px;
-    flex: 0 0 100%;
     margin-left: 300px;
+    display: flex;
+    justify-content: space-between;
 }
 
 #editbtn{
@@ -95,6 +96,8 @@ html, body {
     height: 93%;
     background-color: gray;
     margin-top: 56px;
+    border-right: 1px solid #ccc;
+    margin-left: 15px;
 }
 
 .navbar-text{
@@ -105,13 +108,16 @@ html, body {
     color: floralwhite;
 }
 
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
+/*.container{*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: flex-end;*/
+/*}*/
 
-.profileinfo{
+.profile-info{
     color: floralwhite;
-    margin-left: 100px;
+    /*margin-right: 100px;*/
+    margin-left: 30px;
+
+
 }
