@@ -1,12 +1,15 @@
 package com.example.techconnect.controllers;
+
 import com.example.techconnect.models.User;
 import com.example.techconnect.repositories.EventRepository;
 import com.example.techconnect.repositories.UserRepository;
+import com.example.techconnect.utilities.PasswordValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+
 @Controller
 public class UserController {
     private final UserRepository userDao;
@@ -24,19 +28,36 @@ public class UserController {
 
 
     private EventRepository eventRepository;
+
     public UserController(UserRepository userDao, PasswordEncoder encoder, EventRepository eventRepository) {
         this.userDao = userDao;
         this.encoder = encoder;
         this.eventRepository = eventRepository;
     }
+
     @GetMapping("/SignUpPage")
     public String showSignupForm(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "/SignUpPage";
     }
+
     @PostMapping("/SignUpPage")
-    public String registerUser(@ModelAttribute User user, Model model,@RequestParam(name = "profilePicture") String profilePicture) {
+    public String registerUser(@ModelAttribute User user, Model model, @RequestParam(name = "profilePicture") String profilePicture, BindingResult bindingResult) {
+
+        // ------Validates the password is Alphanumeric and has special characters--------
+        if (!PasswordValidator.validatePassword(user.getPassword())) {
+            bindingResult.rejectValue("password", "error.password", "Password must be alphanumeric and contain special characters.");
+        }
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+            return "/SignUpPage";
+        }
+
+        //------------------------------------------------------------------//
+
+
         // Hash the password
         String hash = encoder.encode(user.getPassword());
         // Set the hashed password BEFORE saving to the database
@@ -52,7 +73,6 @@ public class UserController {
         userDao.save(user);
         return "redirect:/profile";
     }
-
 
 
     private String saveProfilePictureToDatabase(MultipartFile profilePicture) {
@@ -94,17 +114,17 @@ public class UserController {
     }
 
 
-
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/LoginPage";
     }
+
     @GetMapping("/profile")
     public String showProfile(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        model.addAttribute("user", loggedInUser);
-        model.addAttribute("user",userDao.findById(loggedInUser.getId()).get());
+        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
 
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
@@ -127,18 +147,15 @@ public class UserController {
     }
 
 
-
     @GetMapping("/event/{id}/editProfile")
-    public String showEditProfileForm(@PathVariable long id,Model model) {
-         User user = userDao.findById(id).get();
-         model.addAttribute("user", user);
-         return "/editProfile";
+    public String showEditProfileForm(@PathVariable long id, Model model) {
+        User user = userDao.findById(id).get();
+        model.addAttribute("user", user);
+        return "/editProfile";
     }
 
 
-
-
-//    private boolean validatePassword(String password) {
+    //    private boolean validatePassword(String password) {
 //        if (password.length() < 4) {
 //            return "Password must be at least 4 characters long.";
 //        }
@@ -158,7 +175,7 @@ public class UserController {
 //        return "";
 //    }
     @PostMapping("/event/{id}/editProfile")
-    public String editProfile(@ModelAttribute User user,@PathVariable long id,@RequestParam(name = "profilePicture") String profilePicture) {
+    public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture) {
         user.setEmail(user.getEmail());
         user.setId(id);
         user.setFirstName(user.getFirstName());
@@ -168,10 +185,9 @@ public class UserController {
         String hash = encoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-            return "redirect:/profile";
+        return "redirect:/profile";
 
     }
-
 
 
     @PostMapping("/deleteProfile")
