@@ -51,7 +51,7 @@ public class DiscussionController {
     @GetMapping("/comments/create")
     public String showCommentForm(Model model) {
         model.addAttribute("comment", new Comment());
-        return "discussions-test";
+        return "/discussions-test";
     }
 
 
@@ -77,18 +77,7 @@ public class DiscussionController {
     }
 
 
-    @PostMapping("/comments/submit")
-    public String submitComment(Model model ,@ModelAttribute Comment comment) {
 
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("comment", new Comment());
-        comment.setUser(loggedIn);
-
-        commentRepository.save(comment);
-
-
-            return "redirect:/discussions";
-        }
 
 
     }
