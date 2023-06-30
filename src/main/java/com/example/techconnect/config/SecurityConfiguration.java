@@ -91,6 +91,7 @@ public class SecurityConfiguration {
                                 "/events/ajax",
                                 "/deleteProfile",
                                 "/register",
+                                "/logout",
                                 "/login",
                                 "/events/eventsSearchKeyword",
                                 "/events/searchEvents",
