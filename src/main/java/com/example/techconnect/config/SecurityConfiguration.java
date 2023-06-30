@@ -91,6 +91,7 @@ public class SecurityConfiguration {
                                 "/events/ajax",
                                 "/deleteProfile",
                                 "/register",
+                                "/logout",
                                 "/login",
                                 "/events/eventsSearchKeyword",
                                 "/events/searchEvents",
@@ -101,7 +102,7 @@ public class SecurityConfiguration {
                                 "/events/userEvents",
                                 "/event/{eventId}/reviews").permitAll()
                         // allow loading of static resources
-                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/keys.js").permitAll()
                 )
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/LoginPage").defaultSuccessUrl("/profile"))
