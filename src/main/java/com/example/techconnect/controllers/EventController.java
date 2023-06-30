@@ -219,7 +219,8 @@ public class EventController {
         return "redirect:/event/{eventId}/reviews";
     }
 
-}
+
+
 
 
 
