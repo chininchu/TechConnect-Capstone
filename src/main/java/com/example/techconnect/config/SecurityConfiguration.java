@@ -73,7 +73,9 @@ public class SecurityConfiguration {
                                 "/editProfile",
                                 "/comments/create",
                                 "/event/{eventId}/reviews/create",
-                                "/event/{eventId}/delete").authenticated()
+                                "/event/{eventId}/delete",
+                                "/event/{eventId}/reviews/{reviewId}/delete",
+                                "/event/{eventId}/reviews/{reviewId}/edit").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
                 // /event/reviews/create is a public page and can be visited by anyone

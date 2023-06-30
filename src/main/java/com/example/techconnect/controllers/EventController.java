@@ -56,47 +56,6 @@ public class EventController {
     }
 
 
-    // I want to login to the website
-
-    // The page should be displayed to the user
-
-
-//    @GetMapping("/event/create")
-//    public String showEventForm(Model model) {
-//
-//        model.addAttribute("event", new Event());
-//
-//        return "/event/create";
-//    }
-//
-//    @PostMapping("/event/create")
-//
-//    public String createEvent(@ModelAttribute Event event) {
-//
-//        eventRepository.save(event);
-//
-//        return "/event/create";
-//
-//
-//    }
-
-
-    // We need the user's session key from when they login
-
-
-    // I want to click a button that creates an event
-
-
-    // We need a form that has a POST method
-    // @Get will simply render the page
-
-    // Post method grabs the registration information
-
-    // Use the Address utility method to store Street, city, state information
-
-    // Creates a new Event Object
-
-    // Saves it to the DB
 
 //    <!--The naming convention has been changed from /event to /event/create-->
 
@@ -192,6 +151,7 @@ public class EventController {
 
     @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
+
         Event event = eventRepository.findById(eventId).orElseThrow();
         List<Review> reviews = reviewRepository.findAllByEventId(eventId);
         double averageRating = calculateAverageRating(reviews);
@@ -200,6 +160,9 @@ public class EventController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("review", new Review());
+
+        // Attendees Registration for an event
+
 
         return "event-reviews";
     }
@@ -259,6 +222,38 @@ public class EventController {
 }
 
 
+
+
+
+
+    // The DeleteMapping method to delete the review from the database
+
+    @PostMapping("/event/{eventId}/reviews/{reviewId}/delete")
+    public String deleteReview(@PathVariable("eventId") long eventId,
+                               @PathVariable("reviewId") long reviewId, Model model) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid review Id:" + reviewId));
+        reviewRepository.delete(review);
+
+        return "redirect:/event/{eventId}/reviews";
+    }
+
+
+    // Edit review
+
+    @PostMapping("/event/{eventId}/reviews/{reviewId}/edit")
+    public String editReview(@PathVariable Long eventId, @PathVariable Long reviewId,
+                             @RequestParam("title") String title, @RequestParam("description") String description) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid review Id:" + reviewId));
+        review.setTitle(title);
+        review.setDescription(description);
+        reviewRepository.save(review);
+        return "redirect:/event/{eventId}/reviews";
+    }
+
+
+}
 
 
 
