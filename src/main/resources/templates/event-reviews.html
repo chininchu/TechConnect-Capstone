@@ -6,11 +6,48 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <title>Event Reviews</title>
+
+    <style>
+        .rating {
+            display: inline-block;
+            direction:rtl;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating label:before {
+            content: "\2605";
+        }
+
+        .rating input[type="radio"]:checked ~ label {
+            color: gold;
+        }
+    </style>
+
+
 </head>
 <body>
 
-
 <h2>Event Reviews</h2>
+<h2>Average Rating: <span id="averageRating" th:text="${averageRating}"></span></h2>
+<!--<h2>Number of Techies attending this event: <span id="attendees" th:text="${event.attendeeCount}"></span></h2>-->
+<!-- Registration section -->
+<div sec:authorize="isAuthenticated()">
+    <h2>Register for Event</h2>
+    <form th:action="@{/event/{eventId}/register(eventId=${event.eventId})}" method="post" th:object="${attendee}">
+        <input type="hidden" th:value="${userId}" name="userId" />
+        <input type="hidden" th:value="${event.eventId}" name="eventId" />
+        <button type="submit">Register for this event</button>
+    </form>
+</div>
 
 <table>
     <thead>
@@ -61,15 +98,15 @@
         <fieldset>
             <legend>Rating:</legend>
             <div class="rating">
-                <input type="radio" id="star5" name="*{rating}" value="5" th:checked="${review.rating == 5}"/>
+                <input type="radio" id="star5" name="*{rating}" th:field="*{rating}" value="5" th:checked="${review.rating == 5}"/>
                 <label for="star5"></label>
-                <input type="radio" id="star4" name="*{rating}" value="4" th:checked="${review.rating == 4}"/>
+                <input type="radio" id="star4" name="*{rating}" th:field="*{rating}" value="4" th:checked="${review.rating == 4}"/>
                 <label for="star4"></label>
-                <input type="radio" id="star3" name="*{rating}" value="3" th:checked="${review.rating == 3}"/>
+                <input type="radio" id="star3" name="*{rating}" th:field="*{rating}" value="3" th:checked="${review.rating == 3}"/>
                 <label for="star3"></label>
-                <input type="radio" id="star2" name="*{rating}" value="2" th:checked="${review.rating == 2}"/>
+                <input type="radio" id="star2" name="*{rating}" th:field="*{rating}" value="2" th:checked="${review.rating == 2}"/>
                 <label for="star2"></label>
-                <input type="radio" id="star1" name="*{rating}" value="1" th:checked="${review.rating == 1}"/>
+                <input type="radio" id="star1" name="*{rating}" th:field="*{rating}" value="1" th:checked="${review.rating == 1}"/>
                 <label for="star1"></label>
             </div>
         </fieldset>
@@ -83,5 +120,10 @@
 <div sec:authorize="isAnonymous()">
     <p>Please log in to submit a review.</p>
 </div>
+
+
+
+
+
 </body>
 </html>
