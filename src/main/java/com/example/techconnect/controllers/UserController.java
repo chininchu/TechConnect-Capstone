@@ -73,7 +73,7 @@ public class UserController {
 //        request.getSession().setAttribute("user", user);
         model.addAttribute("user", user);
         userDao.save(user);
-        return "redirect:/profile";
+        return "redirect:/LoginPage";
     }
 
 
