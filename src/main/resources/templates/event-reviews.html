@@ -160,8 +160,10 @@
         <td th:text="${event.description}"></td>
         <td th:text="${event.location}"></td>
         <td>
-            <form th:if="${event.host != loggedInUser}" th:action="@{/event/{eventId}/register(eventId=${event.eventId})}" method="post" class="register-form">
-                <input type="hidden" name="eventTitle" th:value="${event.title}" />
+            <form th:if="${event.host != loggedInUser}"
+                  th:action="@{/event/{eventId}/register(eventId=${event.eventId})}" method="post"
+                  class="register-form">
+                <input type="hidden" name="eventTitle" th:value="${event.title}"/>
                 <button type="submit">Register</button>
             </form>
         </td>

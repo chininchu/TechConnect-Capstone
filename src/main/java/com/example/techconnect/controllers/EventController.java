@@ -149,21 +149,46 @@ public class EventController {
 
 //----Review(Read)----//
 
+
+    private double calculateAverageRating(List<Review> reviews) {
+        if (reviews.isEmpty()) {
+            return 0.0;
+        }
+        double sum = 0.0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
+        return sum / reviews.size();
+    }
+
+
+
     @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
 
         Event event = eventRepository.findById(eventId).orElseThrow();
         List<Review> reviews = reviewRepository.findAllByEventId(eventId);
         double averageRating = calculateAverageRating(reviews);
+<<<<<<< HEAD
 
+=======
+>>>>>>> c94b162 (Fixed Conflicts)
         model.addAttribute("event", event);
         model.addAttribute("reviews", reviews);
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("review", new Review());
+// Attendees Registration for an event
 
+        List<Event> events = eventRepository.findAll();
+        model.addAttribute("events", events);
+
+<<<<<<< HEAD
         // Attendees Registration for an event
         List<Event> events = eventRepository.findAll();
         model.addAttribute("events", events);
+=======
+
+>>>>>>> c94b162 (Fixed Conflicts)
 
         return "event-reviews";
     }
@@ -253,6 +278,9 @@ public class EventController {
         reviewRepository.save(review);
         return "redirect:/event/{eventId}/reviews";
     }
+
+
+
 
 
 }
