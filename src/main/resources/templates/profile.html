@@ -52,9 +52,9 @@
             </div>
         </div>
 
-        <!-- User's Events -->
+        <!-- Events that the user is hosting -->
         <div class="col-md-8">
-            <h2>Your Events:</h2>
+            <h2>Events that you are hosting:</h2>
             <table class="table">
                 <thead>
                 <tr>
@@ -81,6 +81,40 @@
                             <input type="hidden" name="hostId" th:value="${event.host}"/>
                             <input type="hidden" name="interestId" th:value="${event.interest}"/>
                             <button type="submit" class="btn btn-light">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Events that the user can register for -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h2>Events that you can register for:</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date/Time</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Register</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="event : ${events}">
+                    <td th:text="${event.title}"></td>
+                    <td th:text="${event.dateTime}"></td>
+                    <td th:text="${event.description}"></td>
+                    <td th:text="${event.location}"></td>
+                    <td>
+                        <form th:if="${event.host != user}"
+                              th:action="@{/event/{eventId}/register(eventId=${event.eventId})}" method="post"
+                              class="register-form">
+                            <input type="hidden" name="eventTitle" th:value="${event.title}"/>
+                            <button type="submit">Register</button>
                         </form>
                     </td>
                 </tr>
