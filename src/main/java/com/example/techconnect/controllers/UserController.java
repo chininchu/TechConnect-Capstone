@@ -126,15 +126,16 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfile(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", loggedInUser);
-        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
+        model.addAttribute("user", loggedInUser);
+//        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
 
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
 
         // Retrieve events created by other organizers
         List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
-        model.addAttribute("events", otherOrganizerEvents);
+
+        model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
 
 
 

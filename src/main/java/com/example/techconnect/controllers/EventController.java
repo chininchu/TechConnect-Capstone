@@ -56,7 +56,6 @@ public class EventController {
     }
 
 
-
 //    <!--The naming convention has been changed from /event to /event/create-->
 
     @GetMapping("/event/create")
@@ -162,7 +161,6 @@ public class EventController {
     }
 
 
-
     @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
 
@@ -174,9 +172,9 @@ public class EventController {
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("review", new Review());
 // Attendees Registration for an event
+//        List<Event> events = eventRepository.findAll();
+//        model.addAttribute("events", events);
 
-        List<Event> events = eventRepository.findAll();
-        model.addAttribute("events", events);
 
 
         return "event-reviews";
@@ -222,12 +220,6 @@ public class EventController {
     }
 
 
-
-
-
-
-
-
     // The DeleteMapping method to delete the review from the database
 
     @PostMapping("/event/{eventId}/reviews/{reviewId}/delete")
@@ -255,7 +247,39 @@ public class EventController {
     }
 
 
+    // ----------- Attendees Registration--------- //
 
+    @PostMapping("/attendee/{eventId}/register")
+    public String registerEvent(@PathVariable("eventId") Long eventId, Model model) {
+        // Get the logged-in user
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Retrieve the event and user from their respective repositories
+        Optional<Event> optionalEvent = eventRepository.findById(eventId);
+        Optional<User> optionalUser = userRepository.findById(loggedInUser.getId());
+
+        if (optionalEvent.isPresent() && optionalUser.isPresent()) {
+            Event event = optionalEvent.get();
+            User user = optionalUser.get();
+
+            // Create a new Attendee entity
+            Attendee attendee = new Attendee();
+            attendee.setUser(user);
+            attendee.setEvent(event);
+
+            // Save the Attendee entity to the database
+            attendeeRepository.save(attendee);
+
+            // Set the success message
+            model.addAttribute("message", "Thanks for registering! We look forward to seeing you at the event.");
+        } else {
+            // Set an error message if the event or user is not found
+            model.addAttribute("message", "Error: Event or user not found.");
+        }
+
+        // Redirect back to the event details page
+        return "redirect:/event/{eventId}/reviews";
+    }
 
 
 }
