@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" th:src="@{/keys.js}"></script>
 </head>
 <body>
 <h1>TechConnect</h1>
@@ -14,6 +15,9 @@
 <form th:action="@{/SignUpPage}" method="get">
     <button type="submit">Register</button>
 </form>
-
+<script>
+    console.log(GITHUBTOK)
+    console.log(MAPBOXAP_TOK)
+</script>
 </body>
 </html>
