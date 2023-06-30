@@ -177,13 +177,26 @@ public class UserController {
 //        return "";
 //    }
     @PostMapping("/event/{id}/editProfile")
-    public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture) {
+    public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture, BindingResult bindingResult, Model model) {
         user.setEmail(user.getEmail());
         user.setId(id);
         user.setFirstName(user.getFirstName());
         user.setLastName(user.getLastName());
         user.setUsername(user.getUsername());
         user.setProfilePicture(user.getProfilePicture());
+
+
+        // ------Validates the password is Alphanumeric and has special characters--------
+
+        if (!PasswordValidator.validatePassword(user.getPassword())) {
+            bindingResult.rejectValue("password", "error.password", "Password must be alphanumeric and contain special characters.");
+        }
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+            return "/editProfile";
+        }
+
+
         String hash = encoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
