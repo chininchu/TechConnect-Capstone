@@ -48,8 +48,9 @@ public class DiscussionController {
 
     }
 
-    @GetMapping("/comments/create")
-    public String showCommentForm(Model model) {
+    @GetMapping("/comments/{id}/create")
+    public String showCommentForm(@PathVariable Long id,  Model model) {
+        Discussion discussionId = discussionRepository.findById(id).get();
         model.addAttribute("comment", new Comment());
         return "/discussions-test";
     }
@@ -57,8 +58,9 @@ public class DiscussionController {
 
 
     @PostMapping("/comments/create")
-    public String createComment(@ModelAttribute Comment comment){
+    public String createComment(@ModelAttribute Comment comment,Model model,@PathVariable long id){
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("discussionId",discussionRepository.findById(id));
 
         comment.setUser(loggedIn);
 
