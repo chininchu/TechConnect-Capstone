@@ -227,7 +227,6 @@ public class EventController {
 
 
 
-
     // The DeleteMapping method to delete the review from the database
 
     @PostMapping("/event/{eventId}/reviews/{reviewId}/delete")
