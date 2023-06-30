@@ -68,7 +68,7 @@ public class EventController {
 
         model.addAttribute("event", new Event());
 
-        return "/event/create";
+        return "/event/create"; // change back to /event/create before push
     }
 
     @PostMapping("/event/create")
@@ -162,7 +162,8 @@ public class EventController {
         model.addAttribute("review", new Review());
 
         // Attendees Registration for an event
-
+        List<Event> events = eventRepository.findAll();
+        model.addAttribute("events", events);
 
         return "event-reviews";
     }

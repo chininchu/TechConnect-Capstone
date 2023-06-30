@@ -88,3 +88,12 @@ html, body {
     margin-left: 1100px;
 }
 
+.middle-heading {
+
+    justify-content: center;
+    align-items: center;
+    color: floralwhite;
+    margin-left: 40%;
+    font-family: "PT Serif";
+    margin-top: 10px;
+}

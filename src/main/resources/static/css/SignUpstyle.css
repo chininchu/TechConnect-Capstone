@@ -65,8 +65,10 @@ html, body {
     top: 0;
     left: 53%;
     width: 1px;
-    height: 1000%;
+    height: 111%;
     background-color: gray;
 }
 
-
+form {
+    margin-right: 30px;
+}
