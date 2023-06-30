@@ -1,10 +1,9 @@
 package com.example.techconnect.controllers;
-import com.example.techconnect.models.Interest;
+import com.example.techconnect.models.Discussion;
+import com.example.techconnect.models.Review;
 import com.example.techconnect.models.User;
 import com.example.techconnect.models.Event;
-import com.example.techconnect.repositories.EventRepository;
-import com.example.techconnect.repositories.InterestRepository;
-import com.example.techconnect.repositories.UserRepository;
+import com.example.techconnect.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +18,15 @@ public class RestApiController {
     private final UserRepository userRepository;
 
     private final InterestRepository interestRepository;
-    public RestApiController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository) {
+    private final DiscussionRepository discussionRepository;
+
+    private final ReviewRepository reviewRepository;
+    public RestApiController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository, DiscussionRepository discussionRepository, ReviewRepository reviewRepository) {
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
         this.interestRepository = interestRepository;
+        this.reviewRepository = reviewRepository;
+        this.discussionRepository = discussionRepository;
     }
 
     @GetMapping("/allEvents")
@@ -52,6 +56,10 @@ public class RestApiController {
     public List <Event> searchByKeyWord(@RequestParam (name = "keyword") String keyword){
         return eventRepository.findEventByTitleContainingIgnoreCase(keyword);
     }
+
+
+
+
 
 
 

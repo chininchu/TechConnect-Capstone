@@ -66,9 +66,12 @@ public class SecurityConfiguration {
                          * only authenticated users can create and edit events */
                         .requestMatchers("/event/create",
                                 "/event/{id}/edit",
+                                "/discussions/{id}/delete",
+                                "/comments/{id}/delete",
                                 "/event/{profId}/editProfile",
                                 "/profile",
                                 "/editProfile",
+                                "/comments/create",
                                 "/event/{eventId}/reviews/create",
                                 "/event/{eventId}/delete").authenticated()
                         /* Pages that do not require authentication
@@ -81,6 +84,7 @@ public class SecurityConfiguration {
                                 "/events/allevent",
                                 "/SignUpPage",
                                 "/LoginPage",
+                                "/discussions",
                                 "/events.json",
                                 "/events/ajax",
                                 "/deleteProfile",
