@@ -68,7 +68,7 @@ public class EventController {
 
         model.addAttribute("event", new Event());
 
-        return "/event/create";
+        return "/event/create"; // change back to /event/create before push
     }
 
     @PostMapping("/event/create")
