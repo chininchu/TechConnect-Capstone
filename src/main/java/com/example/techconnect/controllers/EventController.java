@@ -208,6 +208,11 @@ public class EventController {
         model.addAttribute("reviews", reviewRepository.findAllByEventId(eventId));
         model.addAttribute("review", new Review());
 
+        // Attendees Registration for an event
+
+        List<Event> events = eventRepository.findAll();
+        model.addAttribute("events", events);
+
         return "event-reviews";
 
 
@@ -265,6 +270,12 @@ public class EventController {
         reviewRepository.save(review);
         return "redirect:/event/{eventId}/reviews";
     }
+
+
+
+
+
+
 
 
 }

@@ -112,6 +112,38 @@
     </tbody>
 </table>
 
+
+<!--Other Users Events -->
+
+<h2>Events that you may be interested in</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date/Time</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Register</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.title}"></td>
+        <td th:text="${event.dateTime}"></td>
+        <td th:text="${event.description}"></td>
+        <td th:text="${event.location}"></td>
+        <td>
+            <form th:if="${event.host != loggedInUser}" th:action="@{/event/{eventId}/register(eventId=${event.eventId})}" method="post" class="register-form">
+                <input type="hidden" name="eventTitle" th:value="${event.title}" />
+                <button type="submit">Register</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
 <script>
     $(document).ready(function () {
         $('.edit-review-button').click(function () {
