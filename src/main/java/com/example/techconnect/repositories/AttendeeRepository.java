@@ -8,8 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface AttendeeRepository extends JpaRepository<Attendee,Long> {
 
 
-
-
-
-
 }

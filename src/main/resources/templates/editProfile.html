@@ -54,6 +54,15 @@
                 </div>
 
 
+                <!--The code below throws an error message if the password does not meet the validation rule -->
+                <div class="row mb-3" th:if="${#fields.hasErrors('password')}">
+                    <div class="col-12">
+                        <span class="text-danger" th:errors="*{password}"></span>
+                    </div>
+                </div>
+                <!------------------------->
+
+
                 <div class="row mb-3">
                     <div class="col-12">
         <span class="input-group-text">

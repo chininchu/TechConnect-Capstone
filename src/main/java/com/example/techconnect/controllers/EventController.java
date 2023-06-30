@@ -1,23 +1,14 @@
 package com.example.techconnect.controllers;
 
-import com.example.techconnect.models.Event;
+import com.example.techconnect.models.*;
 
-import com.example.techconnect.models.Interest;
-import com.example.techconnect.models.Review;
-import com.example.techconnect.models.User;
-import com.example.techconnect.repositories.EventRepository;
-import com.example.techconnect.repositories.InterestRepository;
-import com.example.techconnect.repositories.ReviewRepository;
-import com.example.techconnect.repositories.UserRepository;
+import com.example.techconnect.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -33,31 +24,34 @@ public class EventController {
 
     private final ReviewRepository reviewRepository;
 
+    private final AttendeeRepository attendeeRepository;
 
-    public EventController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository, ReviewRepository reviewRepository) {
+
+    public EventController(EventRepository eventRepository, UserRepository userRepository, InterestRepository interestRepository, ReviewRepository reviewRepository, AttendeeRepository attendeeRepository) {
 
         this.eventRepository = eventRepository;
 //      this.addressUtility = addressUtility;
         this.userRepository = userRepository;
         this.interestRepository = interestRepository;
         this.reviewRepository = reviewRepository;
-
-
+        this.attendeeRepository = attendeeRepository;
     }
 
     @GetMapping("/events/ajax")
     public String viewAllEventsWithAjax(Model model) {
-        model.addAttribute("interests",interestRepository.findAll());
+        model.addAttribute("interests", interestRepository.findAll());
         return "/apitester";
     }
+
     @GetMapping("/events/userpro")
     public String viewUserPro(Model model) {
-        model.addAttribute("interests",interestRepository.findAll());
+        model.addAttribute("interests", interestRepository.findAll());
         return "/api_profile_test";
     }
+
     @GetMapping("/events/allevent")
     public String viewAllEvents(Model model) {
-        model.addAttribute("interests",interestRepository.findAll());
+        model.addAttribute("interests", interestRepository.findAll());
         return "/api_eventsp_test";
     }
 
@@ -198,49 +192,76 @@ public class EventController {
 
     @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
-        // Retrieve the reviews for the specified event from the database
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        Event event = eventRepository.findById(eventId).get();
+        Event event = eventRepository.findById(eventId).orElseThrow();
+        List<Review> reviews = reviewRepository.findAllByEventId(eventId);
+        double averageRating = calculateAverageRating(reviews);
 
         model.addAttribute("event", event);
-        model.addAttribute("reviews", reviewRepository.findAllByEventId(eventId));
-        model.addAttribute("loggedUserid", loggedIn.getId());
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("averageRating", averageRating);
         model.addAttribute("review", new Review());
 
         return "event-reviews";
-
-
     }
-
 
     @PostMapping("/event/{eventId}/reviews/create")
     public String saveReview(@PathVariable("eventId") long eventId, @ModelAttribute("review") Review review) {
-
-
-        // Set the user and event for the review
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-
-        Event event = eventRepository.findById(eventId).get();
-
+        Event event = eventRepository.findById(eventId).orElseThrow();
 
         review.setEvent(event);
         review.setUser(loggedIn);
-
         reviewRepository.save(review);
 
-
         return "redirect:/event/{eventId}/reviews";
+    }
 
+    private double calculateAverageRating(List<Review> reviews) {
+        if (reviews.isEmpty()) {
+            return 0.0;
+        }
 
-        // Save the review to the database
+        double sum = 0.0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
 
-
+        return sum / reviews.size();
     }
 
 
+    @GetMapping("/event/{eventId}/register")
+    public String showRegisterForm(Model model, Attendee attendee, @PathVariable long eventId) {
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Event event = eventRepository.findById(eventId).orElseThrow(); // Retrieve the event object
+        model.addAttribute("event", event); // Pass the event object to the model
+        model.addAttribute("userId", loggedIn.getId());
+        model.addAttribute("attendee", attendee);
+
+        return "event-reviews";
+    }
+
+
+    @PostMapping("/event/{eventId}/register")
+    public String registerForEvent(@PathVariable Long eventId, @ModelAttribute Attendee attendee) {
+        // At this point, attendee should have its userId and eventId set,
+        // thanks to Thymeleaf's form binding. You might want to perform additional
+        // validation checks here, depending on your requirements.
+        // Save the attendee to the database.
+
+        attendeeRepository.save(attendee);
+        // Redirect to a success page or back to the event page, or wherever is appropriate.
+        // Here, we're redirecting to the event page.
+        return "redirect:/event/{eventId}/reviews";
+    }
+
 }
+
+
+
+
+
 
 
 
