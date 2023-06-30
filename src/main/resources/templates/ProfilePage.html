@@ -96,13 +96,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="button-group">
-                <a th:href="@{/editProfile}">
+                <a th:href="@{/event/{id}/editProfile (id=${user.id})}">
                     <button class="btn btn-light" id="editbtn">Edit Profile</button>
                 </a>
                 <form th:action="@{/deleteProfile}" method="post">
-                    <button class="btn btn-light" id="deletebtn">Delete Profile</button>
+                    <button type="submit" class="btn btn-light" id="deletebtn">Delete Profile</button>
                 </form>
-                <button class="btn btn-light" id="changebtn">Upload Photo</button>
+
             </div>
         </div>
 
