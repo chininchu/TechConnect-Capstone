@@ -55,7 +55,7 @@ public class Event {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name="host_id")
+    @JoinColumn(name = "host_id")
 
     // This is now considered to bes host and not user
     private User host;
@@ -63,24 +63,17 @@ public class Event {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name="interest_id")
+    @JoinColumn(name = "interest_id")
     private Interest interest;
 
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL)
-    private List<Attendee>attendees = new ArrayList<>();
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Attendee> attendees = new ArrayList<>();
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL)
-    private List<Review>reviews = new ArrayList<>();
-
-
-
-
-
-
-
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 
 
 }
