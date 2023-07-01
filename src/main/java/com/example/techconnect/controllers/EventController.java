@@ -176,7 +176,6 @@ public class EventController {
 //        model.addAttribute("events", events);
 
 
-
         return "event-reviews";
     }
 
@@ -278,7 +277,7 @@ public class EventController {
         }
 
         // Redirect back to the event details page
-        return "redirect:/event/{eventId}/reviews";
+        return "redirect:/profile";
     }
 
 
