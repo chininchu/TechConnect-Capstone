@@ -248,8 +248,40 @@ public class EventController {
 
     // ----------- Attendees Registration--------- //
 
+//    @PostMapping("/attendee/{eventId}/register")
+//    public String registerEvent(@PathVariable("eventId") Long eventId, Model model) {
+//        // Get the logged-in user
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        // Retrieve the event and user from their respective repositories
+//        Optional<Event> optionalEvent = eventRepository.findById(eventId);
+//        Optional<User> optionalUser = userRepository.findById(loggedInUser.getId());
+//
+//        if (optionalEvent.isPresent() && optionalUser.isPresent()) {
+//            Event event = optionalEvent.get();
+//            User user = optionalUser.get();
+//
+//            // Create a new Attendee entity
+//            Attendee attendee = new Attendee();
+//            attendee.setUser(user);
+//            attendee.setEvent(event);
+//
+//            // Save the Attendee entity to the database
+//            attendeeRepository.save(attendee);
+//
+//            // Set the success message
+//            model.addAttribute("message", "Thanks for registering! We look forward to seeing you at the event.");
+//        } else {
+//            // Set an error message if the event or user is not found
+//            model.addAttribute("message", "Error: Event or user not found.");
+//        }
+//
+//        // Redirect back to the event details page
+//        return "redirect:/profile";
+//    }
+
     @PostMapping("/attendee/{eventId}/register")
-    public String registerEvent(@PathVariable("eventId") Long eventId, Model model) {
+    public String registerEvent(@PathVariable("eventId") Long eventId, @RequestParam("eventTitle") String eventTitle, Model model) {
         // Get the logged-in user
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -261,25 +293,32 @@ public class EventController {
             Event event = optionalEvent.get();
             User user = optionalUser.get();
 
-            // Create a new Attendee entity
-            Attendee attendee = new Attendee();
-            attendee.setUser(user);
-            attendee.setEvent(event);
+            // Check if the user is already registered for the event
+            boolean isRegistered = attendeeRepository.existsByUserAndEvent(user, event);
 
-            // Save the Attendee entity to the database
-            attendeeRepository.save(attendee);
+            if (isRegistered) {
+                // Set an error message if the user is already registered
+                model.addAttribute("message", "You are already registered for this event.");
+            } else {
+                // Create a new Attendee entity
+                Attendee attendee = new Attendee();
+                attendee.setUser(user);
+                attendee.setEvent(event);
 
-            // Set the success message
-            model.addAttribute("message", "Thanks for registering! We look forward to seeing you at the event.");
+                // Save the Attendee entity to the database
+                attendeeRepository.save(attendee);
+
+                // Set the success message
+                model.addAttribute("message", "Thanks for registering! We look forward to seeing you at the event.");
+            }
         } else {
             // Set an error message if the event or user is not found
             model.addAttribute("message", "Error: Event or user not found.");
         }
 
-        // Redirect back to the event details page
+        // Redirect back to the profile page
         return "redirect:/profile";
     }
-
 
 }
 

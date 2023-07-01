@@ -30,5 +30,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findAllByHostIdNot(@Param("userId") Long userId);
 
 
+
+
+
 }
 
