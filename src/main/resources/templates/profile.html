@@ -52,6 +52,11 @@
                     <button class="btn btn-light">Create Event</button>
                 </a>
             </div>
+
+            <!-- Display Success Message -->
+            <div th:if="${not #strings.isEmpty(message)}" class="alert alert-success mt-3">
+                <p th:text="${message}"></p>
+            </div>
         </div>
 
         <!-- Events that the user is hosting -->
@@ -113,7 +118,6 @@
                     <td th:text="${event.description}"></td>
                     <td th:text="${event.location}"></td>
                     <td>
-
                         <form th:if="${event.host != user}" id="eventForm${event.eventId}"
                               th:action="@{'/attendee/' + ${event.eventId} + '/register'}" method="post">
                             <input type="hidden" name="eventTitle" th:value="${event.title}">
@@ -121,8 +125,6 @@
                                 Register
                             </button>
                         </form>
-
-
                     </td>
                 </tr>
                 </tbody>
@@ -142,36 +144,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
-
-
-<script>
-    function showRegistrationMessage(message) {
-        var registrationMessage = document.createElement("div");
-        registrationMessage.textContent = message;
-        registrationMessage.classList.add("registration-message");
-
-        var container = document.querySelector(".container");
-        container.insertBefore(registrationMessage, container.firstChild);
-
-        setTimeout(function () {
-            registrationMessage.remove();
-        }, 5000);
-    }
-
-    function registerForEvent(eventId, eventTitle) {
-        // TODO: Implement the logic to check if the user is already registered
-        var isRegistered = false; // Replace with your actual logic
-
-        if (isRegistered) {
-            showPopup("You are already registered for this event.");
-        } else {
-            // Submit the registration form
-            document.getElementById("eventForm" + eventId).submit();
-            showRegistrationMessage("Thanks for registering! We look forward to seeing you at the event.");
-        }
-    }
-</script>
-
 
 </body>
 </html>

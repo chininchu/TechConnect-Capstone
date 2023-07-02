@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
 
@@ -249,7 +250,7 @@ public class EventController {
 //     ----------- Attendees Registration--------- //
 
     @PostMapping("/attendee/{eventId}/register")
-    public String registerEvent(@PathVariable("eventId") Long eventId, Model model) {
+    public String registerEvent(@PathVariable("eventId") Long eventId, Model model, RedirectAttributes redirectAttributes) {
         // Get the logged-in user
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -270,10 +271,13 @@ public class EventController {
             attendeeRepository.save(attendee);
 
             // Set the success message
-            model.addAttribute("message", "Thanks for registering! We look forward to seeing you at the event.");
+            redirectAttributes.addFlashAttribute("message", "Thanks for registering! We look forward to seeing you at the event.");
+
+
         } else {
             // Set an error message if the event or user is not found
-            model.addAttribute("message", "Error: Event or user not found.");
+            redirectAttributes.addFlashAttribute("message", "Error: Event or user not found.");
+
         }
 
         // Redirect back to the event details page
