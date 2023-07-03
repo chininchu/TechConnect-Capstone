@@ -172,22 +172,32 @@ public class EventController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("review", new Review());
-// Attendees Registration for an event
-//        List<Event> events = eventRepository.findAll();
-//        model.addAttribute("events", events);
 
 
         return "event-reviews";
     }
 
     @PostMapping("/event/{eventId}/reviews/create")
-    public String saveReview(@PathVariable("eventId") long eventId, @ModelAttribute("review") Review review) {
+    public String saveReview(@PathVariable("eventId") long eventId, @ModelAttribute("review") Review review, Model model,
+                             RedirectAttributes redirectAttributes) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Event event = eventRepository.findById(eventId).orElseThrow();
+
+        // Check if the user is registered for the event
+        boolean isRegistered = attendeeRepository.existsByUserAndEvent(loggedIn, event);
+        if (!isRegistered) {
+            redirectAttributes.addFlashAttribute("message", "You can only leave a review if you are registered for the event.");
+            return "redirect:/event/{eventId}/reviews";
+        }
+
 
         review.setEvent(event);
         review.setUser(loggedIn);
         reviewRepository.save(review);
+
+        // Add a success flash attribute to display a success message
+        redirectAttributes.addFlashAttribute("successMessage", "Review saved successfully!");
+
 
         return "redirect:/event/{eventId}/reviews";
     }

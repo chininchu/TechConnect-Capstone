@@ -113,7 +113,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="event : ${otherOrganizerEvents}">
-                    <td th:text="${event.title}"></td>
+                    <td>
+                        <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
+                            <span th:text="${event.title}"></span>
+                        </a>
+                    </td>
                     <td th:text="${event.dateTime}"></td>
                     <td th:text="${event.description}"></td>
                     <td th:text="${event.location}"></td>
@@ -121,9 +125,7 @@
                         <form th:if="${event.host != user}" id="eventForm${event.eventId}"
                               th:action="@{'/attendee/' + ${event.eventId} + '/register'}" method="post">
                             <input type="hidden" name="eventTitle" th:value="${event.title}">
-                            <button onclick="registerForEvent(${event.eventId}, '${event.title}')">
-                                Register
-                            </button>
+                            <button type="submit" class="btn btn-light">Register</button>
                         </form>
                     </td>
                 </tr>
@@ -131,6 +133,7 @@
             </table>
         </div>
     </div>
+
 
     <div class="row mt-3">
         <!-- About Me/Bio -->
