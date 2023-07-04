@@ -3,6 +3,7 @@ package com.example.techconnect.controllers;
 import com.example.techconnect.models.*;
 
 import com.example.techconnect.repositories.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -291,6 +292,44 @@ public class EventController {
         }
 
         // Redirect back to the event details page
+        return "redirect:/profile";
+    }
+
+
+    //--------Attendees can unregister--------//
+
+    @PostMapping("/attendee/{eventId}/unregister")
+    public String unregisterEvent(@PathVariable("eventId") Long eventId, Model model, RedirectAttributes redirectAttributes) {
+
+        // Get the logged-in user
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Retrieve the event and user from their respective repositories
+        Optional<Event> optionalEvent = eventRepository.findById(eventId);
+        Optional<User> optionalUser = userRepository.findById(loggedInUser.getId());
+
+        if (optionalEvent.isPresent() && optionalUser.isPresent()) {
+            Event event = optionalEvent.get();
+            User user = optionalUser.get();
+
+            // Get the list of Attendees for the specific event and user
+            List<Attendee> attendees = attendeeRepository.findByEventAndUser(event, user);
+
+            // Loop over each attendee and delete them
+            for (Attendee attendee : attendees) {
+                attendeeRepository.delete(attendee);
+            }
+
+            // Set the success message
+            redirectAttributes.addFlashAttribute("message", "You have unregistered for this event.");
+
+        } else {
+            // Set an error message if the event or user is not found
+            redirectAttributes.addFlashAttribute("message", "Error: Event or user not found.");
+        }
+
+
+        // Redirect back to the profile page
         return "redirect:/profile";
     }
 

@@ -128,7 +128,25 @@
                             <button type="submit" class="btn btn-light">Register</button>
                         </form>
                     </td>
+
+                    <!-- Unregister form -->
+                    <td>
+
+                        <form th:action="@{/attendee/{eventId}/unregister(eventId=${event.eventId})}" method="post"
+                              onsubmit="return confirm('Are you sure you want to unregister for this event?');">
+                            <button type="submit">Unregister</button>
+
+
+                        </form>
+
+                        <p th:text="${message}"></p>
+
+
+                    </td>
+
+
                 </tr>
+
                 </tbody>
             </table>
         </div>
