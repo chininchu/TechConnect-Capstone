@@ -35,7 +35,7 @@ public class DiscussionController {
         model.addAttribute("loggedInUser", loggedIn.getId());
         model.addAttribute("comment", new Comment());
         model.addAttribute("discussion", new Discussion());
-        return "/discussions-test";
+        return "discussions-test";
     }
 //DELETE DISCUSSIONS
 
@@ -55,7 +55,7 @@ public class DiscussionController {
         Discussion discussionId = discussionRepository.findById(id).get();
         System.out.println("line 54: " + discussionId.getId());
         model.addAttribute("comment", new Comment());
-        return "/discussions-test";
+        return "discussions-test";
     }
 
 //POSTMAPPING COMMENT ON DISCUSSION
@@ -117,7 +117,7 @@ public class DiscussionController {
         model.addAttribute("discussion", discussion);
 
 
-        return "/discussions-test";
+        return "discussions-test";
 
     }
 
