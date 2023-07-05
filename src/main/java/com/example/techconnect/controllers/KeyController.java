@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
         public String getKeys() {
             return String.format("""
                    const MAPBOXAP_TOK = "%s";
-                   """, keys.getTEST_KEY(), keys.getSECOND_KEY());
+                   """, keys.getSECOND_KEY());
         }
     }
