@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             response.json().then(events => {
                     events.forEach(event => {
                         console.log(event.location);
-                        geocode(event.location, MAPBOXAP_TOK).then(function (result) {
+                        geocode(event.location,MAPBOXAP_TOK).then(function (result) {
                             let mapCenter = ([result[0], result[1]])
                             map.setCenter(mapCenter);
                             map.setZoom(8)

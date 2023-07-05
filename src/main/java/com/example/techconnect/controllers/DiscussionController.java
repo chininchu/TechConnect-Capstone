@@ -128,7 +128,6 @@ public class DiscussionController {
         Discussion discussion1 = discussionRepository.findById(id).get();
         model.addAttribute("discussion", discussion1);
 
-
 //          discussion1.setUser(discussion.getUser());
             discussion1.setId(id);
             discussion1.setTitle(discussion.getTitle());
