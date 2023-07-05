@@ -42,19 +42,19 @@ public class EventController {
     @GetMapping("/events/ajax")
     public String viewAllEventsWithAjax(Model model) {
         model.addAttribute("interests", interestRepository.findAll());
-        return "/apitester";
+        return "apitester";
     }
 
     @GetMapping("/events/userpro")
     public String viewUserPro(Model model) {
         model.addAttribute("interests", interestRepository.findAll());
-        return "/api_profile_test";
+        return "api_profile_test";
     }
 
     @GetMapping("/events/allevent")
     public String viewAllEvents(Model model) {
         model.addAttribute("interests", interestRepository.findAll());
-        return "/api_eventsp_test";
+        return "api_eventsp_test";
     }
 
 
@@ -76,7 +76,9 @@ public class EventController {
 
 
         // Return the create event view
-        return "/event/CreateEvent"; // change back to /event/create before push
+
+        return "event/create"; // change back to /event/create before push
+
 
 
     }
