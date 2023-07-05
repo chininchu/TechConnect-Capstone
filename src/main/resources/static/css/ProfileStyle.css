@@ -13,12 +13,13 @@
 .button-group {
     text-align: center;
     margin-bottom: 20px;
-    border-radius: 55px;
     margin-top: 20px;
     margin-left: 700px;
     display: flex;
     height: fit-content;
+
 }
+
 
 .about-section {
     margin-left: 700px;
@@ -98,4 +99,76 @@ html, body {
 .profile-info {
     color: floralwhite;
     margin-left: 30px;
+}
+
+#editbtn{
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    color: #f2f2f2;
+    background-size: 400%;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 60px;
+    z-index: 1;
+
+
+}
+
+#deletebtn{
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    color: floralwhite;
+    background-size: 400%;
+    margin-left: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 60px;
+    z-index: 1;
+
+}
+
+#editbtn:before,
+#deletebtn:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    background-size: 400%;
+    border-radius: 40px;
+    filter: blur(20px);
+}
+
+#editbtn,
+#deletebtn {
+    position: relative;
+}
+
+#editbtn:hover,
+#deletebtn:hover{
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
+}
+
+
+.content-table{
+    color: white;
+    background-color: #170d31;
+}
+
+.content-body{
+   background-image: url("https://img.freepik.com/free-photo/wooden-floor-with-blackboard_1249-198.jpg?w=1380&t=st=1688340769~exp=1688341369~hmac=4fa37b16a59a0ba50028fe2bbb10ffc09c3b6239ed2e80d31b42eeba6d3fbf25");
+    background-size: cover;
+    color: #f2f2f2;
 }
