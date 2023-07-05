@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class Keys {
 
+
         @Value("${MAPBOXAP_TOK}")
         private String SECOND_KEY;
 
@@ -15,3 +16,4 @@ public class Keys {
             this.SECOND_KEY = SECOND_KEY;
         }
     }
+
