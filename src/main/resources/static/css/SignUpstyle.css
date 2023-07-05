@@ -1,5 +1,5 @@
 html, body {
-    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-image: url("https://img.freepik.com/free-vector/gradient-colorful-grainy-dynamic-background_52683-101908.jpg?w=1800&t=st=1688333928~exp=1688334528~hmac=03477f904715ddbeef50845422af831948d8615559f25772a2fbc2c4391feb35");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -15,6 +15,7 @@ html, body {
     object-fit: cover;
     margin-top: 50px;
     border: 1px;
+    margin-bottom: 50px;
 }
 
 
@@ -37,6 +38,8 @@ html, body {
 
 .heading {
     margin-top: 50px;
+    margin-left: 90px;
+    font-family: "Comic Sans MS";
 }
 
 .input-group-text{
@@ -65,10 +68,23 @@ html, body {
     top: 0;
     left: 53%;
     width: 1px;
-    height: 111%;
+    height: 118%;
     background-color: gray;
 }
 
-form {
+.formcontent {
     margin-right: 30px;
+    border: 2px solid white;
+    width: 100%;
+    border-radius: 30px;
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+form{
+    margin: 20px 20px;
+}
+
+.image-upload{
+
 }

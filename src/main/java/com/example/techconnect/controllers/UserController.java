@@ -132,6 +132,7 @@ public class UserController {
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
 
+
         // Retrieve events created by other organizers
         List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
 
@@ -141,6 +142,9 @@ public class UserController {
 
 
         return "/profile"; //change back to profile before push//
+
+//         return "/ProfilePage"; //change back to profile before push//
+
     }
 
 

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>TechConnect</title>
+<!--   <title>TechConnect</title> -->
 </head>
 
 <body>

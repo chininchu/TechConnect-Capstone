@@ -74,8 +74,11 @@ public class EventController {
         // Add a new Event object to the model
         model.addAttribute("event", new Event());
 
+
         // Return the create event view
         return "/event/create"; // change back to /event/create before push
+
+
     }
 
     @PostMapping("/event/create")

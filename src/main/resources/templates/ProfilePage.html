@@ -36,19 +36,19 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 text-light">
-            <h2>Your Events:</h2>
+        <div class="col-md-6">
+            <h2 class="text-light">Events:</h2>
             <table>
                 <thead>
-                <tr>
+                <tr class="content-table">
                     <th>Event Name</th>
                     <th>Date and Time</th>
                     <th>Description</th>
                     <th>Location</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody>
-                <!-- ${events} is referring to the object instance. The HTML table will forward the event information so that it can be edited -->
+                <tbody class="content-body">
                 <tr th:each="event : ${events}">
                     <td>
                         <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}" th:text="${event.title}"></a>
@@ -58,14 +58,12 @@
                     <td th:text="${event.location}"></td>
                     <td>
                         <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
-                            <button>Edit</button>
+                            <button class="btn btn-dark text-light">Edit</button>
                         </a>
-                    </td>
-                    <td>
                         <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
                             <input type="hidden" name="hostId" th:value="${event.host}"/>
                             <input type="hidden" name="interestId" th:value="${event.interest}"/>
-                            <button type="submit">Delete</button>
+                            <button type="submit" class="btn btn-dark text-light">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -98,12 +96,15 @@
         <div class="col-md-12">
             <div class="button-group">
                 <a th:href="@{/event/{id}/editProfile (id=${user.id})}">
-                    <button class="btn btn-light" id="editbtn">Edit Profile</button>
+                    <div class="edit-btn-container">
+                        <button class="btn" id="editbtn">Edit Profile</button>
+                    </div>
                 </a>
                 <form th:action="@{/deleteProfile}" method="post">
-                    <button type="submit" class="btn btn-light" id="deletebtn">Delete Profile</button>
+                    <div class="delete-btn-container">
+                        <button type="submit" class="btn" id="deletebtn">Delete Profile</button>
+                    </div>
                 </form>
-
             </div>
         </div>
 
