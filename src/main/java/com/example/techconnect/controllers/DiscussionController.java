@@ -4,39 +4,40 @@ package com.example.techconnect.controllers;
 import com.example.techconnect.models.*;
 import com.example.techconnect.repositories.CommentRepository;
 import com.example.techconnect.repositories.DiscussionRepository;
+import com.example.techconnect.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
+
 @Controller
 public class DiscussionController {
     private final DiscussionRepository discussionRepository;
 
     private final CommentRepository commentRepository;
+    private final UserRepository userRepository;
 
 
-    public DiscussionController(DiscussionRepository discussionRepository, CommentRepository commentRepository) {
+    public DiscussionController(DiscussionRepository discussionRepository, CommentRepository commentRepository, UserRepository userRepository) {
         this.discussionRepository = discussionRepository;
         this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
     }
-
+//INITIAL PAGE VIEW ALL DISCUSSION
     @GetMapping("/discussions")
-    public String showProfile(Model model) {
+    public String showDiscussions(Model model) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("discussions", discussionRepository.findAll());
         model.addAttribute("loggedInUser", loggedIn.getId());
-        //        model.addAttribute("loggedInUser", loggedIn);
-
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("discussion", new Discussion());
         return "/discussions-test";
     }
-
+//DELETE DISCUSSIONS
 
     @PostMapping("/discussions/{id}/delete")
     public String deleteDiscussion(@ModelAttribute Discussion discussion, @PathVariable long id) {
@@ -48,28 +49,34 @@ public class DiscussionController {
 
     }
 
-    @GetMapping("/comments/{id}/create")
-    public String showCommentForm(@PathVariable Long id,  Model model) {
+//    COMMENT ON A DISCUSSION
+    @GetMapping("/discussion/{id}/comment")
+    public String showCommentForm(@PathVariable Long id, Model model) {
         Discussion discussionId = discussionRepository.findById(id).get();
+        System.out.println("line 54: " + discussionId.getId());
         model.addAttribute("comment", new Comment());
         return "/discussions-test";
     }
 
-
-
-    @PostMapping("/comments/create")
-    public String createComment(@ModelAttribute Comment comment,Model model,@PathVariable long id){
+//POSTMAPPING COMMENT ON DISCUSSION
+    @PostMapping("/discussion/{id}/comment")
+    public String createComment(@PathVariable Long id, @ModelAttribute Comment comment){
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("discussionId",discussionRepository.findById(id));
+
+        Discussion currentDisc = discussionRepository.findById(id).get();
+
 
         comment.setUser(loggedIn);
-
+        comment.setDiscussion(currentDisc);
+        comment.setCreatedAt(LocalDateTime.now());
         commentRepository.save(comment);
+
+
 
         return "redirect:/discussions";
 
     }
-
+//DELETE YOUR COMMENT
     @PostMapping("/comments/{id}/delete")
     public String deleteComment(@ModelAttribute Comment comment, @PathVariable long id) {
         comment.setUser(new User());
@@ -78,8 +85,61 @@ public class DiscussionController {
         return "redirect:/discussions";
     }
 
+//    POST A DISCUSSION
+    @PostMapping("/discussion/create")
+    public String createDiscussion(@ModelAttribute Discussion discussion,Model model) {
+
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userRepository.findById(loggedIn.getId()).get());
+
+
+        discussion.setUser(loggedIn);
+        discussion.setCreatedAt(LocalDateTime.now());
+        discussionRepository.save(discussion);
+
+
+        return "redirect:/discussions";
+
+    }
 
 
 
+
+//EDIT YOUR DISCUSSION
+
+    @GetMapping("/discussion/{id}/edit")
+    public String showEditDiscussionPage(@PathVariable long id, Model model) {
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+        Discussion discussion = discussionRepository.findById(id).get();
+        System.out.println(discussion);
+        model.addAttribute("discussion", discussion);
+
+
+        return "/discussions-test";
+
+    }
+
+//    POST EDIT DISCUSSION
+
+    @PostMapping("/discussion/{id}/edit")
+    public String editDiscussion(@PathVariable long id,@ModelAttribute Discussion discussion,Model model,@ModelAttribute User user) {
+        Discussion discussion1 = discussionRepository.findById(id).get();
+        model.addAttribute("discussion", discussion1);
+
+
+//          discussion1.setUser(discussion.getUser());
+            discussion1.setId(id);
+            discussion1.setTitle(discussion.getTitle());
+            discussion1.setCreatedAt(LocalDateTime.now());
+            discussion1.setContent(discussion.getContent());
+
+
+            discussionRepository.save(discussion1);
+
+            return "redirect:/discussions";
+
+        }
 
     }
