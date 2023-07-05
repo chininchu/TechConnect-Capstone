@@ -42,7 +42,7 @@ public class UserController {
     public String showSignupForm(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "/SignUpPage";
+        return "SignUpPage";
     }
 
     @PostMapping("/SignUpPage")
@@ -55,7 +55,7 @@ public class UserController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
-            return "/SignUpPage";
+            return "SignUpPage";
         }
 
         //------------------------------------------------------------------//
@@ -141,9 +141,9 @@ public class UserController {
 
 
 
-        return "/profile"; //change back to profile before push//
+        return "profile"; //change back to profile before push//
 
-//         return "/ProfilePage"; //change back to profile before push//
+//         return "ProfilePage"; //change back to profile before push//
 
     }
 
@@ -156,7 +156,7 @@ public class UserController {
         if (authenticatedUser != null && encoder.matches(user.getPassword(), authenticatedUser.getPassword())) {
             // Authentication successful, set the user attribute in the session
             model.addAttribute("user", authenticatedUser);
-            return "/profile";
+            return "profile";
         }
         // if Authentication failed, redirect back to the login page with an error message
         return "redirect:/LoginPage?error";
@@ -167,7 +167,7 @@ public class UserController {
     public String showEditProfileForm(@PathVariable long id, Model model) {
         User user = userDao.findById(id).get();
         model.addAttribute("user", user);
-        return "/editProfile";
+        return "editProfile";
     }
 
 
@@ -207,7 +207,7 @@ public class UserController {
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("user", user);
-            return "/editProfile";
+            return "editProfile";
         }
 
 
