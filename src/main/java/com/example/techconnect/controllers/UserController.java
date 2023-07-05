@@ -1,5 +1,6 @@
 package com.example.techconnect.controllers;
 
+import com.example.techconnect.models.Event;
 import com.example.techconnect.models.User;
 import com.example.techconnect.repositories.EventRepository;
 import com.example.techconnect.repositories.UserRepository;
@@ -125,12 +126,25 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfile(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", loggedInUser);
-        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
+        model.addAttribute("user", loggedInUser);
+//        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
 
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
-        return "/ProfilePage"; //change back to profile before push//
+
+
+        // Retrieve events created by other organizers
+        List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
+
+        model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
+
+
+
+
+        return "/profile"; //change back to profile before push//
+
+//         return "/ProfilePage"; //change back to profile before push//
+
     }
 
 

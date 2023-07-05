@@ -11,7 +11,7 @@
     <style>
         .rating {
             display: inline-block;
-            direction:rtl;
+            direction: rtl;
         }
 
         .rating input[type="radio"] {
@@ -31,14 +31,25 @@
         .rating input[type="radio"]:checked ~ label {
             color: gold;
         }
-    </style>
 
+        /*This class will display an error message to unregistered users*/
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+
+    </style>
 
 
 </head>
 <body>
 
-
+<!--Events Details -->
 <table>
     <thead>
     <tr>
@@ -58,12 +69,21 @@
     </tbody>
 </table>
 
+
+<!--Event Review form -->
+
 <div sec:authorize="isAuthenticated()">
 
     <h2>Create Event Review</h2>
 
+    <div th:if="${not #strings.isEmpty(message)}" class="error-message">
+        <p th:text="${message}"></p>
+    </div>
+
+
     <form th:action="@{/event/{eventId}/reviews/create(eventId=${event.eventId})}" method="post"
           th:object="${review}">
+
 
         <!--        Intakes the user id as a hidden input-->
 
@@ -71,28 +91,48 @@
         <fieldset>
             <legend>Rating:</legend>
             <div class="rating">
-                <input type="radio" id="star5" name="*{rating}" th:field="*{rating}" value="5" th:checked="${review.rating == 5}"/>
+                <input type="radio" id="star5" name="*{rating}" th:field="*{rating}" value="5"
+                       th:checked="${review.rating == 5}"/>
                 <label for="star5"></label>
-                <input type="radio" id="star4" name="*{rating}" th:field="*{rating}" value="4" th:checked="${review.rating == 4}"/>
+                <input type="radio" id="star4" name="*{rating}" th:field="*{rating}" value="4"
+                       th:checked="${review.rating == 4}"/>
                 <label for="star4"></label>
-                <input type="radio" id="star3" name="*{rating}" th:field="*{rating}" value="3" th:checked="${review.rating == 3}"/>
+                <input type="radio" id="star3" name="*{rating}" th:field="*{rating}" value="3"
+                       th:checked="${review.rating == 3}"/>
                 <label for="star3"></label>
-                <input type="radio" id="star2" name="*{rating}" th:field="*{rating}" value="2" th:checked="${review.rating == 2}"/>
+                <input type="radio" id="star2" name="*{rating}" th:field="*{rating}" value="2"
+                       th:checked="${review.rating == 2}"/>
                 <label for="star2"></label>
-                <input type="radio" id="star1" name="*{rating}" th:field="*{rating}" value="1" th:checked="${review.rating == 1}"/>
+                <input type="radio" id="star1" name="*{rating}" th:field="*{rating}" value="1"
+                       th:checked="${review.rating == 1}"/>
                 <label for="star1"></label>
             </div>
         </fieldset>
 
+        <fieldset>
+            <legend>Review:</legend>
+            <div>
+                <label for="reviewTitle">Title:</label>
+                <input type="text" id="reviewTitle" name="title" th:field="*{title}" required>
+            </div>
+            <div>
+                <label for="reviewDescription">Description:</label>
+                <textarea id="reviewDescription" name="description" th:field="*{description}" required></textarea>
+            </div>
+        </fieldset>
+
+
         <button type="submit">Save Review</button>
 
+
     </form>
+
+
 </div>
 
 
-<!--<div sec:authorize="isAnonymous()">-->
-<!--    <p>Please log in to submit a review.</p>-->
-<!--</div>-->
+<!--Event Reviews from other attendees -->
+
 
 <h2>Event Reviews</h2>
 <h2>Average Rating: <span id="averageRating" th:text="${averageRating}"></span></h2>
@@ -141,35 +181,39 @@
 
 <!--Other Users Events -->
 
-<h2>Events that you may be interested in</h2>
+<!--<h2>Events that you may be interested in</h2>-->
 
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Date/Time</th>
-        <th>Description</th>
-        <th>Location</th>
-        <th>Register</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="event : ${events}">
-        <td th:text="${event.title}"></td>
-        <td th:text="${event.dateTime}"></td>
-        <td th:text="${event.description}"></td>
-        <td th:text="${event.location}"></td>
-        <td>
-            <form th:if="${event.host != loggedInUser}"
-                  th:action="@{/event/{eventId}/register(eventId=${event.eventId})}" method="post"
-                  class="register-form">
-                <input type="hidden" name="eventTitle" th:value="${event.title}"/>
-                <button type="submit">Register</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Title</th>-->
+<!--        <th>Date/Time</th>-->
+<!--        <th>Description</th>-->
+<!--        <th>Location</th>-->
+<!--        <th>Register</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="event : ${events}">-->
+<!--        <td th:text="${event.title}"></td>-->
+<!--        <td th:text="${event.dateTime}"></td>-->
+<!--        <td th:text="${event.description}"></td>-->
+<!--        <td th:text="${event.location}"></td>-->
+<!--        <td>-->
+<!--            <form th:if="${event.host != loggedInUser}"-->
+<!--                  th:action="@{/event/{eventId}/register(eventId=${event.eventId})}" method="post"-->
+<!--                  class="register-form">-->
+<!--                <input type="hidden" name="eventTitle" th:value="${event.title}"/>-->
+<!--                <button type="submit">Register</button>-->
+
+
+<!--            </form>-->
+
+
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 
 
 <script>
@@ -194,11 +238,9 @@
 </div>
 
 
-
-
-
-
 </body>
 </html>
+
+
 
 
