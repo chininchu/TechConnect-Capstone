@@ -60,15 +60,21 @@ public class EventController {
 
 //    <!--The naming convention has been changed from /event to /event/create-->
 
+
+    //--------------Event Entity------------------//
+
+    // Mapping for displaying the event creation form
+
     @GetMapping("/event/create")
     public String showEventForm(Model model) {
 
-
+        // Retrieve all interests from the repository and add them to the model
         model.addAttribute("interests", interestRepository.findAll());
 
-
+        // Add a new Event object to the model
         model.addAttribute("event", new Event());
 
+        // Return the create event view
         return "/event/create"; // change back to /event/create before push
     }
 
@@ -76,46 +82,44 @@ public class EventController {
 
     public String createEvent(@ModelAttribute Event event) {
 
-
-        // This piece of code allows us to access the authenticated User;
-
+        // Retrieve the authenticated user
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // We are setting the whole User Object to the Event table and JPA will only save the Id in the whole database
-
+        // Set the authenticated user as the host of the event
         event.setHost(loggedIn);
 
-
+        // Save the event to the repository
         eventRepository.save(event);
 
-
+        // Redirect the user to their profile page
         return "redirect:/profile";
 
 
     }
 
 
-    // Create a method that will edit events
+// Mapping for displaying the event edit form
 
-    // ALl new mappings within Controllers need to be added to the Security Configuration Class
 
     @GetMapping("/event/{eventId}/edit")
     public String showEditEventPage(@PathVariable long eventId, Model model) {
 
+        // Retrieve the event by its id from the repository
         Event event = eventRepository.findById(eventId).get();
+
+        // Add the retrieved event to the model
         model.addAttribute("event", event);
 
+        // Return the edit event view
         return "event/edit";
 
     }
 
-
+    // Mapping for submitting the event edit form
     @PostMapping("/event/{eventId}/edit")
     public String editEvents(@ModelAttribute Event event, @PathVariable long eventId) {
 
-
-        // Update the event with the form data
-
+        // Update the event's details with the form data
         event.setHost(event.getHost());
         event.setInterest(event.getInterest());
         event.setEventId(eventId);
@@ -124,25 +128,35 @@ public class EventController {
         event.setDescription(event.getDescription());
         event.setLocation(event.getLocation());
 
-
+        // Save the updated event to the repository
         eventRepository.save(event);
 
-
+        // Redirect the user to their profile page
         return "redirect:/profile";
     }
+
+
+// Mapping for deleting an event
 
 
     @PostMapping("/event/{eventId}/delete")
 
     public String deleteEvent(@ModelAttribute Event event, @PathVariable long eventId) {
 
+        // Set a new user as the host of the event (note: consider if this is necessary for a delete operation)
         event.setHost(new User());
         event.setInterest(new Interest());
+
+        // Delete the event by its id from the repository
         eventRepository.deleteById(eventId);
+
+        // Redirect the user to their profile page
         return "redirect:/profile";
 
 
     }
+
+    //--------------------------------------------------------------//
 
 
     //----------------------------------Review Entity -----------------------------------------------//
