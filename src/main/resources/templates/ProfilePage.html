@@ -6,10 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
-
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand text-light">TechCon</a>
@@ -19,15 +17,16 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
-                <a class="nav-link" id="event-input" href="#">Create an Event</a>
-                <a class="nav-link" id="logout-input" href="#">Logout</a>
+                <a class="nav-link" id="event-input" th:href="@{/event/create}">Create an Event</a>
+                <a class="nav-link" id="logout-input" th:href="@{/logout}">Logout</a>
+            </div>
             </div>
         </div>
     </div>
 </nav>
 
 <div class="welcome text-light">
-<h2>Welcome, <span th:text="${user.username}"></span>!</h2>
+    <h2>Welcome, <span th:text="${user.username}"></span>!</h2>
 </div>
 
 <div th:if="${param.error}">
@@ -37,56 +36,87 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
-            <div class="vertical-line"></div>
+        <div class="col-md-6">
+            <h2 class="text-light">Events:</h2>
+            <table>
+                <thead>
+                <tr class="content-table">
+                    <th>Event Name</th>
+                    <th>Date and Time</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody class="content-body">
+                <tr th:each="event : ${events}">
+                    <td>
+                        <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}" th:text="${event.title}"></a>
+                    </td>
+                    <td th:text="${event.dateTime}"></td>
+                    <td th:text="${event.description}"></td>
+                    <td th:text="${event.location}"></td>
+                    <td>
+                        <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
+                            <button class="btn btn-dark text-light">Edit</button>
+                        </a>
+                        <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
+                            <input type="hidden" name="hostId" th:value="${event.host}"/>
+                            <input type="hidden" name="interestId" th:value="${event.interest}"/>
+                            <button type="submit" class="btn btn-dark text-light">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
-        <div class="col-md-4">
-            '<div class="profileinfo">
-
-            <h3>Profile Information:</h3>
-
-            <ul>
-                <li><img th:src="@{${user.profilePicture}}"></li>
-
-
-                <li>First Name: <span th:text="${user.firstName}"></span></li>
-                <li>Last Name: <span th:text="${user.lastName}"></span></li>
-                <li>Email: <span th:text="${user.email}"></span></li>
-
-            </ul>
-             </div>
-        </div>
-
-
-<!--            <div class="image-box">-->
-<!--                &lt;!&ndash; Add the uploaded image here &ndash;&gt;-->
-<!--            </div>-->
-        <div class="col-md-12">
-            <div class="button-group">
-
-                <a th:href="@{/editProfile}">Edit Profile</a>
-                <form th:action="@{/deleteProfile}" method="post">
-                <button class="btn btn-light" id="editbtn">Edit Profile</button>
-                </form>
-                <form th:action="@{/logout}" method="post">
-                <button class="btn btn-light" id="deletebtn">Delete Profile</button>
-                </form>
-
-                <button class="btn btn-light" id="changebtn">Upload Photo</button>
-            </div>
-        </div>
-
-            <div class="col-md-12">
-                <div class="about-section">
-                    <h2>About Me/Bio:</h2>
-                    <textarea class="form-control" rows="5" id="about-me-input" placeholder="Tell Us About You"></textarea>
-                    <button class="btn btn-light mt-2" id="post-button">Post</button>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="profile-info">
+                        <h3>Profile Information:</h3>
+                        <ul>
+                            <li>First Name: <span th:text="${user.firstName}"></span></li>
+                            <li>Last Name: <span th:text="${user.lastName}"></span></li>
+                            <li>Email: <span th:text="${user.email}"></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="image-box">
+                        <img th:src="@{${user.profilePicture}}">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="button-group">
+                <a th:href="@{/event/{id}/editProfile (id=${user.id})}">
+                    <div class="edit-btn-container">
+                        <button class="btn" id="editbtn">Edit Profile</button>
+                    </div>
+                </a>
+                <form th:action="@{/deleteProfile}" method="post">
+                    <div class="delete-btn-container">
+                        <button type="submit" class="btn" id="deletebtn">Delete Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="about-section">
+                <h2>About Me/Bio:</h2>
+                <textarea class="form-control" rows="5" id="about-me-input" placeholder="Tell Us About You"></textarea>
+                <button class="btn btn-light mt-2" id="post-button">Post</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
 </body>

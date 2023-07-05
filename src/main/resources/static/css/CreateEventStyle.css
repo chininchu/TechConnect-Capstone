@@ -2,7 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-image: url("https://img.freepik.com/free-vector/gradient-colorful-grainy-dynamic-background_52683-101908.jpg?w=1800&t=st=1688333928~exp=1688334528~hmac=03477f904715ddbeef50845422af831948d8615559f25772a2fbc2c4391feb35");
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
@@ -61,20 +61,14 @@ html, body {
     margin-bottom: 10px;
 }
 
+
 #description {
     height: 150px;
     resize: vertical;
     width: 500px;
 }
 
-.button {
-    background-color: gray;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50px;
-}
+
 
 .container{
     display: flex;
@@ -88,3 +82,74 @@ html, body {
     margin-left: 1100px;
 }
 
+.middle-heading {
+
+    justify-content: center;
+    align-items: center;
+    color: floralwhite;
+    margin-left: 40%;
+    margin-top: 10px;
+    font-size: 100px;
+    transition: 0.5s;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.middle-heading {
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
+    0 3px 0 #ccc, 0 4px 0 #ccc,
+    0 5px 0 #ccc, 0 6px 0 #ccc,
+    0 7px 0 #ccc, 0 8px 0 #ccc,
+    0 9px 0 #ccc, 0 10px 0 #ccc,
+    0 11px 0 #ccc, 0 12px 0 #ccc,
+    0 20px 30px rgba(0, 0, 0, 0.5);
+}
+
+.button{
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    color: floralwhite;
+    background-size: 400%;
+    margin-left: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 60px;
+    z-index: 1;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+
+}
+
+
+.button:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    background-size: 400%;
+    border-radius: 40px;
+    filter: blur(20px);
+}
+
+.button {
+    position: relative;
+}
+
+
+.button:hover{
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
+}

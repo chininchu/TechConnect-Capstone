@@ -4,6 +4,7 @@
     <!--    We need to use the th: href reference. Please refer to Jay for more details
     -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/LoginStyle.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 
     <!--    The href needs to be wrapped around using a thymeLeaf syntax. I have added the correct one -->
@@ -26,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
 </head>
-<body>
+<body th:src="@{/images/grainy.jpg}">
 <nav class="navbar">
     <div class="container-fluid">
         <a class="navbar-brand text-light" href="#">
@@ -34,28 +35,30 @@
         </a>
     </div>
 </nav>
-<h4 class="navbar-brand-text">TechConnect</h4>
+<!--<h4 class="navbar-brand-text">TechConnect</h4>-->
 <div class="title">
     <h1>Connect With Us Today!</h1>
 </div>
 <div class="login-form">
     <div class="header">
-        Login Here
+        Log In
     </div>
-    <hr style="background-color: #ccc; margin: 10px 0;">
 
-
+         <div class="form-group">
     <form th:action="@{/LoginPage}" th:method="POST">
-        <div class="form-group">
+
             <label for="login">Username:</label>
-            <input type="text" id="login" name="username" class="form-control">
-        </div>
-        <div class="form-group">
+           <input type="text" id="login" name="username" placeholder="Username" class="form-control">
+              <i class="bi bi-person-fill"></i><br>
+
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+           <input type="text" id="password" name="password" placeholder="Password" class="form-control"><i class="bi bi-key-fill"></i><br>
+          <button type="submit" class="btn">Login</button>
+
+            <p id="haveAccount">No Account?<a th:href="@{/SignUpPage}">Register Now!</a>
+            <a th:href="@{/SignUpPage}">Forgot Password?</a></p>
     </form>
+      </div>            
 </div>
 
 

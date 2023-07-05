@@ -73,7 +73,7 @@ public class UserController {
 //        request.getSession().setAttribute("user", user);
         model.addAttribute("user", user);
         userDao.save(user);
-        return "redirect:/profile";
+        return "redirect:/LoginPage";
     }
 
 
@@ -130,7 +130,7 @@ public class UserController {
 
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
-        return "/profile";
+        return "/ProfilePage"; //change back to profile before push//
     }
 
 

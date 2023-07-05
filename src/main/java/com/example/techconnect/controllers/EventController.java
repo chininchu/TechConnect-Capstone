@@ -68,7 +68,7 @@ public class EventController {
 
         model.addAttribute("event", new Event());
 
-        return "/event/create";
+        return "/event/CreateEvent"; // change back to /event/create before push
     }
 
     @PostMapping("/event/create")
@@ -149,19 +149,34 @@ public class EventController {
 
 //----Review(Read)----//
 
+
+    private double calculateAverageRating(List<Review> reviews) {
+        if (reviews.isEmpty()) {
+            return 0.0;
+        }
+        double sum = 0.0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
+        return sum / reviews.size();
+    }
+
+
+
     @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
 
         Event event = eventRepository.findById(eventId).orElseThrow();
         List<Review> reviews = reviewRepository.findAllByEventId(eventId);
         double averageRating = calculateAverageRating(reviews);
-
         model.addAttribute("event", event);
         model.addAttribute("reviews", reviews);
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("review", new Review());
+// Attendees Registration for an event
 
-        // Attendees Registration for an event
+        List<Event> events = eventRepository.findAll();
+        model.addAttribute("events", events);
 
 
         return "event-reviews";
@@ -177,19 +192,6 @@ public class EventController {
         reviewRepository.save(review);
 
         return "redirect:/event/{eventId}/reviews";
-    }
-
-    private double calculateAverageRating(List<Review> reviews) {
-        if (reviews.isEmpty()) {
-            return 0.0;
-        }
-
-        double sum = 0.0;
-        for (Review review : reviews) {
-            sum += review.getRating();
-        }
-
-        return sum / reviews.size();
     }
 
 
@@ -251,6 +253,9 @@ public class EventController {
         reviewRepository.save(review);
         return "redirect:/event/{eventId}/reviews";
     }
+
+
+
 
 
 }
