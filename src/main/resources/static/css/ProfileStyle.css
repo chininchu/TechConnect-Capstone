@@ -160,3 +160,15 @@ html, body {
         background-position: 400%;
     }
 }
+
+
+.content-table{
+    color: white;
+    background-color: #170d31;
+}
+
+.content-body{
+   background-image: url("https://img.freepik.com/free-photo/wooden-floor-with-blackboard_1249-198.jpg?w=1380&t=st=1688340769~exp=1688341369~hmac=4fa37b16a59a0ba50028fe2bbb10ffc09c3b6239ed2e80d31b42eeba6d3fbf25");
+    background-size: cover;
+    color: #f2f2f2;
+}

@@ -109,8 +109,51 @@ h5{
 }
 
 
-.btn {
-    color: red;
+.btn{
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+.signup{
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    color: floralwhite;
+    background-size: 400%;
+    margin-left: 10px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    border-radius: 60px;
+    z-index: 1;
+    position: relative;
+
+
+}
+
+.signup:before{
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    background-size: 400%;
+    border-radius: 40px;
+    filter: blur(20px);
 }
 
 
+
+.signup:hover{
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
+}
