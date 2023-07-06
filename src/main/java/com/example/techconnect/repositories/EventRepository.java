@@ -1,7 +1,6 @@
 package com.example.techconnect.repositories;
 
 import com.example.techconnect.models.Event;
-import com.example.techconnect.models.Interest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,9 +12,7 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-
     // This method helps us find events by UserID
-
 
     List<Event> findAllByHostId(long id);
 
@@ -31,11 +28,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT e FROM Event e WHERE e.host.id <> :userId")
     List<Event> findAllByHostIdNot(@Param("userId") Long userId);
 
-    @Query("FROM Event e WHERE e.dateTime >= :currentDate ORDER BY ABS(DATEDIFF(e.dateTime, :currentDate))")
-    List<Event> findClosestEvents(@Param("currentDate") LocalDateTime currentDate);
-
-
-
+    List<Event> findEventsByDateTimeLessThan(LocalDateTime dateTime);
 
 }
 

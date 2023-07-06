@@ -59,9 +59,10 @@ public class RestApiController {
         return eventRepository.findEventByTitleContainingIgnoreCase(keyword);
     }
     @GetMapping("/closestEvents")
-    public List <Event> findClosestEvents(@Param("currentDate") LocalDateTime currentDate){
-        return eventRepository.findClosestEvents(currentDate);
+    public List <Event> findClosestEvents(){
+        return eventRepository.findEventsByDateTimeLessThan(LocalDateTime.now());
     }
+
 
 
 
