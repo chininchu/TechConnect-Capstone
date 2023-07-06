@@ -6,6 +6,8 @@ import com.example.techconnect.repositories.EventRepository;
 import com.example.techconnect.repositories.UserRepository;
 import com.example.techconnect.utilities.PasswordValidator;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -61,7 +63,7 @@ public class UserController {
         //------------------------------------------------------------------//
 
 
-      // Hash the password
+        // Hash the password
         String hash = encoder.encode(user.getPassword());
         // Set the hashed password BEFORE saving to the database
         user.setPassword(hash);
@@ -139,9 +141,6 @@ public class UserController {
         model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
 
 
-
-
-
         return "profile"; //change back to profile before push//
 
 
@@ -193,7 +192,7 @@ public class UserController {
 //        return "";
 //    }
     @PostMapping("/event/{id}/editProfile")
-    public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture, BindingResult bindingResult, Model model) {
+    public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture, BindingResult bindingResult, Model model, HttpServletRequest request) {
         user.setEmail(user.getEmail());
         user.setId(id);
         user.setFirstName(user.getFirstName());
@@ -216,6 +215,15 @@ public class UserController {
         String hash = encoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
+
+
+        // Update the Authentication object with updated user profile
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User updatedUser = userDao.findById(user.getId()).orElseThrow(() -> new IllegalStateException("User not found"));
+        UsernamePasswordAuthenticationToken newAuthentication = new UsernamePasswordAuthenticationToken(updatedUser, authentication.getCredentials(), authentication.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(newAuthentication);
+
+
         return "redirect:/profile";
 
     }
