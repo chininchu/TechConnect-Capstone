@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             newEvent.allDay = true
                             newEvent.color = 'blue'
                             newEvent.display = 'block'
-
                             calendar.addEvent(newEvent);
                             var events = calendar.getEvents();
                         })

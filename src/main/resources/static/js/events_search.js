@@ -38,6 +38,8 @@ calendar.render()
         .addTo(map);
 
 
+
+
 // ---------------SHOWS ALL EVENTS ON MAP & CALENDAR-----------
 //     fetch("/events/allEvents")
 //         .then( response => { response.json()
@@ -141,6 +143,7 @@ calendar.render()
     function getEventByKeyword() {
         let submitBtn = document.getElementById("subBtn3")
         submitBtn.addEventListener("click", function (event) {
+            console.log("clicked")
             event.preventDefault();
             let userInput = document.getElementById("keyword").value
             fetch(`http://localhost:8080/events/searchKeyword?keyword=${userInput}`)
@@ -161,7 +164,6 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
-
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
                             })

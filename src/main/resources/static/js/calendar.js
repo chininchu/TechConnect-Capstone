@@ -131,18 +131,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // shows all events
 
-    // fetch("/events/allEvents")
+    // fetch(`http://localhost:8080/events/searchEvents?location=Denver`)
     //     .then( response => { response.json()
     //             .then(events => {
     //                 events.forEach(event => {
     //                     console.log(event.location);
-    //                     geocode(event.location, MAPBOXAP_TOK).then(function (result) {
-    //                         let mapCenter = ([result[0], result[1]])
-    //                         map.setCenter(mapCenter);
-    //                         map.setZoom(8)
-    //                         new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
-    //                         new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
-    //                     })
+    //
     //                 })
     //             })
     //     })
