@@ -86,6 +86,8 @@ form{
     margin: 20px 20px;
 }
 
-.image-upload{
+#image-upload{
+    height: 10%;
+    margin-top: 130px;
 
 }

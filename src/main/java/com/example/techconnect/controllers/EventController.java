@@ -184,8 +184,7 @@ public class EventController {
 
     @GetMapping("/event/{eventId}/reviews")
     public String showEventReviews(@PathVariable long eventId, Model model) {
-
-
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Event event = eventRepository.findById(eventId).orElseThrow();
         List<Review> reviews = reviewRepository.findAllByEventId(eventId);
@@ -194,6 +193,7 @@ public class EventController {
         model.addAttribute("reviews", reviews);
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("review", new Review());
+        model.addAttribute("isRegistered", attendeeRepository.existsByUserAndEventId(loggedIn, eventId));
 
 
         return "event-reviews";
@@ -408,6 +408,14 @@ public class EventController {
         } else {
             // Set an error message if the event or user is not found
             redirectAttributes.addFlashAttribute("message", "Error: Event or user not found.");
+        }
+
+
+
+        // Check if the user is registered for the event
+        boolean isRegistered = attendeeRepository.existsByUserAndEventId(loggedInUser, eventId);
+        if (!isRegistered) {
+            return "redirect:/event/{eventId}/reviews";
         }
 
 

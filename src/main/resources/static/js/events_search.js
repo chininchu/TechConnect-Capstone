@@ -28,7 +28,7 @@ calendar.render()
     const coordinates = document.getElementById('coordinates');
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/marie5646/clg37gvt0000501qdn8n0spad',
+        style: 'mapbox://styles/mapbox/navigation-day-v1',
         center: [-95.7129, 37.0902],
         marker: [-95.7129, 37.0902],
         zoom: 3,

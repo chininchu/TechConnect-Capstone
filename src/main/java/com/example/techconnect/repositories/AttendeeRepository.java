@@ -25,6 +25,8 @@ public interface AttendeeRepository extends JpaRepository<Attendee, Long> {
     @Query("SELECT a FROM Attendee a WHERE a.event = :event AND a.user = :user")
     List<Attendee> findByEventAndUser(@Param("event") Event event, @Param("user") User user);
 
+    @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END FROM Attendee a WHERE a.user = :user AND a.event.id = :eventId")
+    boolean existsByUserAndEventId(@Param("user") User user, @Param("eventId") Long eventId);
 
 
 }
