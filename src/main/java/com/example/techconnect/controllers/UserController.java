@@ -2,6 +2,7 @@ package com.example.techconnect.controllers;
 
 import com.example.techconnect.models.Event;
 import com.example.techconnect.models.User;
+import com.example.techconnect.repositories.AttendeeRepository;
 import com.example.techconnect.repositories.EventRepository;
 import com.example.techconnect.repositories.UserRepository;
 import com.example.techconnect.utilities.PasswordValidator;
@@ -34,10 +35,13 @@ public class UserController {
 
     private EventRepository eventRepository;
 
-    public UserController(UserRepository userDao, PasswordEncoder encoder, EventRepository eventRepository) {
+    private AttendeeRepository attendeeRepository;
+
+    public UserController(UserRepository userDao, PasswordEncoder encoder, EventRepository eventRepository, AttendeeRepository attendeeRepository) {
         this.userDao = userDao;
         this.encoder = encoder;
         this.eventRepository = eventRepository;
+        this.attendeeRepository = attendeeRepository;
     }
 
     @GetMapping("/SignUpPage")
@@ -126,7 +130,7 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(Model model) {
+    public String showProfile(Model model ) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
 //        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
@@ -139,6 +143,10 @@ public class UserController {
         List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
 
         model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
+
+
+
+//        model.addAttribute("isRegistered", attendeeRepository.existsByUserAndEvent(loggedInUser,event));
 
 
         return "profile"; //change back to profile before push//
