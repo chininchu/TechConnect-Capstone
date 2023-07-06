@@ -4,10 +4,12 @@ import com.example.techconnect.models.Review;
 import com.example.techconnect.models.User;
 import com.example.techconnect.models.Event;
 import com.example.techconnect.repositories.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @CrossOrigin
 @RestController
@@ -56,6 +58,11 @@ public class RestApiController {
     public List <Event> searchByKeyWord(@RequestParam (name = "keyword") String keyword){
         return eventRepository.findEventByTitleContainingIgnoreCase(keyword);
     }
+    @GetMapping("/closestEvents")
+    public List <Event> findClosestEvents(@Param("currentDate") LocalDateTime currentDate){
+        return eventRepository.findClosestEvents(currentDate);
+    }
+
 
 
 

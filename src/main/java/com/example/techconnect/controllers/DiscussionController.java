@@ -30,9 +30,16 @@ public class DiscussionController {
 //INITIAL PAGE VIEW ALL DISCUSSION
     @GetMapping("/discussions")
     public String showDiscussions(Model model) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            model.addAttribute("loggedInUser", null);
+
+        } else {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("loggedInUser", loggedIn.getId());
+
+        }
         model.addAttribute("discussions", discussionRepository.findAll());
-        model.addAttribute("loggedInUser", loggedIn.getId());
         model.addAttribute("comment", new Comment());
         model.addAttribute("discussion", new Discussion());
         return "discussions-test";
