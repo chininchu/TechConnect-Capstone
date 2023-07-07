@@ -1,181 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
-<!--<head>-->
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/ProfileStyle.css}">-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"-->
-<!--          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Profile Page</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">-->
-<!--    <div class="container-fluid">-->
-<!--        <a class="navbar-brand text-light">TechCon</a>-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"-->
-<!--                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">-->
-<!--            <div class="navbar-nav">-->
-<!--                <a class="nav-link active text-light" aria-current="page" href="#">Home</a>-->
-<!--                <a class="nav-link" id="event-input" th:href="@{/event/create}">Create an Event</a>-->
-<!--                <a class="nav-link" id="logout-input" th:href="@{/logout}">Logout</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-
-<!--<div class="container mt-3">-->
-<!--    <div class="row">-->
-<!--        &lt;!&ndash; User's Information &ndash;&gt;-->
-<!--        <div class="col-md-4">-->
-<!--            <h2>Welcome, <span th:text="${user.username}"></span>!</h2>-->
-<!--            <h3>Profile Information:</h3>-->
-<!--            <ul>-->
-<!--                <li><img th:src="@{${user.profilePicture}}" class="img-thumbnail"></li>-->
-<!--                <li>First Name: <span th:text="${user.firstName}"></span></li>-->
-<!--                <li>Last Name: <span th:text="${user.lastName}"></span></li>-->
-<!--                <li>Email: <span th:text="${user.email}"></span></li>-->
-<!--            </ul>-->
-<!--            <div class="mt-2">-->
-<!--                <a th:href="@{/event/{id}/editProfile (id=${user.id})}">-->
-<!--                    <button class="btn btn-light" id="editbtn">Edit Profile</button>-->
-<!--                </a>-->
-<!--                <form th:action="@{/deleteProfile}" method="post">-->
-<!--                    <button type="submit" class="btn btn-light" id="deletebtn">Delete Profile</button>-->
-<!--                </form>-->
-<!--                <form th:action="@{/logout}" method="post">-->
-<!--                    <button type="submit" class="btn btn-light">Logout</button>-->
-<!--                </form>-->
-<!--                <a th:href="@{/event/create}">-->
-<!--                    <button class="btn btn-light">Create Event</button>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Events that the user is hosting &ndash;&gt;-->
-<!--        <div class="col-md-8">-->
-<!--            <h2>Events that you are hosting:</h2>-->
-<!--            <table class="table">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <th>Event Name</th>-->
-<!--                    <th>Date and Time</th>-->
-<!--                    <th>Description</th>-->
-<!--                    <th>Location</th>-->
-<!--                    <th>Actions</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <tr th:each="event : ${events}">-->
-<!--                    <td>-->
-<!--                        <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}"-->
-<!--                           th:text="${event.title}"></a>-->
-<!--                    </td>-->
-<!--                    <td th:text="${event.dateTime}"></td>-->
-<!--                    <td th:text="${event.description}"></td>-->
-<!--                    <td th:text="${event.location}"></td>-->
-<!--                    <td>-->
-<!--                        <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">-->
-<!--                            <button class="btn btn-light">Edit</button>-->
-<!--                        </a>-->
-<!--                        <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">-->
-<!--                            <input type="hidden" name="hostId" th:value="${event.host}"/>-->
-<!--                            <input type="hidden" name="interestId" th:value="${event.interest}"/>-->
-<!--                            <button type="submit" class="btn btn-light">Delete</button>-->
-<!--                        </form>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Events that the user can register for &ndash;&gt;-->
-<!--    <div class="row mt-3">-->
-<!--        <div class="col-md-12">-->
-<!--            <h2>Events that you can register for:</h2>-->
-<!--            <table class="table">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <th>Title</th>-->
-<!--                    <th>Date/Time</th>-->
-<!--                    <th>Description</th>-->
-<!--                    <th>Location</th>-->
-<!--                    <th>Register</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <tr th:each="event : ${otherOrganizerEvents}">-->
-<!--                    <td th:text="${event.title}"></td>-->
-<!--                    <td th:text="${event.dateTime}"></td>-->
-<!--                    <td th:text="${event.description}"></td>-->
-<!--                    <td th:text="${event.location}"></td>-->
-<!--                    <td>-->
-
-<!--                        <form th:if="${event.host != user}" id="eventForm${event.eventId}"-->
-<!--                              th:action="@{'/attendee/' + ${event.eventId} + '/register'}" method="post">-->
-<!--                            <input type="hidden" name="eventTitle" th:value="${event.title}">-->
-<!--                            <button onclick="registerForEvent(${event.eventId}, '${event.title}')">-->
-<!--                                Register-->
-<!--                            </button>-->
-<!--                        </form>-->
-
-
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="row mt-3">-->
-<!--        &lt;!&ndash; About Me/Bio &ndash;&gt;-->
-<!--        <div class="col-md-12">-->
-<!--            <h2>About Me/Bio:</h2>-->
-<!--            <textarea class="form-control" rows="5" id="about-me-input" placeholder="Tell Us About You"></textarea>-->
-<!--            <button class="btn btn-light mt-2" id="post-button">Post</button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"-->
-<!--        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>-->
-
-
-<!--<script>-->
-<!--    function showRegistrationMessage(message) {-->
-<!--        var registrationMessage = document.createElement("div");-->
-<!--        registrationMessage.textContent = message;-->
-<!--        registrationMessage.classList.add("registration-message");-->
-
-<!--        var container = document.querySelector(".container");-->
-<!--        container.insertBefore(registrationMessage, container.firstChild);-->
-
-<!--        setTimeout(function () {-->
-<!--            registrationMessage.remove();-->
-<!--        }, 5000);-->
-<!--    }-->
-
-<!--    function registerForEvent(eventId, eventTitle) {-->
-<!--        // TODO: Implement the logic to check if the user is already registered-->
-<!--        var isRegistered = false; // Replace with your actual logic-->
-
-<!--        if (isRegistered) {-->
-<!--            showPopup("You are already registered for this event.");-->
-<!--        } else {-->
-<!--            // Submit the registration form-->
-<!--            document.getElementById("eventForm" + eventId).submit();-->
-<!--            showRegistrationMessage("Thanks for registering! We look forward to seeing you at the event.");-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-
-
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -266,7 +88,11 @@
                         <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
                             <input type="hidden" name="hostId" th:value="${event.host}"/>
                             <input type="hidden" name="interestId" th:value="${event.interest}"/>
-                            <button type="submit" class="btn btn-light">Delete</button>
+                            <!--                            <button type="submit" class="btn btn-light">Delete</button>-->
+
+                            <button type="submit" class="btn btn-light" onclick="confirmDeleteEvent(event)">Delete
+                            </button>
+
                         </form>
                     </td>
                 </tr>
@@ -274,6 +100,7 @@
             </table>
         </div>
     </div>
+</div>
 
     <!-- Events that the user can register for -->
     <div class="row mt-3">
@@ -300,7 +127,6 @@
                     <td th:text="${event.location}"></td>
 
 
-
                 </tr>
 
                 </tbody>
@@ -309,8 +135,21 @@
     </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
 
-</body>
+
+    <!--    This code ask for user confirmation if they would like to delete an event -->
+
+    <script>
+        function confirmDeleteEvent(event) {
+            var confirmation = confirm("Are you sure you want to delete this event?");
+            if (!confirmation) {
+                event.preventDefault(); // Prevents the form submission if the user cancels
+            }
+        }
+    </script>
+
+
+  </body>
 </html>
