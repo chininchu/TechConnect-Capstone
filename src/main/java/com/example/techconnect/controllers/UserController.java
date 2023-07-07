@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
+import java.security.Principal;
 import java.util.*;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -242,5 +243,18 @@ public class UserController {
         User deletedUser = userDao.findById(loggedInUser.getId()).get();
         userDao.delete(deletedUser);
         return "redirect:/LoginPage";
+    }
+
+    @GetMapping("/")
+    public String index(Model model, Principal principal) {
+        // Check if the user is logged in
+        boolean isLoggedIn = principal != null;
+
+        // Pass the login status to the template
+        model.addAttribute("isLoggedIn", isLoggedIn);
+
+        // Other code...
+
+        return "index";
     }
 }
