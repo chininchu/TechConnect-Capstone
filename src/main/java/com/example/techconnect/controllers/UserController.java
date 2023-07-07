@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
+import java.security.Principal;
 import java.util.*;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -76,6 +77,10 @@ public class UserController {
 //        user.setProfilePicture(fileUrl);
         // The code below grabs the attribute name from the @RequestParam and sets it to the profile picture.
         user.setProfilePicture(profilePicture);
+//        if(profilePicture == null){
+//            user.setProfilePicture(profilePicture);
+//
+//        }
         // Set the user attribute in the session
 //        request.getSession().setAttribute("user", user);
         model.addAttribute("user", user);
@@ -171,7 +176,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/event/{id}/editProfile")
+    @GetMapping("/{id}/editProfile")
     public String showEditProfileForm(@PathVariable long id, Model model) {
         User user = userDao.findById(id).get();
         model.addAttribute("user", user);
@@ -198,7 +203,7 @@ public class UserController {
 //
 //        return "";
 //    }
-    @PostMapping("/event/{id}/editProfile")
+    @PostMapping("/{id}/editProfile")
     public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture, BindingResult bindingResult, Model model, HttpServletRequest request) {
 //        user.setEmail(user.getEmail());
 //        user.setId(id);
@@ -242,5 +247,18 @@ public class UserController {
         User deletedUser = userDao.findById(loggedInUser.getId()).get();
         userDao.delete(deletedUser);
         return "redirect:/LoginPage";
+    }
+
+    @GetMapping("/")
+    public String index(Model model, Principal principal) {
+        // Check if the user is logged in
+        boolean isLoggedIn = principal != null;
+
+        // Pass the login status to the template
+        model.addAttribute("isLoggedIn", isLoggedIn);
+
+        // Other code...
+
+        return "index";
     }
 }

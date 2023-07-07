@@ -29,7 +29,7 @@
     <div class="card-body">
         <h2 th:text="${discussion.user.username}"></h2>
         <p th:text="${#temporals.format(discussion.createdAt,'EEE dd MMMM HH:mm a')}"></p>
-        <h3 th:text="${discussion.title}"></h3>
+        <h5 th:text="${discussion.title}"></h5>
         <p th:text="${discussion.content}"></p>
         <button  class="btn btn-primary" type="button" id="replyBtn">Reply</button>
         <button  th:if="${discussion.user.id == loggedInUser}" type="button"  class="btn btn-primary" data-bs-toggle="modal" th:data-bs-target="'#exampleModal-' + ${discussion.id}">
@@ -81,9 +81,9 @@
         <h4>Comments</h4>
     <div>
         <ul th:each=" comment : ${discussion.comments}" class="comments" style="list-style:none">
-        <li><h4 th:text="${comment.user.username}"></h4></li>
+        <li><h3 th:text="${comment.user.username}"></h3></li>
         <li><p th:text="${#temporals.format(comment.createdAt,'EEE dd MMMM h:mm a')}"></p></li>
-        <li><h3 th:text="${comment.title}"></h3></li>
+        <li><h5 th:text="${comment.title}"></h5></li>
         <li><p th:text="${comment.content}"></p></li>
         <li><form th:action="@{/comments/{id}/delete (id=${comment.id})}" th:method="post">
                 <button class="btn btn-primary" th:if="${comment.user.id == loggedInUser}" type="submit" >Delete Comment</button>

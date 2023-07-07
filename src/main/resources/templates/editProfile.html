@@ -8,7 +8,7 @@
     <link href="https://cdn.filestackcontent.com/HANDLE">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Form</title>
+    <title>Edit Profile</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 
                 <h1 class="heading">Edit Account</h1>
 
-                <form th:action="@{/event/{id}/editProfile (id=${user.id})}" th:object="${user}" th:method="POST"
+                <form th:action="@{/{id}/editProfile (id=${user.id})}" th:object="${user}" th:method="POST"
                       enctype="multipart/form-data">
                     <div class="row mb-3">
                         <div class="col-6">
@@ -44,7 +44,7 @@
 
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label for="username" class="form-label">Create Username:</label>
+                            <label for="username" class="form-label">Edit Username:</label>
                             <input type="text" id="username" name="username" class="form-control"
                                    th:field="*{username}" required>
                         </div>
@@ -52,7 +52,7 @@
 
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label for="password" class="form-label">Create Password:</label>
+                            <label for="password" class="form-label">Edit Password:</label>
                             <input type="password" id="password" name="password" class="form-control"
                                    th:field="*{password}" required>
                         </div>

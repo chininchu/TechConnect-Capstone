@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.*;
 
 
@@ -52,9 +53,16 @@ public class EventController {
     }
 
     @GetMapping("/events/allevent")
-    public String viewAllEvents(Model model) {
+    public String viewAllEvents(Model model, Principal principal) {
+        // Check if the user is logged in
+        boolean isLoggedIn = principal != null;
+
+        // Pass the login status to the template
+        model.addAttribute("isLoggedIn", isLoggedIn);
+
         model.addAttribute("interests", interestRepository.findAll());
         return "api_eventsp_test";
+
     }
 
 
@@ -183,8 +191,14 @@ public class EventController {
 
 
     @GetMapping("/event/{eventId}/reviews")
-    public String showEventReviews(@PathVariable long eventId, Model model) {
+    public String showEventReviews(@PathVariable long eventId, Model model, Principal principal) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Check if the user is logged in
+        boolean isLoggedIn = principal != null;
+
+        // Pass the login status to the template
+        model.addAttribute("isLoggedIn", isLoggedIn);
 
         Event event = eventRepository.findById(eventId).orElseThrow();
         List<Review> reviews = reviewRepository.findAllByEventId(eventId);
@@ -422,6 +436,8 @@ public class EventController {
         // Redirect back to the profile page
         return "redirect:/profile";
     }
+
+
 
 
 }

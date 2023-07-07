@@ -101,3 +101,17 @@ VALUES
     ('Recommended Python resource for beginners', 'I found "Automate the Boring Stuff with Python" to be an excellent resource for beginners. Give it a try!', '2023-07-06 14:15:00', 6, 14),
     ('Security practices for web applications', 'To secure your web application, use secure coding practices, input validation, and encryption for sensitive data.', '2023-07-07 16:00:00', 7, 2),
     ('Regularly update dependencies for web application security', 'Regularly update your web application\'s dependencies and frameworks to patch security vulnerabilities.', '2023-07-07 16:45:00', 7, 26);
+
+INSERT INTO review(event_id, user_id, rating, title, description)
+VALUES
+    (1, 10, 4, 'Informative and helpful workshop', 'The Web Development Workshop was very informative and provided helpful insights into the latest web development techniques.'),
+    (2, 27, 5, 'Excellent introduction to data science', 'The Introduction to Data Science event exceeded my expectations. The speaker was knowledgeable, and the content was well-structured.'),
+    (3, 4, 3, 'Could use more practical examples', 'While the UI/UX Design Seminar covered the principles well, I would have liked to see more practical examples and case studies.'),
+    (4, 15, 4, 'Valuable introduction to computer programming', 'The Introduction to Computer Programming session provided a solid foundation for beginners. The instructor explained concepts clearly.'),
+    (5, 18, 5, 'Insightful conference on systems analysis', 'The Systems Analyst Conference was packed with valuable insights and real-world examples. I highly recommend it to professionals in the field.'),
+    (6, 23, 4, 'Great workshop for learning Python', 'The Python workshop was well-structured, and the hands-on exercises helped reinforce my understanding of the language.'),
+    (7, 2, 2, 'Lacked in-depth coverage of security topics', 'The Cybersecurity Seminar didn''t cover the topic in enough depth. I expected more comprehensive discussions on common vulnerabilities and mitigation strategies.'),
+    (8, 29, 5, 'Excellent recommendations for front-end frameworks', 'The Recommendations for Front-end Frameworks event provided valuable insights into the strengths and weaknesses of different frameworks.'),
+    (9, 11, 4, 'Insightful session on essential data science skills', 'The Essential Skills and Qualifications for a Data Scientist session covered a wide range of skills necessary for a successful career in data science.'),
+    (10, 6, 3, 'Lacked comparison between programming languages', 'The session on choosing the right programming language could have provided a better comparison between different languages.'),
+    (11, 17, 5, 'Optimization techniques for high-traffic applications', 'The session on optimizing database query performance in high-traffic applications offered practical strategies that I could implement in my project.');
