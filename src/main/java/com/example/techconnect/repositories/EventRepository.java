@@ -27,8 +27,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query("SELECT e FROM Event e WHERE e.host.id <> :userId")
     List<Event> findAllByHostIdNot(@Param("userId") Long userId);
-
-    List<Event> findEventsByDateTimeLessThan(LocalDateTime dateTime);
+    @Query("SELECT e FROM Event e WHERE e.dateTime > current date")
+    List <Event> findAllByDateTimeGreaterThan(LocalDateTime dateTime);
 
 }
 

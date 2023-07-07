@@ -39,6 +39,7 @@ public class DiscussionController {
             model.addAttribute("loggedInUser", loggedIn.getId());
 
         }
+
         model.addAttribute("discussions", discussionRepository.findAll());
         model.addAttribute("comment", new Comment());
         model.addAttribute("discussion", new Discussion());

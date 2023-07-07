@@ -60,7 +60,7 @@ public class RestApiController {
     }
     @GetMapping("/closestEvents")
     public List <Event> findClosestEvents(){
-        return eventRepository.findEventsByDateTimeLessThan(LocalDateTime.now());
+        return eventRepository.findAllByDateTimeGreaterThan(LocalDateTime.now());
     }
 
 
