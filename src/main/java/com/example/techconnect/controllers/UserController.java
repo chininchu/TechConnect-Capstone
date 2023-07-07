@@ -77,6 +77,10 @@ public class UserController {
 //        user.setProfilePicture(fileUrl);
         // The code below grabs the attribute name from the @RequestParam and sets it to the profile picture.
         user.setProfilePicture(profilePicture);
+//        if(profilePicture == null){
+//            user.setProfilePicture(profilePicture);
+//
+//        }
         // Set the user attribute in the session
 //        request.getSession().setAttribute("user", user);
         model.addAttribute("user", user);
