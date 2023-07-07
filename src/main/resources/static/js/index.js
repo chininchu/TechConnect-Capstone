@@ -1,7 +1,7 @@
 
 function upcomingEvents(){
     let html = "";
-    fetch(`http://localhost:8080/events/closestEvents`)
+    fetch(`https://www.techconnect.expert/events/closestEvents`)
         .then( response => { response.json()
             .then(events => {
                 for (let i = 0; i >= 0; i++) {

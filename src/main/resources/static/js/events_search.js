@@ -73,7 +73,7 @@ calendar.render()
         submitBtn.addEventListener("click", function (event) {
             event.preventDefault();
             let userInput = document.getElementById("location").value
-            fetch(`http://localhost:8080/events/searchEvents?location=${userInput}`)
+            fetch(`https://www.techconnect.expert/events/searchEvents?location=${userInput}`)
                 .then(res => {
                     res.json().then(events => {
                         events.forEach(event => {
@@ -109,7 +109,7 @@ calendar.render()
         submitBtn.addEventListener("click", function (event) {
             event.preventDefault();
             let userInput = document.getElementById("interests").value
-            fetch(`http://localhost:8080/events/searchInterest?interest=${userInput}`)
+            fetch(`https://www.techconnect.expert/events/searchInterest?interest=${userInput}`)
                 .then(res => {
                     res.json().then(events => {
                         events.forEach(event => {
@@ -146,7 +146,7 @@ calendar.render()
             console.log("clicked")
             event.preventDefault();
             let userInput = document.getElementById("keyword").value
-            fetch(`http://localhost:8080/events/searchKeyword?keyword=${userInput}`)
+            fetch(`https://www.techconnect.expert/events/searchKeyword?keyword=${userInput}`)
                 .then(res => {
                     res.json().then(events => {
                         events.forEach(event => {
