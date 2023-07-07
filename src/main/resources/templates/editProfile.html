@@ -22,7 +22,7 @@
 
                 <h1 class="heading">Edit Account</h1>
 
-                <form th:action="@{/event/{id}/editProfile (id=${user.id})}" th:object="${user}" th:method="POST"
+                <form th:action="@{/{id}/editProfile (id=${user.id})}" th:object="${user}" th:method="POST"
                       enctype="multipart/form-data">
                     <div class="row mb-3">
                         <div class="col-6">

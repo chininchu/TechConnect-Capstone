@@ -171,7 +171,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/event/{id}/editProfile")
+    @GetMapping("/{id}/editProfile")
     public String showEditProfileForm(@PathVariable long id, Model model) {
         User user = userDao.findById(id).get();
         model.addAttribute("user", user);
@@ -198,7 +198,7 @@ public class UserController {
 //
 //        return "";
 //    }
-    @PostMapping("/event/{id}/editProfile")
+    @PostMapping("/{id}/editProfile")
     public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture, BindingResult bindingResult, Model model, HttpServletRequest request) {
 //        user.setEmail(user.getEmail());
 //        user.setId(id);

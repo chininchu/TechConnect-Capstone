@@ -217,7 +217,7 @@
                 <li>Email: <span th:text="${user.email}"></span></li>
             </ul>
             <div class="mt-2">
-                <a th:href="@{/event/{id}/editProfile (id=${user.id})}">
+                <a th:href="@{/{id}/editProfile (id=${user.id})}">
                     <button class="btn btn-light" id="editbtn">Edit Profile</button>
                 </a>
                 <form th:action="@{/deleteProfile}" method="post">

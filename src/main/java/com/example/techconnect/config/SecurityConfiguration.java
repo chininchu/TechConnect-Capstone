@@ -71,7 +71,7 @@ public class SecurityConfiguration {
                                 "/discussion/create",
                                 "/comments/{id}/delete",
                                 "/discussion/{id}/edit",
-                                "/event/{profId}/editProfile",
+                                "/{id}/editProfile",
                                 "/profile",
                                 "/editProfile",
                                 "/comments/create",
