@@ -76,6 +76,10 @@ public class UserController {
 //        user.setProfilePicture(fileUrl);
         // The code below grabs the attribute name from the @RequestParam and sets it to the profile picture.
         user.setProfilePicture(profilePicture);
+//        if(profilePicture == null){
+//            user.setProfilePicture(profilePicture);
+//
+//        }
         // Set the user attribute in the session
 //        request.getSession().setAttribute("user", user);
         model.addAttribute("user", user);
@@ -130,7 +134,7 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(Model model ) {
+    public String showProfile(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
 //        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
@@ -143,7 +147,6 @@ public class UserController {
         List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
 
         model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
-
 
 
 //        model.addAttribute("isRegistered", attendeeRepository.existsByUserAndEvent(loggedInUser,event));
@@ -201,12 +204,12 @@ public class UserController {
 //    }
     @PostMapping("/event/{id}/editProfile")
     public String editProfile(@ModelAttribute User user, @PathVariable long id, @RequestParam(name = "profilePicture") String profilePicture, BindingResult bindingResult, Model model, HttpServletRequest request) {
-        user.setEmail(user.getEmail());
-        user.setId(id);
-        user.setFirstName(user.getFirstName());
-        user.setLastName(user.getLastName());
-        user.setUsername(user.getUsername());
-        user.setProfilePicture(user.getProfilePicture());
+//        user.setEmail(user.getEmail());
+//        user.setId(id);
+//        user.setFirstName(user.getFirstName());
+//        user.setLastName(user.getLastName());
+//        user.setUsername(user.getUsername());
+//        user.setProfilePicture(user.getProfilePicture());
 
 
         // ------Validates the password is Alphanumeric and has special characters--------
