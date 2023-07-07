@@ -5,10 +5,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script type="text/javascript" th:src="@{/keys.js}"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <title>Home Page</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-light" id="title" href="/templates/index.html">TECHCON</a>
+    <a class="navbar-brand text-light" id="title" href="/templates/index.html">TechConnect</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,7 +33,12 @@
         </ul>
     </div>
     <div>
-        <a th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none">Login</a>
+        <!-- If the user is logged in, show the "Logout" button -->
+        <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>
+
+        <!-- If the user is logged out, show the "Login" button -->
+        <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none">Login</a>
+
         <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>
     </div>
 </nav>
