@@ -85,7 +85,7 @@ public class EventController {
 
         // Return the create event view
 
-        return "event/create"; // change back to /event/create before push
+        return "event/CreateEvent"; // change back to /event/create before push
 
 
 
