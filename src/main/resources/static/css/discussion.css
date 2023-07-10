@@ -1,0 +1,62 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-size: contain;
+}
+
+.container {
+    color: floralwhite;
+    background-color: transparent;
+    margin-top: 50px;
+}
+
+.navbar-brand {
+    font-family: "PT Serif";
+    margin-left: 25px;
+}
+
+.navbar {
+    background-color: transparent;
+    box-shadow: none;
+    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    position: relative;
+}
+
+
+.navbar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: .1px;
+    background-color: darkgray;
+}
+
+.navbar-nav .nav-link {
+    color: floralwhite;
+}
+
+
+.card{
+    width: 50em;
+    margin: 2em;
+}
+
+.discussion-header{
+    color: white;
+}
+
+.title-create,.content-create{
+    color: white;
+}
+
+.post-header{
+    color: white;
+
+}
+.discussion-div {
+    margin: auto;
+}
