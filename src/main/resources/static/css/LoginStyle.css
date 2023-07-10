@@ -13,7 +13,7 @@ html, body {
 
 .login-form {
     height: 450px;
-    margin-left: 600px;
+    /*margin-left: 600px;*/
     width: 450px;
     padding: 80px;
     color: white;
@@ -22,10 +22,9 @@ html, body {
     border: 2px solid white;
     border-radius: 20px;
     backdrop-filter: blur(5px);
+    margin: 0 auto;
 
 }
-
-
 
 
 .form-group {
@@ -57,6 +56,10 @@ i {
     width: 100%;
     background-color: transparent;
     box-shadow: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar::after {
@@ -84,6 +87,8 @@ i {
     width: 1400px; /* Adjust the width as needed */
     height: 130px;
     object-fit: cover;
+    margin: 0 auto; /* Add this line */
+
 
 }
 
@@ -98,14 +103,15 @@ i {
     justify-content: center;
     font-size: 30px;
     position: relative;
-    font-family: "Comic Sans MS";
+    font-family: "Comic Sans MS", serif;
     margin-right: 30px;
+    text-align: center;
 
 }
 
 .navbar-brand-text {
     margin-left: 10px;
-    font-family: "PT Serif";
+    font-family: "PT Serif", serif;
     color: white;
     margin-bottom: 10px;
     display: flex;
@@ -184,7 +190,7 @@ button:hover {
     position: relative;
     left: 10px;
     bottom: 40px;
-    font-family: "Comic Sans MS";
+    font-family: "Comic Sans MS", serif;
     text-align: center;
 }
 
