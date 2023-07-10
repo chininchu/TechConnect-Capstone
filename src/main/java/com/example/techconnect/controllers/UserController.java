@@ -76,7 +76,21 @@ public class UserController {
 //        String fileUrl = saveProfilePictureToDatabase(profilePicture);
 //        user.setProfilePicture(fileUrl);
         // The code below grabs the attribute name from the @RequestParam and sets it to the profile picture.
-        user.setProfilePicture(profilePicture);
+
+        if (profilePicture.isEmpty()) {
+            // Set the default profile picture path or perform any necessary operations
+            String defaultPicture = "https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/fd35c-no-user-image-icon-27.png?fit=500%2C500&ssl=1";
+            user.setProfilePicture(defaultPicture);
+        } else {
+            // User picked a profile picture, set it as is
+            user.setProfilePicture(profilePicture);
+        }
+
+
+
+
+
+//        user.setProfilePicture(profilePicture);
         // Set the user attribute in the session
 //        request.getSession().setAttribute("user", user);
         model.addAttribute("user", user);

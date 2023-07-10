@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 public class DiscussionController {
@@ -40,6 +43,9 @@ public class DiscussionController {
 
         }
         model.addAttribute("discussions", discussionRepository.findAll());
+        List<Discussion> discussions = discussionRepository.findAll();
+        discussions.sort(Comparator.comparing(Discussion::getCreatedAt).reversed());
+        model.addAttribute("discussions1", discussions);
         model.addAttribute("comment", new Comment());
         model.addAttribute("discussion", new Discussion());
         return "discussions-test";

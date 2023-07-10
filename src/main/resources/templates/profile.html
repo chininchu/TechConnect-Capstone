@@ -35,8 +35,6 @@
             <ul>
 
                 <li><img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}" class="img-thumbnail"></li>
-                <li><img th:if="${user.profilePicture == null}" th:src="@{/images/nouser.jpeg}" class="img-thumbnail"></li>
-
                 <li>First Name: <span th:text="${user.firstName}"></span></li>
                 <li>Last Name: <span th:text="${user.lastName}"></span></li>
                 <li>Email: <span th:text="${user.email}"></span></li>

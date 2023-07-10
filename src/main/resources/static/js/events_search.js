@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
+    let eventClick;
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         themeSystem: 'bootstrap5',
@@ -11,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         events: [],
         selectable: true,
+        eventClick:function(info) {
+            info.jsEvent.preventDefault(); // don't let the browser navigate
+
+            if (info.event.url) {
+                window.open(info.event.url);
+            }
+        },
         dayMaxEventRows: true, // for all non-TimeGrid views
         views: {
             timeGrid: {
@@ -80,7 +88,7 @@ calendar.render()
                             geocode(event.location, MAPBOXAP_TOK).then(function (result) {
                                 let mapCenter = ([result[0], result[1]])
                                 map.setCenter(mapCenter);
-                                map.setZoom(8)
+                                map.setZoom(5)
                                 new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
                                 new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
                                 var eventArr = []
@@ -90,9 +98,11 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
-
+                                newEvent.url = `http://localhost:8080/event/${event.id}/reviews`
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
+                                document.getElementById("location").value = "";
+
                             })
                         })
                     })
@@ -116,7 +126,7 @@ calendar.render()
                             geocode(event.location, MAPBOXAP_TOK).then(function (result) {
                                 let mapCenter = ([result[0], result[1]])
                                 map.setCenter(mapCenter);
-                                map.setZoom(8)
+                                map.setZoom(5)
                                 new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
                                 new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
                                 var eventArr = []
@@ -126,9 +136,10 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
-
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
+                                document.getElementById("interests").value = "";
+
                             })
                         })
                     })
@@ -154,7 +165,7 @@ calendar.render()
                             geocode(event.location, MAPBOXAP_TOK).then(function (result) {
                                 let mapCenter = ([result[0], result[1]])
                                 map.setCenter(mapCenter);
-                                map.setZoom(8)
+                                map.setZoom(5)
                                 new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
                                 new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
                                 var eventArr = []
@@ -166,6 +177,8 @@ calendar.render()
                                 newEvent.display = 'block'
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
+                                document.getElementById("keyword").value = "";
+
                             })
                         })
                     })
