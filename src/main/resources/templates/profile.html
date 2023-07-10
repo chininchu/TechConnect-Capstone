@@ -34,7 +34,8 @@
             <h3>Profile Information:</h3>
             <ul>
 
-                <li><img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}" class="img-thumbnail"></li>
+                <li><img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}"
+                         class="img-thumbnail"></li>
                 <li>First Name: <span th:text="${user.firstName}"></span></li>
                 <li>Last Name: <span th:text="${user.lastName}"></span></li>
                 <li>Email: <span th:text="${user.email}"></span></li>
@@ -82,6 +83,7 @@
                     <td th:text="${event.dateTime}"></td>
                     <td th:text="${event.description}"></td>
                     <td th:text="${event.location}"></td>
+                    <td th:text="${event.location}"></td>
                     <td>
                         <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
                             <button class="btn btn-light">Edit</button>
@@ -103,54 +105,54 @@
     </div>
 </div>
 
-    <!-- Events that the user can register for -->
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <h2>Events that you can register for:</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Date/Time</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="event : ${otherOrganizerEvents}">
-                    <td>
-                        <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
-                            <span th:text="${event.title}"></span>
-                        </a>
-                    </td>
-                    <td th:text="${event.dateTime}"></td>
-                    <td th:text="${event.description}"></td>
-                    <td th:text="${event.location}"></td>
+<!-- Events that the user can register for -->
+<div class="row mt-3">
+    <div class="col-md-12">
+        <h2>Events that you can register for:</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date/Time</th>
+                <th>Description</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="event : ${otherOrganizerEvents}">
+                <td>
+                    <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
+                        <span th:text="${event.title}"></span>
+                    </a>
+                </td>
+                <td th:text="${event.dateTime}"></td>
+                <td th:text="${event.description}"></td>
+                <td th:text="${event.location}"></td>
 
 
-                </tr>
+            </tr>
 
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
+</div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
 
 
-    <!--    This code ask for user confirmation if they would like to delete an event -->
+<!--    This code ask for user confirmation if they would like to delete an event -->
 
-    <script>
-        function confirmDeleteEvent(event) {
-            var confirmation = confirm("Are you sure you want to delete this event?");
-            if (!confirmation) {
-                event.preventDefault(); // Prevents the form submission if the user cancels
-            }
+<script>
+    function confirmDeleteEvent(event) {
+        var confirmation = confirm("Are you sure you want to delete this event?");
+        if (!confirmation) {
+            event.preventDefault(); // Prevents the form submission if the user cancels
         }
-    </script>
+    }
+</script>
 
 
-  </body>
+</body>
 </html>
