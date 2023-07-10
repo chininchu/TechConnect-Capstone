@@ -3,9 +3,10 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-image: linear-gradient(to bottom, #270936, #1F0C34, #170D31, #110D2D, #0B0C29, #090C28, #070D26, #050D25, #060F27, #06112A, #06132C, #06152F);
     background-repeat: no-repeat;
     background-size: cover;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
 
 .container {
@@ -22,7 +23,7 @@ html, body {
 .navbar {
     background-color: transparent;
     box-shadow: none;
-    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-image: linear-gradient(to bottom, #270936, #1F0C34, #170D31, #110D2D, #0B0C29, #090C28, #070D26, #050D25, #060F27, #06112A, #06132C, #06152F);
     position: relative;
 }
 
@@ -50,11 +51,9 @@ html, body {
 .card {
     background-color: transparent;
     box-shadow: none;
-    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-image: linear-gradient(to bottom, #270936, #1F0C34, #170D31, #110D2D, #0B0C29, #090C28, #070D26, #050D25, #060F27, #06112A, #06132C, #06152F);
     position: relative;
-    border: white solid 3px;
-
-
+    border: gray solid 1px;
 }
 
 #events {
@@ -62,11 +61,11 @@ html, body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     margin-top: 80px;
-
 }
 
 .card-text {
     color: floralwhite;
+    overflow: hidden;
 }
 
 h5 {
@@ -111,8 +110,8 @@ h5 {
     text-align: center;
 }
 
-.signup{
-    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+.signup {
+    background: linear-gradient(90deg, #03A9F4, #270936, #F441A5, mediumpurple, #03A9F4);
     color: floralwhite;
     background-size: 400%;
     margin-left: 10px;
@@ -121,11 +120,9 @@ h5 {
     border-radius: 60px;
     z-index: 1;
     position: relative;
-
-
 }
 
-.signup:before{
+.signup:before {
     content: '';
     position: absolute;
     top: -5%;
@@ -133,15 +130,13 @@ h5 {
     right: -5%;
     bottom: -5%;
     z-index: -1;
-    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    background: linear-gradient(90deg, #03A9F4, #270936, #F441A5, mediumpurple, #03A9F4);
     background-size: 400%;
     border-radius: 40px;
     filter: blur(20px);
 }
 
-
-
-.signup:hover{
+.signup:hover {
     animation: animate 8s linear infinite;
 }
 
@@ -154,76 +149,44 @@ h5 {
     }
 }
 
+h1 {
+    text-transform: uppercase;
+    font-family: verdana;
+    font-size: 12em;
+    color: #F5F5F5;
+    text-shadow: 1px 1px 1px #919191,
+    1px 2px 1px #919191,
+    1px 3px 1px #919191,
+    1px 4px 1px #919191,
+    1px 5px 1px #919191,
+    1px 6px 1px #919191,
+    1px 7px 1px #919191,
+    1px 8px 1px #919191,
+    1px 9px 1px #919191,
+    1px 10px 1px #919191,
+    1px 18px 6px rgba(16, 16, 16, 0.4),
+    1px 22px 10px rgba(16, 16, 16, 0.2),
+    1px 25px 35px rgba(16, 16, 16, 0.2),
+    1px 30px 60px rgba(16, 16, 16, 0.4);
+}
 
-#site-photo{
+#site-photo {
     display: flex;
     flex-direction: row;
     height: 80%;
     width: 100%;
     border: white solid 1px;
-
-
 }
 
-#title{
-    color:white;
-    font-family: "PT Serif";
-    text-transform: uppercase;
-    background-image: linear-gradient(
-            -225deg,
-            #03a9f4 0%,
-            #44107a 29%,
-            #f441a5 67%,
-            mediumpurple 80%,
-            #03a9f4 90%,
-            #44107a 100%
-
-    );
-    background-size: auto auto;
-    background-clip: border-box;
-    background-size: 200% auto;
-    color: #fff;
-    background-clip: text;
-    text-fill-color: transparent;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textclip 2s linear infinite;
-    display: inline-block;
-}
-@keyframes textclip {
-    to {
-        background-position: 200% center;
-    }
+.card-text-signup {
+    margin-right: 20px;
 }
 
+.card-text-login {
 
-h1 {color:white;
-    font-family: "PT Serif";
-    text-transform: uppercase;
-    background-image: linear-gradient(
-            -225deg,
-            #03a9f4 0%,
-            #44107a 29%,
-            #f441a5 67%,
-            mediumpurple 80%,
-            #03a9f4 90%,
-            #44107a 100%
-
-    );
-    background-size: auto auto;
-    background-clip: border-box;
-    background-size: 200% auto;
-    color: #fff;
-    background-clip: text;
-    text-fill-color: transparent;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textclip 2s linear infinite;
-    display: inline-block;
-}
-@keyframes textclip {
-    to {
-        background-position: 200% center;
-    }
+    margin-right: 10px;
 }
 
+.card-title{
+    color: floralwhite;
+}
