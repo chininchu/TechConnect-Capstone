@@ -2,7 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-image: url("https://img.freepik.com/free-vector/gradient-colorful-grainy-dynamic-background_52683-101908.jpg?w=1800&t=st=1688333928~exp=1688334528~hmac=03477f904715ddbeef50845422af831948d8615559f25772a2fbc2c4391feb35");
+    background-image: url("/images/grainy.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
