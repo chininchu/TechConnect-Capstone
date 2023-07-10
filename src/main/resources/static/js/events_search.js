@@ -98,7 +98,7 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
-                                newEvent.url = `http://localhost:8080/event/${event.id}/reviews`
+                                newEvent.url = `https://www.techconnect.expert/event/${event.id}/reviews`
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
                                 document.getElementById("location").value = "";
@@ -136,6 +136,7 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
+                                newEvent.url = `https://www.techconnect.expert/event/${event.id}/reviews`
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
                                 document.getElementById("interests").value = "";
@@ -175,6 +176,7 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
+                                newEvent.url = `https://www.techconnect.expert/event/${event.id}/reviews`
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
                                 document.getElementById("keyword").value = "";
