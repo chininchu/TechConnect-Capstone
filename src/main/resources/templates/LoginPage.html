@@ -17,39 +17,43 @@
 </head>
 <body>
 
+<div class="mobile">
 
-<nav class="banner">
-    <div class="container-fluid">
-        <a class="navbar-brand text-light" href="#">
-            <img src="" th:src="@{/images/LoginBanner.jpg}" alt="Navbar Banner" class="navbar-banner">
-        </a>
+
+<!--    <nav class="banner">-->
+<!--        <div class="container-fluid">-->
+<!--            <a class="navbar-brand text-light" href="#">-->
+                <img src="" th:src="@{/images/LoginBanner.jpg}" alt="Navbar Banner">
+<!--            </a>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+    <div class="title">
+        <h1>Connect With Us Today!</h1>
     </div>
-</nav>
+    <div class="login-form">
+        <div class="header">
+            Log In
+        </div>
 
-<div class="title">
-    <h1>Connect With Us Today!</h1>
-</div>
-<div class="login-form">
-    <div class="header">
-        Log In
+        <div class="form-group">
+            <form th:action="@{/LoginPage}" th:method="POST">
+
+                <label for="login">Username:</label>
+                <input type="text" id="login" name="username" placeholder="Username" class="form-control">
+                <i class="bi bi-person-fill"></i><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password" class="form-control"><i
+                    class="bi bi-key-fill"></i><br>
+                <button class="btn">Login</button>
+
+                <p id="haveAccount">No Account?<a th:href="@{/SignUpPage}">Register Now!</a>
+                    <a th:href="@{/SignUpPage}">Forgot Password?</a></p>
+            </form>
+        </div>
     </div>
 
-    <div class="form-group">
-        <form th:action="@{/LoginPage}" th:method="POST">
-
-            <label for="login">Username:</label>
-            <input type="text" id="login" name="username" placeholder="Username" class="form-control">
-            <i class="bi bi-person-fill"></i><br>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Password" class="form-control"><i
-                class="bi bi-key-fill"></i><br>
-            <button class="btn">Login</button>
-
-            <p id="haveAccount">No Account?<a th:href="@{/SignUpPage}">Register Now!</a>
-                <a th:href="@{/SignUpPage}">Forgot Password?</a></p>
-        </form>
-    </div>
 </div>
 
 
