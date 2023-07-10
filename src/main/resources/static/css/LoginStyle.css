@@ -1,5 +1,5 @@
 html, body {
-    background-image: url("https://img.freepik.com/free-vector/gradient-colorful-grainy-dynamic-background_52683-101908.jpg?w=1800&t=st=1688333928~exp=1688334528~hmac=03477f904715ddbeef50845422af831948d8615559f25772a2fbc2c4391feb35");
+    background-image: url("/images/grainy.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -13,7 +13,7 @@ html, body {
 
 .login-form {
     height: 450px;
-    margin-left: 500px;
+    margin-left: 600px;
     width: 450px;
     padding: 80px;
     color: white;
@@ -24,6 +24,9 @@ html, body {
     backdrop-filter: blur(5px);
 
 }
+
+
+
 
 .form-group {
     display: flex;
@@ -37,10 +40,12 @@ html, body {
     opacity: 90%;
 
 }
-::-webkit-input-placeholder{
+
+::-webkit-input-placeholder {
     color: rgb(49, 48, 48);
 }
-i{
+
+i {
     position: relative;
     top: -29px;
     right: 20px;
@@ -66,11 +71,13 @@ i{
 }
 
 .navbar-brand {
-    margin-left: 15px;
+    margin-left: 100px;
     color: white;
     display: flex;
     align-items: center;
     margin-bottom: 60px;
+
+
 }
 
 .navbar-banner {
@@ -96,7 +103,7 @@ i{
 
 }
 
-.navbar-brand-text{
+.navbar-brand-text {
     margin-left: 10px;
     font-family: "PT Serif";
     color: white;
@@ -107,7 +114,7 @@ i{
 
 }
 
-p{
+p {
     position: relative;
     color: black;
     font-size: 20px;
@@ -116,11 +123,11 @@ p{
     margin-bottom: 70px;
 }
 
-img{
+img {
     margin-bottom: 40px;
 }
 
-button{
+button {
     background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
     color: floralwhite;
     background-size: 400%;
@@ -150,12 +157,12 @@ button:before {
     filter: blur(20px);
 }
 
-button{
+button {
     position: relative;
 }
 
 
-button:hover{
+button:hover {
     animation: animate 8s linear infinite;
 }
 
@@ -168,11 +175,11 @@ button:hover{
     }
 }
 
-#haveAccount{
+#haveAccount {
     color: #f2f2f2;
 }
 
-.header{
+.header {
     font-size: 30px;
     position: relative;
     left: 10px;
@@ -180,3 +187,4 @@ button:hover{
     font-family: "Comic Sans MS";
     text-align: center;
 }
+

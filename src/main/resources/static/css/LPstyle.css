@@ -65,6 +65,7 @@ html, body {
 
 .card-text {
     color: floralwhite;
+    overflow: hidden;
 }
 
 h5 {
@@ -184,4 +185,8 @@ h1 {
 .card-text-login {
 
     margin-right: 10px;
+}
+
+.card-title{
+    color: floralwhite;
 }
