@@ -4,8 +4,8 @@ function upcomingEvents(){
     fetch(`https://www.techconnect.expert/events/closestEvents`)
         .then( response => { response.json()
             .then(events => {
-                for (let i = 0; i >= 0; i++) {
-                    let html = "";
+                for (let i = 0; i < 4; i++) {
+                    console.log(events[i].title)
                     html += `<div class="col-lg-3">`
                     html += `<div class="card">`
                     html += `<div class="card-body">`

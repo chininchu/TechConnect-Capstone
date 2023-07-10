@@ -100,6 +100,7 @@ public class SecurityConfiguration {
                                 "/login",
                                 "/events/eventsSearchKeyword",
                                 "/events/searchEvents",
+                                "/events/closestEvents",
                                 "/events.json",
                                 "/events/profEvents",
                                 "/events/ajax",
