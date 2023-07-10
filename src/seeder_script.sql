@@ -1,3 +1,4 @@
+USE techconnect_db;
 
 INSERT INTO users (email, first_name, last_name, password, profile_picture, username)
 VALUES
@@ -35,7 +36,7 @@ VALUES
 ('ldennison42@pagesperso-orange.fr', 'Leta', 'Dennison', '$2a$04$sE3pjlelN0p4IRHzlE9QyuWu7PQ/9eB2pEksAwXW6zKxXm8lkGLBS', 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/fd35c-no-user-image-icon-27.png?fit=500%2C500&ssl=1', 'ldennison42'),
 ('dlarimer43@oaic.gov.au', 'Darrell', 'Larimer', '$2a$04$8Oa3FyiZ0QZGlgzp8C4sUe4S7JEtMCfCCFSK8YzJzwuzf8H2STGcG', 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/fd35c-no-user-image-icon-27.png?fit=500%2C500&ssl=1', 'dlarimer43'),
 ('cneylon44@cdc.gov', 'Chico', 'Neylon', '$2a$04$szP2ohIJ0ju0bafdGguE.u8bfDA/7RsYKewhKlI.en1PZQSMTV232', 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/fd35c-no-user-image-icon-27.png?fit=500%2C500&ssl=1', 'cneylon44'),
-('rdelooze45@amazon.co.uk', 'Roy', 'Delooze', '$2a$04$uh7DOznkffd6TZJJ9eMmrO7u0cA4rh9.pVIoa8d/G1Tk4C7gqG.qS', 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/fd35c-no-user-image-icon-27.png?fit=500%2C500&ssl=1', 'rdelooze45')
+('rdelooze45@amazon.co.uk', 'Roy', 'Delooze', '$2a$04$uh7DOznkffd6TZJJ9eMmrO7u0cA4rh9.pVIoa8d/G1Tk4C7gqG.qS', 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/fd35c-no-user-image-icon-27.png?fit=500%2C500&ssl=1', 'rdelooze45');
 
 
 INSERT INTO interests (interest) VALUES
