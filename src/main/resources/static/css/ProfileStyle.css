@@ -1,13 +1,18 @@
 .image-box {
     width: 100%;
     height: 200px;
-    background-color: lightgray;
+    background-color: #170d31;
     margin-bottom: 20px;
     margin-top: 45px;
     margin-left: 10px;
-    border: 4px solid #f2f2f2;
     padding: 10px;
+}
+
+.image-box img {
     object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border: 4px solid #f2f2f2;
 }
 
 .button-group {
@@ -99,6 +104,8 @@ html, body {
 .profile-info {
     color: floralwhite;
     margin-left: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 #editbtn{
@@ -187,3 +194,42 @@ html, body {
     border: 4px solid #f2f2f2;
     padding: 10px;
 }
+
+#eventtitle{
+    color: floralwhite;
+    background-color: #170d31;
+
+}
+
+.mt-3{
+    color: white;
+    background-image: url("https://img.freepik.com/free-photo/wooden-floor-with-blackboard_1249-198.jpg?w=1380&t=st=1688340769~exp=1688341369~hmac=4fa37b16a59a0ba50028fe2bbb10ffc09c3b6239ed2e80d31b42eeba6d3fbf25");
+    background-size: cover;
+    color: #f2f2f2;
+    overflow-x: hidden;
+}
+
+#formcontent {
+    text-align: center;
+    width: 100%;
+    overflow-x: auto; /* Add overflow-x property to enable horizontal scrolling */
+}
+
+#formcontent table {
+    width: 100%; /* Set the table width to 100% */
+}
+
+#formcontent th,
+#formcontent td {
+    padding: 10px;
+    white-space: nowrap; /* Prevent table cells from wrapping */
+}
+
+@media (max-width: 767px) {
+    #formcontent table {
+        width: auto; /* Allow the table to resize based on content on smaller screens */
+    }
+}
+
+
+
