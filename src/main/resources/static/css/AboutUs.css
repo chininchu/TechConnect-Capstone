@@ -1,0 +1,43 @@
+html{
+    background-image: url("../images/grainy.jpg");
+}
+
+.dot {
+    height: 250px;
+    width: 250px;
+    background-color: #00f4ff;
+    border-radius: 50%;
+    display: inline-block;
+}
+.aboutus-ul{
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 2em;
+    margin-top: 10em;
+}
+
+#andrew{
+    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04Q7UPNMME-5630e022a31b-512");
+    background-size: contain;
+}
+#asia{
+    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PBL4JDHC-06a02c7498ee-512");
+    background-size: contain;
+
+}
+
+#cole{
+    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PWT7UA0H-d46b88c2bcd8-512");
+    background-size: contain;
+
+
+}
+#charles{
+    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PLNB6S2G-e25c7f386bc9-512");
+    background-size: contain;
+
+}
+li{
+    padding: 2em;
+}

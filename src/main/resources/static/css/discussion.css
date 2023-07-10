@@ -38,6 +38,8 @@ html, body {
 .navbar-nav .nav-link {
     color: floralwhite;
 }
+
+
 .card{
     width: 50em;
     margin: 2em;
@@ -49,4 +51,12 @@ html, body {
 
 .title-create,.content-create{
     color: white;
+}
+
+.post-header{
+    color: white;
+
+}
+.discussion-div {
+    margin: auto;
 }
