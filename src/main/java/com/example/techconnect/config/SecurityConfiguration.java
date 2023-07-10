@@ -107,7 +107,8 @@ public class SecurityConfiguration {
                                 "/events/search",
                                 "/events/userEvents",
                                 "/AboutUs",
-                                "/event/{eventId}/reviews").permitAll()
+                                "/event/{eventId}/reviews",
+                                "/error").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/keys.js").permitAll()
                 )

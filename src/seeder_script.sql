@@ -59,7 +59,7 @@ VALUES
     ('2023-07-12 13:15:00', 'Dive into the fundamentals of computer programming.', 'Boston, MA', 'Introduction to Computer Programming', 15, 3),
     ('2023-07-15 10:00:00', 'Learn about the role of systems analysts in modern organizations.', 'Austin, TX', 'Systems Analyst Conference', 19, 8),
     ('2023-07-18 16:30:00', 'Join us for a software engineering workshop and enhance your coding skills.', 'Chicago, IL', 'Software Engineering Workshop', 22, 9),
-    ('2023-07-20 11:45:00', 'Learn about cloud engineering and its applications in today\'s technology landscape.', 'Denver, CO', 'Cloud Engineering Summit', 8, 6),
+    ('2023-07-20 11:45:00', 'Learn about cloud engineering and its applications in todays technology landscape.', 'Denver, CO', 'Cloud Engineering Summit', 8, 6),
     ('2023-07-23 14:30:00', 'Discover the world of cybersecurity and learn how to protect digital assets.', 'Washington, D.C.', 'Cybersecurity Seminar', 31, 5),
     ('2023-07-25 09:00:00', 'Explore the field of network engineering and its importance in modern networks.', 'San Diego, CA', 'Introduction to Network Engineering', 3, 4),
     ('2023-08-02 16:00:00', 'Enhance your web development skills with advanced techniques and frameworks.', 'New York City, NY', 'Advanced Web Development Seminar', 18, 1),
@@ -70,7 +70,7 @@ VALUES
     ('2023-08-22 14:15:00', 'Join us for a software engineering conference and network with industry experts.', 'Chicago, IL', 'Software Engineering Conference', 7, 9),
     ('2023-08-25 10:30:00', 'Learn how to design and deploy scalable cloud solutions.', 'Denver, CO', 'Scalable Cloud Solutions Workshop', 27, 6);
 
-'INSERT INTO discussions (content, created_at, title, user_id)
+INSERT INTO discussions (content, created_at, title, user_id)
 VALUES
     ('I am having trouble deploying my React app to AWS Amplify. Can anyone help?', '2023-07-01 10:00:00', 'Trouble with React app deployment to AWS Amplify', 22),
     ('What are some best practices for optimizing SQL queries in large databases?', '2023-07-02 14:30:00', 'Optimizing SQL queries in large databases', 18),
@@ -94,13 +94,13 @@ VALUES
     ('Feature selection techniques for machine learning projects', 'For feature selection in machine learning projects, you can try techniques like forward selection or backward elimination to identify the most relevant features.', '2023-07-03 10:00:00', 3, 21),
     ('Evaluation of feature selection techniques', 'I suggest using cross-validation methods to evaluate the performance of your feature selection techniques.', '2023-07-03 10:45:00', 3, 4),
     ('Techniques to improve website performance', 'Caching static assets, enabling compression, and optimizing images are some techniques to improve website performance.', '2023-07-04 17:00:00', 4, 9),
-    ('Using a CDN for website performance', 'Using a content delivery network (CDN) can also significantly enhance your website\'s performance.', '2023-07-04 17:30:00', 4, 33),
+    ('Using a CDN for website performance', 'Using a content delivery network (CDN) can also significantly enhance your websites performance.', '2023-07-04 17:30:00', 4, 33),
     ('Choosing a cloud provider', 'AWS, Google Cloud, and Microsoft Azure are popular cloud providers. Consider factors like pricing, scalability, and available services when choosing one.', '2023-07-05 12:00:00', 5, 18),
-    ('Try out free tiers of cloud providers', 'I recommend trying out the free tiers of different cloud providers to see which one fits your application\'s requirements best.', '2023-07-05 12:45:00', 5, 31),
+    ('Try out free tiers of cloud providers', 'I recommend trying out the free tiers of different cloud providers to see which one fits your applications requirements best.', '2023-07-05 12:45:00', 5, 31),
     ('Resources for learning Python', 'For beginners learning Python, online tutorials, interactive coding platforms, and books like "Python Crash Course" are great resources.', '2023-07-06 13:30:00', 6, 23),
     ('Recommended Python resource for beginners', 'I found "Automate the Boring Stuff with Python" to be an excellent resource for beginners. Give it a try!', '2023-07-06 14:15:00', 6, 14),
     ('Security practices for web applications', 'To secure your web application, use secure coding practices, input validation, and encryption for sensitive data.', '2023-07-07 16:00:00', 7, 2),
-    ('Regularly update dependencies for web application security', 'Regularly update your web application\'s dependencies and frameworks to patch security vulnerabilities.', '2023-07-07 16:45:00', 7, 26);
+    ('Regularly update dependencies for web application security', 'Regularly update your web applications dependencies and frameworks to patch security vulnerabilities.', '2023-07-07 16:45:00', 7, 26);
 
 INSERT INTO review(event_id, user_id, rating, title, description)
 VALUES
