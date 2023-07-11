@@ -34,7 +34,7 @@ calendar.render()
 // -----------PAGE MAP--------------
     mapboxgl.accessToken = MAPBOXAP_TOK;
     const coordinates = document.getElementById('coordinates');
-    const map = new mapboxgl.Map({
+    let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/navigation-day-v1',
         center: [-95.7129, 37.0902],
@@ -42,7 +42,7 @@ calendar.render()
         zoom: 3,
     });
     let marker = new mapboxgl.Marker({})
-        .setLngLat([-95.7129, 37.0902])
+        .setLngLat([0,0])
         .addTo(map);
 
 
@@ -77,18 +77,28 @@ calendar.render()
 
 // --------------FIND EVENT BY LOCATION----------
     function getEventByLocation() {
+
         let submitBtn = document.getElementById("subBtn")
         submitBtn.addEventListener("click", function (event) {
             event.preventDefault();
             let userInput = document.getElementById("location").value
+            map.remove()
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/navigation-day-v1',
+                center: [-95.7129, 37.0902],
+                marker: [-95.7129, 37.0902],
+                zoom: 3,
+            });
+            calendar.removeAllEvents();
             fetch(`https://www.techconnect.expert/events/searchEvents?location=${userInput}`)
                 .then(res => {
                     res.json().then(events => {
                         events.forEach(event => {
                             geocode(event.location, MAPBOXAP_TOK).then(function (result) {
                                 let mapCenter = ([result[0], result[1]])
-                                map.setCenter(mapCenter);
-                                map.setZoom(5)
+                                // map.setCenter(mapCenter);
+                                map.setZoom(3)
                                 new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
                                 new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
                                 var eventArr = []
@@ -98,7 +108,7 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
-                                newEvent.url = `http://localhost:8080/event/${event.id}/reviews`
+                                newEvent.url = `https://www.techconnect.expert/event/${event.id}/reviews`
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
                                 document.getElementById("location").value = "";
@@ -119,14 +129,23 @@ calendar.render()
         submitBtn.addEventListener("click", function (event) {
             event.preventDefault();
             let userInput = document.getElementById("interests").value
+            map.remove()
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/navigation-day-v1',
+                center: [-95.7129, 37.0902],
+                marker: [-95.7129, 37.0902],
+                zoom: 3,
+            });
+            calendar.removeAllEvents();
             fetch(`https://www.techconnect.expert/events/searchInterest?interest=${userInput}`)
                 .then(res => {
                     res.json().then(events => {
                         events.forEach(event => {
                             geocode(event.location, MAPBOXAP_TOK).then(function (result) {
                                 let mapCenter = ([result[0], result[1]])
-                                map.setCenter(mapCenter);
-                                map.setZoom(5)
+                                // map.setCenter(mapCenter);
+                                map.setZoom(3)
                                 new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
                                 new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
                                 var eventArr = []
@@ -136,6 +155,7 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
+                                newEvent.url = `https://www.techconnect.expert/event/${event.id}/reviews`
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
                                 document.getElementById("interests").value = "";
@@ -152,11 +172,21 @@ calendar.render()
 // --------------FIND EVENT BY KEYWORDS----------
 
     function getEventByKeyword() {
+
         let submitBtn = document.getElementById("subBtn3")
         submitBtn.addEventListener("click", function (event) {
             console.log("clicked")
             event.preventDefault();
             let userInput = document.getElementById("keyword").value
+            map.remove()
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/navigation-day-v1',
+                center: [-95.7129, 37.0902],
+                marker: [-95.7129, 37.0902],
+                zoom: 3,
+            });
+            calendar.removeAllEvents();
             fetch(`https://www.techconnect.expert/events/searchKeyword?keyword=${userInput}`)
                 .then(res => {
                     res.json().then(events => {
@@ -164,8 +194,8 @@ calendar.render()
                             console.log(event)
                             geocode(event.location, MAPBOXAP_TOK).then(function (result) {
                                 let mapCenter = ([result[0], result[1]])
-                                map.setCenter(mapCenter);
-                                map.setZoom(5)
+                                // map.setCenter(mapCenter);
+                                map.setZoom(3)
                                 new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
                                 new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
                                 var eventArr = []
@@ -175,6 +205,7 @@ calendar.render()
                                 newEvent.allDay = true
                                 newEvent.color = 'blue'
                                 newEvent.display = 'block'
+                                newEvent.url = `https://www.techconnect.expert/event/${event.id}/reviews`
                                 calendar.addEvent(newEvent);
                                 var events = calendar.getEvents();
                                 document.getElementById("keyword").value = "";
