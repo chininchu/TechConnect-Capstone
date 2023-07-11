@@ -84,7 +84,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="event : ${events}">
+                <tr th:each="event : ${registeredEvents}">
                     <td>
                         <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}"
                            th:text="${event.title}"></a>
@@ -94,12 +94,12 @@
                     <td th:text="${event.location}"></td>
                     <td>
                         <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
-                            <button class="btn btn-dark text-light">Edit</button>
+<!--                            <button class="btn btn-dark text-light">Edit</button>-->
                         </a>
                         <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
                             <input type="hidden" name="hostId" th:value="${event.host}"/>
                             <input type="hidden" name="interestId" th:value="${event.interest}"/>
-                            <button type="submit" class="btn btn-light" onclick="confirmDeleteEvent(event)">Delete</button>
+<!--                            <button type="submit" class="btn btn-light" onclick="confirmDeleteEvent(event)">Delete</button>-->
                         </form>
                     </td>
                 </tr>
