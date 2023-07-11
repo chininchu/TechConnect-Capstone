@@ -99,3 +99,28 @@ form{
     padding: 10px;
     margin-top: 5px;
 }
+@media (max-width: 768px) {
+      html{
+          background-repeat: repeat;
+      }
+
+    #site-photo{
+        margin-left: 6em;
+        max-width: 400px;
+        max-height: 300px;
+        margin-bottom: 0;
+    }
+    .formcontent{
+        margin-top: 25em;
+        max-width: 300px;
+        min-height: 600px;
+        margin-bottom: 0;
+    }
+    .heading{
+        white-space: nowrap;
+        margin-left: 1.5em;
+    }
+    #image-upload{
+        margin-top: 60px;
+    }
+}
