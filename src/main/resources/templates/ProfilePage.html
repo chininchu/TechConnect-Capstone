@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/ProfileStyle.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet'/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
@@ -15,38 +16,66 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand text-light">TechConnect</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div>
+            <a class="navbar-brand text-light">TechConnect</a>
+        </div>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
-                <a class="nav-link" id="event-input" th:href="@{/event/create}">Create an Event</a>
+                <a class="nav-link active text-light" aria-current="page" th:href="@{/}">Home</a>
+                <a class="nav-link" id="event-input" th:href="@{/event/create}">Create Event</a>
                 <a class="nav-link" id="logout-input" th:href="@{/logout}">Logout</a>
             </div>
         </div>
     </div>
-
 </nav>
 
-<div class="welcome text-light">
-    <h2>Welcome, <span th:text="${user.username}"></span>!</h2>
-</div>
-
-<div th:if="${param.error}">
-    <p style="color: red;">Incorrect password. Please try again.</p>
-</div>
-
+<script type="text/javascript" th:src="@{/js/mapbox_geocoder.js}"></script>
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2 class="text-light">Events:</h2>
-            <table>
+            <div class="calendar-card-container">
+                <div class="calendar" id="calendar"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="profile-info">
+                <h3>Profile Information:</h3>
+                <ul>
+                    <li>First Name: <span th:text="${user.firstName}"></span></li>
+                    <li>Last Name: <span th:text="${user.lastName}"></span></li>
+                    <li>Email: <span th:text="${user.email}"></span></li>
+                </ul>
+                        <div class="button-group">
+                            <a th:href="@{/{id}/editProfile (id=${user.id})}">
+                                <div class="edit-btn-container">
+                                    <button class="btn" id="editbtn">Edit Profile</button>
+                                </div>
+                            </a>
+                            <form th:action="@{/deleteProfile}" method="post">
+                                <div class="delete-btn-container">
+                                    <button type="submit" class="btn" id="deletebtn">Delete Profile</button>
+                                </div>
+                            </form>
+                        </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="image-box">
+                <img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}" class="img-thumbnail" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h2 class="text-light">My Events</h2>
+            <div class="events-table-container">
+            <table class="table table-striped">
                 <thead>
-                <tr class="content-table">
+                <tr>
                     <th>Event Name</th>
                     <th>Date and Time</th>
                     <th>Description</th>
@@ -54,7 +83,7 @@
                     <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody class="content-body">
+                <tbody>
                 <tr th:each="event : ${events}">
                     <td>
                         <a th:href="@{/event/{eventId}/reviews (eventId=${event.eventId})}"
@@ -70,103 +99,16 @@
                         <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
                             <input type="hidden" name="hostId" th:value="${event.host}"/>
                             <input type="hidden" name="interestId" th:value="${event.interest}"/>
-                            <button type="submit" class="btn btn-light" onclick="confirmDeleteEvent(event)">Delete
-                            </button>
+                            <button type="submit" class="btn btn-light" onclick="confirmDeleteEvent(event)">Delete</button>
                         </form>
                     </td>
                 </tr>
                 </tbody>
             </table>
-
-
-
-
-
-
+             </div>
         </div>
-
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="profile-info">
-                        <h3>Profile Information:</h3>
-                        <ul>
-                            <li>First Name: <span th:text="${user.firstName}"></span></li>
-                            <li>Last Name: <span th:text="${user.lastName}"></span></li>
-                            <li>Email: <span th:text="${user.email}"></span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="image-box">
-                        <img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}"
-                               class="img-thumbnail" alt="">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="button-group">
-                <a th:href="@{/{id}/editProfile (id=${user.id})}">
-                    <div class="edit-btn-container">
-                        <button class="btn" id="editbtn">Edit Profile</button>
-                    </div>
-                </a>
-                <form th:action="@{/deleteProfile}" method="post">
-                    <div class="delete-btn-container">
-                        <button type="submit" class="btn" id="deletebtn">Delete Profile</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
     </div>
 </div>
-
-<div id="map"></div>
-
-<!-- Events that the user can register for -->
-<div class="row mt-3">
-    <div class="col-md-12">
-        <h2 id="eventtitle">Events that you can register for</h2>
-        <table id="formcontent">
-            <thead>
-            <tr id="content-table2">
-                <th>Title</th>
-                <th>Date/Time</th>
-                <th>Description</th>
-                <th>Location</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="event : ${otherOrganizerEvents}">
-                <td>
-                    <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
-                        <span th:text="${event.title}"></span>
-                    </a>
-                </td>
-                <td th:text="${event.dateTime}"></td>
-                <td th:text="${event.description}"></td>
-                <td th:text="${event.location}"></td>
-
-
-            </tr>
-
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<script type="text/javascript" th:src="@{/js/mapbox_geocoder.js}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3Rmw"></script>
-
-<!--    This code ask for user confirmation if they would like to delete an event -->
 
 <script>
     function confirmDeleteEvent(event) {
@@ -176,5 +118,24 @@
         }
     }
 </script>
+
+<script>
+    function validateForm() {
+        var input = document.getElementById("myInput").value;
+
+        if (input.trim() === "") {
+            // Input field is empty, prevent form submission
+            return false;
+        }
+
+        // Input field is not empty, allow form submission
+        return true;
+    }
+</script>
+
 </body>
 </html>
+
+
+
+
