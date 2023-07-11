@@ -50,16 +50,16 @@
         </ul>
     </div>
     <div>
-        <div>
-            <!-- If the user is logged in, show the "Logout" button -->
-            <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>
+<!--        <div>-->
+<!--            &lt;!&ndash; If the user is logged in, show the "Logout" button &ndash;&gt;-->
+<!--            <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>-->
 
-            <!-- If the user is logged out, show the "Login" button -->
-            <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}"
-               style="color: floralwhite; text-decoration: none">Login</a>
+<!--            &lt;!&ndash; If the user is logged out, show the "Login" button &ndash;&gt;-->
+<!--            <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}"-->
+<!--               style="color: floralwhite; text-decoration: none">Login</a>-->
 
-            <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>
-        </div>
+<!--            <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>-->
+<!--        </div>-->
     </div>
 </nav>
 
@@ -158,7 +158,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="event : ${otherOrganizerEvents}">
+            <tr th:each="event : ${events}">
                 <td>
                     <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
                         <span th:text="${event.title}"></span>

@@ -55,20 +55,22 @@ public class EventController {
     @GetMapping("/events/allevent")
     public String viewAllEvents(Model model, Principal principal) {
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // Check if the user is logged in
-        boolean isLoggedIn = principal != null;
+//        boolean isLoggedIn = principal != null;
 
         // Pass the login status to the template
-        model.addAttribute("isLoggedIn", isLoggedIn);
+//        model.addAttribute("isLoggedIn", isLoggedIn);
 
         model.addAttribute("interests", interestRepository.findAll());
 
-        // Retrieve events created by other organizers
-        List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
+        model.addAttribute("events", eventRepository.findAll());
 
-        model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
+        // Retrieve events created by other organizers
+//        List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
+
+//        model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
 
 
         return "api_eventsp_test";
