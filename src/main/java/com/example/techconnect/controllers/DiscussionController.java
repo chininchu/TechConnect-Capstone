@@ -136,7 +136,8 @@ public class DiscussionController {
         Discussion discussion = discussionRepository.findById(id).get();
         System.out.println(discussion);
         model.addAttribute("discussion", discussion);
-
+        model.addAttribute("content", discussion.getContent());
+        model.addAttribute("title", discussion.getTitle());
 
         return "discussions-test";
 
@@ -148,6 +149,8 @@ public class DiscussionController {
     public String editDiscussion(@PathVariable long id,@ModelAttribute Discussion discussion,Model model,@ModelAttribute User user) {
         Discussion discussion1 = discussionRepository.findById(id).get();
         model.addAttribute("discussion", discussion1);
+        model.addAttribute("content", discussion.getContent());
+        model.addAttribute("title", discussion.getTitle());
 
 //          discussion1.setUser(discussion.getUser());
             discussion1.setId(id);

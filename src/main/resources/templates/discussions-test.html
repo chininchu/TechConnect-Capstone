@@ -76,7 +76,7 @@
        <h4 th:text="${discussion.user.username}"></h4>
         <p th:text="${discussion.content}"></p>
         <button  class="btn btn-primary" type="button" id="replyBtn">Reply</button>
-        <button  th:if="${discussion.user.id == loggedInUser}" type="button"  class="btn btn-primary" data-bs-toggle="modal" th:data-bs-target="'#exampleModal-' + ${discussion.id}">
+        <button  th:if="${discussion.user.id == loggedInUser}" type="button"  class="btn btn-primary edit-discussion-button" data-bs-toggle="modal" th:data-bs-target="'#exampleModal-' + ${discussion.id}">
             Edit Post
         </button>
 <!----------------EDIT MODAL------------------>
@@ -91,11 +91,11 @@
                         <form th:action="@{/discussion/{id}/edit (id=${discussion.id})}" th:object="${discussion}" th:method="POST">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput2" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput2" th:field="*{title}" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput2" th:field="*{title}" required th:value="${discussion.title}">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea2" class="form-label">Content</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea2" th:field="*{content}" rows="3"></textarea>
+                                <label for="exampleFormControlTextarea2" class="form-label" >Content</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea2" th:field="*{content}" rows="3" th:text="${discussion.content}"></textarea>
                             </div>
                             <input  type="hidden" th:field="*{createdAt}" required>
                             <button  class="btn btn-primary" type="submit">Edit Post</button>
@@ -157,6 +157,23 @@
     }
     openForm()
 
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.edit-discussion-button').click(function () {
+            var row = $(this).closest('.card-body');
+            var title = row.find('h2').text();
+            var content = row.find('p').text();
+
+            // Remove the date and time from the content
+            content = content.replace(/^\w+\s\d+\s[a-zA-Z]+\s[\d:]+\s(?:AM|PM)\s?/, '');
+
+            var formDiv = row.find('.modal-body');
+            formDiv.find('#exampleFormControlInput2').val(title);
+            formDiv.find('#exampleFormControlTextarea2').val(content);
+        });
+    });
 </script>
 
 </body>
