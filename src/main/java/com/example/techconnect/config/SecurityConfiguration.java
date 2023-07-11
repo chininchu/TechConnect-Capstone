@@ -80,7 +80,7 @@ public class SecurityConfiguration {
                                 "/event/{eventId}/reviews/{reviewId}/delete",
                                 "/event/{eventId}/reviews/{reviewId}/edit",
                                 "/attendee/{eventId}/register",
-                                "/attendee/{eventId}/unregister").authenticated()
+                                "/attendee/{eventId}/unregister","/event/{eventId}/reviews").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
                 // /event/reviews/create is a public page and can be visited by anyone
@@ -107,7 +107,6 @@ public class SecurityConfiguration {
                                 "/events/search",
                                 "/events/userEvents",
                                 "/AboutUs",
-                                "/event/{eventId}/reviews",
                                 "/error").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/keys.js").permitAll()

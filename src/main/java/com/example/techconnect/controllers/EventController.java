@@ -54,13 +54,25 @@ public class EventController {
 
     @GetMapping("/events/allevent")
     public String viewAllEvents(Model model, Principal principal) {
+
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         // Check if the user is logged in
-        boolean isLoggedIn = principal != null;
+//        boolean isLoggedIn = principal != null;
 
         // Pass the login status to the template
-        model.addAttribute("isLoggedIn", isLoggedIn);
+//        model.addAttribute("isLoggedIn", isLoggedIn);
 
         model.addAttribute("interests", interestRepository.findAll());
+
+        model.addAttribute("events", eventRepository.findAll());
+
+        // Retrieve events created by other organizers
+//        List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
+
+//        model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
+
+
         return "api_eventsp_test";
 
     }
@@ -86,7 +98,6 @@ public class EventController {
         // Return the create event view
 
         return "event/CreateEvent"; // change back to /event/create before push
-
 
 
     }
@@ -425,7 +436,6 @@ public class EventController {
         }
 
 
-
         // Check if the user is registered for the event
         boolean isRegistered = attendeeRepository.existsByUserAndEventId(loggedInUser, eventId);
         if (!isRegistered) {
@@ -436,8 +446,6 @@ public class EventController {
         // Redirect back to the profile page
         return "redirect:/profile";
     }
-
-
 
 
 }

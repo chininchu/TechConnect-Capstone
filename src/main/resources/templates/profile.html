@@ -146,7 +146,7 @@
 
 <script>
     function confirmDeleteEvent(event) {
-        var confirmation = confirm("Are you sure you want to delete this event?");
+        let confirmation = confirm("Are you sure you want to delete this event?");
         if (!confirmation) {
             event.preventDefault(); // Prevents the form submission if the user cancels
         }
