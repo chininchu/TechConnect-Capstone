@@ -20,20 +20,19 @@
         <div class="col-lg-8 offset-lg-2">
             <div class="formcontent">
 
-                <h1 class="heading">Edit Account</h1>
+                <h1 class="heading">Get Started Now</h1>
 
-                <form th:action="@{/{id}/editProfile (id=${user.id})}" th:object="${user}" th:method="POST"
-                      enctype="multipart/form-data">
+                <form th:action="@{/SignUpPage}" th:object="${user}" th:method="POST" enctype="multipart/form-data">
                     <div class="row mb-3">
                         <div class="col-6">
                             <label for="first-name" class="form-label">First Name:</label>
                             <input type="text" id="first-name" name="first-name" class="form-control"
-                                   th:field="*{firstName}" required readonly>
+                                   th:field="*{firstName}" required>
                         </div>
                         <div class="col-6">
                             <label for="last-name" class="form-label">Last Name:</label>
                             <input type="text" id="last-name" name="last-name" class="form-control"
-                                   th:field="*{lastName}" required readonly>
+                                   th:field="*{lastName}" required>
                         </div>
                         <div class="col-6">
                             <label for="email" class="form-label">Email:</label>
@@ -44,7 +43,7 @@
 
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label for="username" class="form-label">Edit Username:</label>
+                            <label for="username" class="form-label">Create Username:</label>
                             <input type="text" id="username" name="username" class="form-control"
                                    th:field="*{username}" required>
                         </div>
@@ -52,7 +51,7 @@
 
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label for="password" class="form-label">Edit Password:</label>
+                            <label for="password" class="form-label">Create Password:</label>
                             <input type="password" id="password" name="password" class="form-control"
                                    th:field="*{password}" required>
                         </div>
@@ -65,7 +64,7 @@
 
                     <!--The code below throws an error message if the password does not meet the validation rule -->
 
-                    <div class="row mb-3" th:if="${#fields.hasErrors('password')}">
+                    <div class="row mb-3 error-message" th:if="${#fields.hasErrors('password')}">
                         <div class="col-12">
                             <span class="text-danger" th:errors="*{password}"></span>
                         </div>
@@ -77,23 +76,24 @@
                     <div class="row mb-3">
                         <div class="col-12">
                             <div class="input-group">
+                                <div class="image-box">
                             <span class="input-group-text">
+                                <img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}" class="img-thumbnail" alt="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-image-fill" viewBox="0 0 16 16">
                                     <path
-                                            d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+                                            d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z" />
                                 </svg>
+
                             </span>
+                                </div>
+
                                 <button id="image-upload" class="btn btn-light">Upload Image</button>
                                 <input type="hidden" name="profilePicture" id="profilePic">
-                            </div>
-                        </div>
-                    </div>
+                                <div class="submit-btn-container">
+                                    <input type="submit" value="Submit" class="btn btn-light">
 
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <div class="submit-btn-container">
-                                <input type="submit" value="Submit" class="btn btn-light">
+                                </div>
 
                             </div>
                         </div>
