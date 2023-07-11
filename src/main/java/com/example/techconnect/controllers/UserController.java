@@ -87,9 +87,6 @@ public class UserController {
         }
 
 
-
-
-
 //        user.setProfilePicture(profilePicture);
         // Set the user attribute in the session
 //        request.getSession().setAttribute("user", user);
@@ -146,21 +143,19 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model) {
+
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", loggedInUser);
-//        model.addAttribute("user", userDao.findById(loggedInUser.getId()).get());
+
 
         // This code shows the event to the user. Please don't delete this code. Consult with Andrew Chu
         model.addAttribute("events", eventRepository.findAllByHostId(loggedInUser.getId()));
 
 
-        // Retrieve events created by other organizers
-        List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
-
-        model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
+        // Events that the user has been registered for
 
 
-//        model.addAttribute("isRegistered", attendeeRepository.existsByUserAndEvent(loggedInUser,event));
+        model.addAttribute("registeredEvents", attendeeRepository.findRegisteredEventsByUser(loggedInUser));
 
 
         return "ProfilePage"; //change back to profile before push//

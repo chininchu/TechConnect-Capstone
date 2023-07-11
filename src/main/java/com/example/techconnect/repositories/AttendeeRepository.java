@@ -29,4 +29,11 @@ public interface AttendeeRepository extends JpaRepository<Attendee, Long> {
     boolean existsByUserAndEventId(@Param("user") User user, @Param("eventId") Long eventId);
 
 
+    // Events that the user has been registered for
+
+
+    @Query("SELECT a.event FROM Attendee a WHERE a.user = ?1")
+    List<Event> findRegisteredEventsByUser(User user);
+
+
 }
