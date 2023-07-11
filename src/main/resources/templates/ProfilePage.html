@@ -77,13 +77,8 @@
                 </tr>
                 </tbody>
             </table>
-
-
-
-
-
-
         </div>
+
 
         <div class="col-md-6">
             <div class="row">
@@ -100,7 +95,7 @@
                 <div class="col-md-4">
                     <div class="image-box">
                         <img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}"
-                               class="img-thumbnail" alt="">
+                             class="img-thumbnail" alt="">
 
                     </div>
                 </div>
@@ -123,17 +118,17 @@
                 </form>
             </div>
         </div>
-
-
     </div>
 </div>
 
+
 <div id="map"></div>
 
-<!-- Events that the user can register for -->
+<!--Here are the list of events that the user has already registered for -->
+
 <div class="row mt-3">
     <div class="col-md-12">
-        <h2 id="eventtitle">Events that you can register for</h2>
+        <h2 id="eventtitle">Events that you have registered for</h2>
         <table id="formcontent">
             <thead>
             <tr id="content-table2">
@@ -144,7 +139,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="event : ${otherOrganizerEvents}">
+            <tr th:each="event : ${registeredEvents}">
                 <td>
                     <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
                         <span th:text="${event.title}"></span>
@@ -153,14 +148,12 @@
                 <td th:text="${event.dateTime}"></td>
                 <td th:text="${event.description}"></td>
                 <td th:text="${event.location}"></td>
-
-
             </tr>
-
             </tbody>
         </table>
     </div>
 </div>
+
 
 <script type="text/javascript" th:src="@{/js/mapbox_geocoder.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
