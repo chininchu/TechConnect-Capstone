@@ -109,9 +109,11 @@
         </div>
         <!----------------COMMENT FORM--------------->
         <form th:action="@{/discussion/{id}/comment  (id=${discussion.id})}" style="display: none" th:object="${comment}"  th:method="POST"  class="commentForm">
-        <label for="title"></label>
+        <label for="title">Title</label>
+            <br>
         <input id="title1" type="text" th:field="*{title}">
-        <label for="comment"></label>
+            <br>
+        <label for="comment">Content</label>
         <textarea  th:field="*{content}" id="comment" name="comment" class="form-control"></textarea>
         <input id="discussion_id" type="hidden" th:field="*{discussion.id}">
         <input id="dateAndTime" type="hidden" th:field="*{createdAt}">
