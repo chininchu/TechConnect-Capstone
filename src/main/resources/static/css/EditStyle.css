@@ -1,120 +1,37 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
     background-image: url("/images/grainy.jpg");
     background-repeat: repeat-y, repeat-x;
     background-size: cover;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.navbar-brand {
-    font-family: "PT Serif";
-    margin-left: 25px;
-    color: floralwhite;
-}
 
-.navbar {
-    background-color: transparent;
-    box-shadow: none;
-    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
-    position: relative;
-}
-
-.navbar::after {
-    content: "";
+#site-photo {
     position: absolute;
+    top: 0;
     left: 0;
-    bottom: 0;
-    width: 100%;
-    height: .1px;
-    background-color: darkgray;
-}
-
-.navbar-nav .nav-link{
-    color: floralwhite;
-}
-
-#home{
-    color: floralwhite;
-    margin-left: 10px;
-}
-
-
-.upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.event-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin-right: auto;
-    color: #f2f2f2;
-}
-
-.input-field {
-    margin-bottom: 10px;
-}
-
-
-#description {
-    height: 150px;
-    resize: vertical;
-    width: 500px;
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 50px;
+    border: 1px;
+    margin-bottom: 50px;
+    border: 5px solid white;
 }
 
 
 
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 200px;
-}
 
+#image-upload{
+    height: 10%;
+    margin-right: 20px;
+    border-radius: 10px;
 
-#profile{
-    margin-left: 1050px;
-}
-
-.middle-heading {
-
-    justify-content: center;
-    align-items: center;
-    color: floralwhite;
-    margin-left: 40%;
-    margin-top: 10px;
-    font-size: 100px;
-    transition: 0.5s;
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-}
-
-
-.button{
-    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
-    color: floralwhite;
-    background-size: 400%;
-    margin-left: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    box-sizing: border-box;
-    border-radius: 60px;
-    z-index: 1;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 15px;
 
 }
 
-
-.button:before {
+#image-upload:before {
     content: '';
     position: absolute;
     top: -5%;
@@ -122,18 +39,12 @@ html, body {
     right: -5%;
     bottom: -5%;
     z-index: -1;
-    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
     background-size: 400%;
-    border-radius: 40px;
+    border-radius: 80px;
     filter: blur(20px);
 }
-
-.button {
-    position: relative;
-}
-
-
-.button:hover{
+#image-upload:hover {
     animation: animate 8s linear infinite;
 }
 
@@ -146,14 +57,124 @@ html, body {
     }
 }
 
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 80px;
+    color: white;
+    position: relative;
+    margin-right: 100px;
+}
+
+.heading {
+    margin-top: 50px;
+    margin-left: 90px;
+    font-family: "Comic Sans MS";
+}
+
+.input-group-text{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 25px;
+    margin-right: 125px;
+    width: 150px;
+    height: 150px;
+}
+
+
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 10px;
+    object-fit: cover;
+
+
+}
+
+.vertical-line {
+    position: absolute;
+    top: 0;
+    left: 53%;
+    width: 1px;
+    height: 118%;
+    background-color: gray;
+}
+
+.formcontent {
+    margin-right: 30px;
+    border: 2px solid white;
+    width: 100%;
+    border-radius: 30px;
+    margin-left: 70px;
+    margin-top: 40px;
+
+}
+
+form{
+    margin: 20px 20px;
+}
+
+#image-upload{
+    height: 10%;
+    margin-right: 20px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
+    color: floralwhite;
+    background-size: 400%;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    z-index: 1;
+
+}
+
+#image-upload:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
+    background-size: 400%;
+    border-radius: 80px;
+    filter: blur(20px);
+}
+#image-upload:hover {
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
+}
+
+.error-message {
+    background-color:  rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+
 .image-box {
     width: 100%;
     height: 200px;
-    background-color: #170d31;
-    margin-bottom: 20px;
-    margin-top: 45px;
+    /*background-color: #170d31;*/
     margin-left: 10px;
     padding: 10px;
+
+
 }
 
 .image-box img {
@@ -161,4 +182,76 @@ html, body {
     width: 100%;
     height: 100%;
     border: 4px solid #f2f2f2;
+}
+
+@media (max-width: 768px) {
+    html{
+        background-repeat: repeat;
+    }
+
+    #site-photo{
+        margin-left: 6em;
+        max-width: 400px;
+        max-height: 300px;
+        margin-bottom: 0;
+    }
+    .formcontent{
+        margin-top: 25em;
+        max-width: 300px;
+        min-height: 600px;
+        margin-bottom: 0;
+    }
+    .heading{
+        white-space: nowrap;
+        margin-left: 1.5em;
+    }
+    #image-upload{
+        margin-top: 60px;
+    }
+
+}
+
+
+
+
+.btn {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
+    color: floralwhite;
+    background-size: 400%;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    z-index: 1;
+    border: white solid 1px;
+
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
+    background-size: 400%;
+    border-radius: 80px;
+    filter: blur(20px);
+}
+
+.btn:hover {
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
 }

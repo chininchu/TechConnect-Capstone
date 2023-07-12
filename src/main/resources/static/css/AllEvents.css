@@ -137,4 +137,34 @@ html, body {
     }
 }
 
+#formcontent {
+    text-align: center;
+    width: 100%;
+    overflow-x: auto; /* Add overflow-x property to enable horizontal scrolling */
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#formcontent table {
+    width: 100%; /* Set the table width to 100% */
+}
+
+#formcontent th,
+#formcontent td {
+    padding: 10px;
+    white-space: nowrap; /* Prevent table cells from wrapping */
+}
+
+@media (max-width: 767px) {
+    #formcontent table {
+        width: auto; /* Allow the table to resize based on content on smaller screens */
+    }
+}
+
+h2{
+    text-align: center;
+    color: white;
+}
+
+
 
