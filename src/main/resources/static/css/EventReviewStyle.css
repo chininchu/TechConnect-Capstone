@@ -9,6 +9,7 @@ html, body {
 .navbar-brand {
     font-family: "PT Serif";
     margin-left: 25px;
+    text-transform: uppercase;
 }
 
 .navbar {
@@ -73,6 +74,8 @@ th{
     display: flex;
     justify-content: center;
     text-align: center;
+    color: white;
+    margin-bottom: 10px;
 }
 
 fieldset{
@@ -122,3 +125,94 @@ fieldset{
     }
 }
 
+
+h2{
+    color: white;
+}
+
+.table1 {
+    margin-bottom: 20px;
+}
+
+.review-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.review-row .col-md-6 {
+    flex-basis: calc(50% - 2rem);
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 1rem;
+}
+
+.ratetab{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+
+.rating fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.rating label {
+    margin-left: 0.5rem;
+}
+
+.save {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.titlebox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-left: 50px;
+}
+
+.titlebox label {
+    margin-right: 0.5rem;
+}
+
+.dbox textarea {
+    height: 150px; /* Adjust the height as needed */
+    width: 350px;
+    resize: horizontal;
+}
+
+.reviews{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-table-container {
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+thead {
+    color: #270936; /* Set the text color for <tr> tags */
+}
+
+th {
+    color: white; /* Set the text color for <th> tags */
+}

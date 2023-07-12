@@ -134,6 +134,7 @@ body {
 .navbar-brand {
     font-family: "PT Serif";
     margin-left: 25px;
+    text-transform: uppercase;
 }
 
 .navbar {
@@ -257,7 +258,6 @@ a {
 .contact-link {
     color: white;
 }
-
 
 @media (max-width: 768px) {
     /* Styles for screens smaller than 768px */

@@ -18,6 +18,7 @@ html, body {
 .navbar-brand {
     font-family: "PT Serif";
     margin-left: 25px;
+    text-transform: uppercase;
 }
 
 .navbar {

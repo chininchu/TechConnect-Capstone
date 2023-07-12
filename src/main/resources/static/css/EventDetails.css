@@ -13,6 +13,7 @@ html, body {
     font-family: "PT Serif";
     margin-left: 25px;
     color: floralwhite;
+    text-transform: uppercase;
 }
 
 .navbar {
@@ -44,3 +45,4 @@ html, body {
 #profile{
     margin-left: 1100px;
 }
+

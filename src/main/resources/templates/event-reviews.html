@@ -49,150 +49,146 @@
             <!-- If the user is logged out, show the "Login" button -->
             <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none">Login</a>
 
-            <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>
+
         </div>
     </div>
 </nav>
 
-<div class="reviewhead">
-    <h2 th:if="${#authentication.principal.id != event.host.id}">Event Details & Review</h2>
-</div>
-<!--Events Details -->
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Date/Time</th>
-        <th>Description</th>
-        <th>Location</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td th:text="${event.title}"></td>
-        <td th:text="${event.dateTime}"></td>
-        <td th:text="${event.description}"></td>
-        <td th:text="${event.location}"></td>
+<div class="container">
+    <div class="row mt-3">
+        <div class="table1 col-md-12">
+            <div class="reviewhead">
+                <h2 th:if="${#authentication.principal.id != event.host.id}">Event Details & Review</h2>
+            </div>
+            <!-- Events Details -->
+            <table class="text-light table table-striped">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date/Time</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${event.title}"></td>
+                    <td th:text="${event.dateTime}"></td>
+                    <td th:text="${event.description}"></td>
+                    <td th:text="${event.location}"></td>
+                    <td sec:authorize="isAuthenticated()">
+                        <!-- Update the form in your HTML code -->
+                        <form th:if="${event.host != user && !isRegistered && #authentication.principal.id != event.host.id}" id="eventForm${event.eventId}" th:action="@{/attendee/{eventId}/register(eventId=${event.eventId})}" method="post">
+                            <input type="hidden" name="eventId" th:value="${event.eventId}">
+                            <input type="hidden" name="eventTitle" th:value="${event.title}">
+                            <button type="submit" class="btn btn-light">Register</button>
+                        </form>
+                    </td>
+                    <!-- Unregister form -->
+                    <td>
+                        <form th:if="${event.host != user && isRegistered}" th:action="@{/attendee/{eventId}/unregister(eventId=${event.eventId})}" method="post" onsubmit="return confirm('Are you sure you want to unregister for this event?');">
+                            <button type="submit" class="btn btn-danger">Unregister</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <td sec:authorize="isAuthenticated()">
-            <!-- Update the form in your HTML code -->
-            <form  th:if="${event.host != user && !isRegistered && #authentication.principal.id != event.host.id}" id="eventForm${event.eventId}"
-                  th:action="@{/attendee/{eventId}/register(eventId=${event.eventId})}" method="post">
-                <input type="hidden" name="eventId" th:value="${event.eventId}">
-                <input type="hidden" name="eventTitle" th:value="${event.title}">
-                <button type="submit" class="btn btn-light">Register</button>
-            </form>
-        </td>
 
-        <!-- Unregister form -->
-        <td>
-
-            <form th:if="${event.host != user && isRegistered}" th:action="@{/attendee/{eventId}/unregister(eventId=${event.eventId})}" method="post"
-                  onsubmit="return confirm('Are you sure you want to unregister for this event?');">
-                <button type="submit">Unregister</button>
-
-
-            </form>
-
-            <!--                        <p th:text="${message}"></p>-->
-
-        </td>
-
-    </tr>
-    </tbody>
-</table>
 
 
 <!--Event Review form -->
 
-<div sec:authorize="isAuthenticated()">
-    <div class="container">
+    <div sec:authorize="isAuthenticated()">
         <div class="row">
-
-
             <div th:if="${not #strings.isEmpty(message)}" class="error-message">
                 <p th:text="${message}"></p>
             </div>
-
-
-            <div class="col-6">
+            <div class="col-12 text-light">
                 <form th:if="${#authentication.principal.id != event.host.id}"
                       th:action="@{/event/{eventId}/reviews/create(eventId=${event.eventId})}" method="post"
                       th:object="${review}">
-                    <div class="review">
-                        <fieldset>
-                            <legend>Review:</legend>
-                            <div>
-                                <label for="reviewTitle">Title:</label>
-                                <input type="text" id="reviewTitle" name="title" th:field="*{title}" required>
+                    <div class="row review-row">
+                        <div class="col-md-6">
+                            <div class="review">
+                                <fieldset>
+                                    <legend>Review:</legend>
+                                    <div class="titlebox">
+                                        <label for="reviewTitle">Title:</label>
+                                        <input type="text" id="reviewTitle" name="title" th:field="*{title}" required>
+                                    </div>
+                                    <div class="dbox">
+                                        <label for="reviewDescription">Description:</label>
+                                        <textarea id="reviewDescription" name="description" th:field="*{description}" required></textarea>
+                                    </div>
+                                </fieldset>
                             </div>
-                            <div>
-                                <label for="reviewDescription">Description:</label>
-                                <textarea id="reviewDescription" name="description" th:field="*{description}"
-                                          required></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="rating">
+                                <fieldset>
+                                    <legend class="ratetab">Rate:</legend>
+                                    <div class="rating-stars">
+                                        <input type="radio" id="star5" name="*{rating}" th:field="*{rating}" value="5"
+                                               th:checked="${review.rating == 5}"/>
+                                        <label for="star5"></label>
+                                        <input type="radio" id="star4" name="*{rating}" th:field="*{rating}" value="4"
+                                               th:checked="${review.rating == 4}"/>
+                                        <label for="star4"></label>
+                                        <input type="radio" id="star3" name="*{rating}" th:field="*{rating}" value="3"
+                                               th:checked="${review.rating == 3}"/>
+                                        <label for="star3"></label>
+                                        <input type="radio" id="star2" name="*{rating}" th:field="*{rating}" value="2"
+                                               th:checked="${review.rating == 2}"/>
+                                        <label for="star2"></label>
+                                        <input type="radio" id="star1" name="*{rating}" th:field="*{rating}" value="1"
+                                               th:checked="${review.rating == 1}"/>
+                                        <label for="star1"></label>
+                                    </div>
+                                </fieldset>
+                                <div class="save">
+                                    <button type="submit" id="save">Save Review</button>
+                                </div>
                             </div>
-                        </fieldset>
-                    </div>
-                    <!--            </div>-->
-
-                    <div class="col-6">
-                        <div class="rating">
-                            <fieldset>
-                                <legend>Rating:</legend>
-                                <input type="radio" id="star5" name="*{rating}" th:field="*{rating}" value="5"
-                                       th:checked="${review.rating == 5}"/>
-                                <label for="star5"></label>
-                                <input type="radio" id="star4" name="*{rating}" th:field="*{rating}" value="4"
-                                       th:checked="${review.rating == 4}"/>
-                                <label for="star4"></label>
-                                <input type="radio" id="star3" name="*{rating}" th:field="*{rating}" value="3"
-                                       th:checked="${review.rating == 3}"/>
-                                <label for="star3"></label>
-                                <input type="radio" id="star2" name="*{rating}" th:field="*{rating}" value="2"
-                                       th:checked="${review.rating == 2}"/>
-                                <label for="star2"></label>
-                                <input type="radio" id="star1" name="*{rating}" th:field="*{rating}" value="1"
-                                       th:checked="${review.rating == 1}"/>
-                                <label for="star1"></label>
-                            </fieldset>
                         </div>
                     </div>
 
-
-                    <div class="row save col-3">
-
-                        <button type="submit" id="save">Save Review</button>
-
-                    </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+
+
 
 
 <!--Event Reviews from other attendees -->
 
-
+    <div class="reviews">
 <h2>Event Reviews</h2>
+    </div>
 <h2>Average Rating: <span id="averageRating" th:text="${averageRating}"></span></h2>
-<table>
-    <thead>
-    <tr>
-        <th>Review Title</th>
-        <th>Review Description</th>
-        <th>Review Rating</th>
-    </tr>
+    <div class="reviews-table-container">
+        <table class="text-light table table-striped">
+            <thead>
+            <tr>
+                <th>Review Title</th>
+                <th>Review Description</th>
+                <th>Review Rating</th>
+            </tr>
+            </thead>
+            <tbody>
 
-    </thead>
-    <tbody>
 
     <tr th:each="review : ${reviews}">
         <!-- Existing review display -->
         <td class="review-title-display" th:text="${review.title}"></td>
         <td class="review-description-display" th:text="${review.description}"></td>
         <td th:text="${review.rating}"></td>
-        <td>
+
             <div sec:authorize="isAuthenticated()">
                 <button class="edit-review-button" th:if="${#authentication.principal.id == review.user.id}">Edit
                 </button>
@@ -204,23 +200,13 @@
                 </form>
             </div>
 
-            <!-- Edit review form -->
-            <form class="edit-review-form"
-                  th:action="@{/event/{eventId}/reviews/{reviewId}/edit(eventId=${event.eventId}, reviewId=${review.id})}"
-                  method="post"
-                  style="display: none;">
-                <label for="title">Title:</label>
-                <input type="text" id="title2" name="title" class="edit-review-title" value=""/>
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" class="edit-review-description"></textarea>
-                <button type="submit">Update Review</button>
-            </form>
-        </td>
+
+
     </tr>
-    </tbody>
-</table>
-
-
+            </tbody>
+        </table>
+    </div>
+   </div>
 <script>
     $(document).ready(function () {
         $('.edit-review-button').click(function () {

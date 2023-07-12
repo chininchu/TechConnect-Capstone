@@ -29,7 +29,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav text-light">
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home</a>
             </li>
@@ -53,8 +53,8 @@
         <!-- If the user is logged in, show the "Logout" button -->
         <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>
         <!-- If the user is logged out, show the "Login" button -->
-        <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none">Login</a>
-        <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>
+        <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none; margin-right: 5px">Login</a>
+
 
     </div>
 
@@ -115,7 +115,6 @@
             <div id="map"></div>
         </div>
 </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
