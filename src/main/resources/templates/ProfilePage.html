@@ -38,7 +38,7 @@
                 <div class="calendar" id="calendar"></div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="profile-info">
                 <h3>Profile Information:</h3>
                 <ul>
@@ -46,26 +46,22 @@
                     <li>Last Name: <span th:text="${user.lastName}"></span></li>
                     <li>Email: <span th:text="${user.email}"></span></li>
                 </ul>
-                        <div class="button-group">
-                            <a th:href="@{/{id}/editProfile (id=${user.id})}">
-                                <div class="edit-btn-container">
-                                    <button class="btn" id="editbtn">Edit Profile</button>
-                                </div>
-                            </a>
-                            <form th:action="@{/deleteProfile}" method="post">
-                                <div class="delete-btn-container">
-                                    <button type="submit" class="btn" id="deletebtn">Delete Profile</button>
-                                </div>
-                            </form>
-                        </div>
+
 
 
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="image-box">
                 <img th:if="${user.profilePicture != null}" th:src="@{${user.profilePicture}}" class="img-thumbnail" alt="">
-            </div>
+                <div class="edit-delete-btn-container">
+                    <a th:href="@{/{id}/editProfile (id=${user.id})}">
+                        <button class="btn" id="editbtn">Edit Profile</button>
+                    </a>
+                    <form th:action="@{/deleteProfile}" method="post">
+                        <button type="submit" class="btn" id="deletebtn">Delete Profile</button>
+                    </form>
+                </div>
         </div>
     </div>
 

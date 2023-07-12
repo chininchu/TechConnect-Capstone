@@ -17,13 +17,10 @@
 
 .button-group {
     text-align: center;
-    margin-top: 10px;
     margin-left: 50px;
 }
 
-.button-group button {
-    margin-top: 10px;
-}
+
 
 .about-section {
     margin-left: 700px;
@@ -40,12 +37,13 @@
 }
 
 #event-input {
-    margin-left: 1040px;
+    /*margin-left: 1040px;*/
     color: white;
 }
 
 #logout-input {
     color: white;
+    margin-left: 1050px;
 }
 
 html, body {
@@ -117,18 +115,21 @@ html, body {
     box-sizing: border-box;
     border-radius: 60px;
     z-index: 1;
+    font-size: 10px;
 }
 
 #deletebtn {
     background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
     color: floralwhite;
     background-size: 400%;
-    margin-left: 10px;
     text-transform: uppercase;
     text-decoration: none;
     box-sizing: border-box;
     border-radius: 60px;
     z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
 }
 
 #editbtn:before,
@@ -148,6 +149,7 @@ html, body {
 
 #editbtn,
 #deletebtn {
+    display: inline-block;
     position: relative;
 }
 
@@ -242,3 +244,14 @@ html, body {
 h2{
     text-align: center;
 }
+
+.edit-delete-btn-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.edit-delete-btn-container button {
+    margin-right: 10px;
+}
+

@@ -60,3 +60,20 @@ html, body {
 .discussion-div {
     margin: auto;
 }
+
+.logout{
+    margin-right: 20px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.card-body{
+    border: #03a9f4 solid 10px;
+}
+
+
+

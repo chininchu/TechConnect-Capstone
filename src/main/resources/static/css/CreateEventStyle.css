@@ -42,11 +42,6 @@ html, body {
 }
 
 
-.upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
 
 .event-container {
     display: flex;
@@ -55,10 +50,20 @@ html, body {
     justify-content: center;
     margin-right: auto;
     color: #f2f2f2;
+
+}
+
+::-webkit-input-placeholder {
+    color: rgb(49, 48, 48);
 }
 
 .input-field {
     margin-bottom: 10px;
+    border: none; /* Add this line */
+    border-radius: 0; /* Add this line */
+    background-color: rgba(255, 255, 255, 0.3); /* Add this line */
+    color: #f2f2f2; /* Add this line */
+    padding: 5px; /* Add this line */
 }
 
 
@@ -70,29 +75,11 @@ html, body {
 
 
 
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 200px;
-}
+
 
 
 #profile{
     margin-left: 1050px;
-}
-
-.middle-heading {
-
-    justify-content: center;
-    align-items: center;
-    color: floralwhite;
-    margin-left: 40%;
-    margin-top: 10px;
-    font-size: 100px;
-    transition: 0.5s;
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
 }
 
 
@@ -109,6 +96,7 @@ html, body {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    margin-top: 20px;
 
 }
 
@@ -144,3 +132,52 @@ html, body {
         background-position: 400%;
     }
 }
+
+.middle-heading {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: floralwhite;
+    font-size: 100px;
+    transition: 0.5s;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    margin-top: 40px;
+
+}
+
+.navbar-brand-text {
+    margin-left: 10px;
+    font-family: "PT Serif", serif;
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+
+
+}
+
+
+.container{
+    height: 450px;
+    width: 250px;
+    padding: 80px;
+    color: white;
+    background: transparent;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    box-sizing: border-box;
+}
+
+form{
+    margin-right: 400px;
+    margin-left: 400px
+}
+
+
+
