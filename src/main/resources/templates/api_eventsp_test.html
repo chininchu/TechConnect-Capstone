@@ -153,77 +153,7 @@
         </div>
 </div>
 
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-12">-->
-<!--            <h2 id="eventtitle">Events that you can register for</h2>-->
-<!--            <table id="formcontent">-->
-<!--                <thead>-->
-<!--                <tr id="content-table2">-->
-<!--                    <th>Title</th>-->
-<!--                    <th>Date/Time</th>-->
-<!--                    <th>Description</th>-->
-<!--                    <th>Location</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <tr th:each="event : ${otherOrganizerEvents}">-->
-<!--                    <td>-->
-<!--                        <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">-->
-<!--                            <span th:text="${event.title}"></span>-->
-<!--                        </a>-->
-<!--                    </td>-->
-<!--                    <td th:text="${event.dateTime}"></td>-->
-<!--                    <td th:text="${event.description}"></td>-->
-<!--                    <td th:text="${event.location}"></td>-->
 
-
-<!--                </tr>-->
-
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--        <div class="col-6">-->
-<!--            <div id="map"></div>-->
-<!--        </div>-->
-
-
-
-<!--</div>-->
-
-
-<!-- The all events page has all the list of events that the user can now register for -->
-<div class="row mt-3">
-    <div class="col-md-12">
-        <h2 id="eventtitle">Events that you can register for</h2>
-        <table id="formcontent">
-            <thead>
-            <tr id="content-table2">
-                <th>Title</th>
-                <th>Date/Time</th>
-                <th>Description</th>
-                <th>Location</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="event : ${events}">
-                <td>
-                    <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
-                        <span th:text="${event.title}"></span>
-                    </a>
-                </td>
-                <!--                <td th:text="${event.dateTime}"></td>-->
-                <td th:text="${#temporals.format(event.dateTime, 'dd MMM yyyy, HH:mm')}"></td>
-
-                <td th:text="${event.description}"></td>
-                <td th:text="${event.location}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
