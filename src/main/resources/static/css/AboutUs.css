@@ -15,7 +15,7 @@ body{
 .navbar {
     background-color: transparent;
     box-shadow: none;
-    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-image: linear-gradient(to bottom, #270936, #1F0C34, #170D31, #110D2D, #0B0C29, #090C28, #070D26, #050D25, #060F27, #06112A, #06132C, #06152F);
     position: relative;
 }
 
@@ -95,7 +95,7 @@ li{
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 4em;
+    margin-bottom: 2em;
 }
 .inner-ul{
     list-style: none;
@@ -109,7 +109,9 @@ a{
     color: white;
 }
 .aboutus-header{
-    font-size: 3vw;
+    font-size: 4vw;
+    margin-left: 10em;
+    margin-top: 1em;
 
 }
 .member-li{
