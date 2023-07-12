@@ -1,8 +1,9 @@
 html, body {
-    background-image: url("https://img.freepik.com/free-vector/gradient-colorful-grainy-dynamic-background_52683-101908.jpg?w=1800&t=st=1688333928~exp=1688334528~hmac=03477f904715ddbeef50845422af831948d8615559f25772a2fbc2c4391feb35");
-    background-repeat: no-repeat;
+    background-image: url("/images/grainy.jpg");
+    background-repeat: repeat-y, repeat-x;
     background-size: cover;
     height: 100vh;
+    overflow: hidden;
 }
 
 
@@ -11,7 +12,7 @@ html, body {
     top: 0;
     left: 0;
     width: 50%;
-    height: 100%;
+    height: 90%;
     object-fit: cover;
     margin-top: 50px;
     border: 1px;
@@ -21,10 +22,55 @@ html, body {
 
 
 
-.submit-btn-container {
+.btn {
     display: flex;
-    justify-content: flex-end;
-    margin-left: 300px;
+    justify-content: space-between;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    color: floralwhite;
+    background-size: 400%;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    z-index: 1;
+
+}
+
+
+
+
+#image-upload{
+    height: 10%;
+    margin-right: 20px;
+    border-radius: 10px;
+
+
+}
+
+#image-upload:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #f441a5, mediumpurple, #03a9f4);
+    background-size: 400%;
+    border-radius: 80px;
+    filter: blur(20px);
+}
+#image-upload:hover {
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
 }
 
 .container {
@@ -80,6 +126,7 @@ html, body {
     border-radius: 30px;
     margin-left: 70px;
     margin-top: 40px;
+
 }
 
 form{
@@ -88,8 +135,42 @@ form{
 
 #image-upload{
     height: 10%;
-    margin-top: 130px;
+    margin-right: 20px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    color: floralwhite;
+    background-size: 400%;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    z-index: 1;
 
+}
+
+#image-upload:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #f441a5, mediumpurple, #03a9f4);
+    background-size: 400%;
+    border-radius: 80px;
+    filter: blur(20px);
+}
+#image-upload:hover {
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
 }
 
 .error-message {
@@ -98,4 +179,47 @@ form{
     font-weight: bold;
     padding: 10px;
     margin-top: 5px;
+}
+
+
+.image-box {
+    width: 100%;
+    height: 200px;
+    /*background-color: #170d31;*/
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.image-box img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border: 4px solid #f2f2f2;
+}
+
+@media (max-width: 768px) {
+      html{
+          background-repeat: repeat;
+      }
+
+    #site-photo{
+        margin-left: 6em;
+        max-width: 400px;
+        max-height: 300px;
+        margin-bottom: 0;
+    }
+    .formcontent{
+        margin-top: 25em;
+        max-width: 300px;
+        min-height: 600px;
+        margin-bottom: 0;
+    }
+    .heading{
+        white-space: nowrap;
+        margin-left: 1.5em;
+    }
+    #image-upload{
+        margin-top: 60px;
+    }
+
 }

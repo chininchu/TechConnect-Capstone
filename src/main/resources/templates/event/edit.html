@@ -1,36 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/css/CreateEventStyle.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Edit Event</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-body-light">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="/">TechConnect</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home" aria-current="page" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile" th:href="@{/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/LoginPage}">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-
+<div class="middle-heading">
 <h1>Edit Event</h1>
+</div>
 
 <form th:action="@{/event/{id}/edit (id =${event.eventId})}" th:object="${event}" method="post">
-    <label for="title">Title:</label>
-    <input type="text" id="title" th:field="*{title}"/>
 
-    <label for="dateTime">Date and Time:</label>
-    <input type="datetime-local" id="dateTime" th:field="*{dateTime}"/>
+    <div class="container">
+        <div class="row">
 
-    <label for="description">Description:</label>
-    <textarea id="description" th:field="*{description}"></textarea>
+            <div class="col-md-6 col-lg-6">
+                <div class="event-container">
 
-    <label for="location">Location:</label>
-    <input type="text" id="location" th:field="*{location}"/>
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" th:field="*{title}"/>
 
-<!--    Interest and HostID-->
+                            <label for="dateTime">Date and Time:</label>
+                            <input type="datetime-local" id="dateTime" th:field="*{dateTime}"/>
 
-    <input type="hidden" th:hidden="${event}" th:field="*{interest}"/>
-    <input type="hidden" th:hidden="${event}" th:field="*{host}"/>
+                            <label for="description">Description:</label>
+                            <textarea id="description" th:field="*{description}"></textarea>
+
+                            <label for="location">Location:</label>
+                            <input type="text" id="location" th:field="*{location}"/>
+
+                        <!--    Interest and HostID-->
+
+                            <input type="hidden" th:hidden="${event}" th:field="*{interest}"/>
+                            <input type="hidden" th:hidden="${event}" th:field="*{host}"/>
 
 
-    <button type="submit">Save</button>
+                            <button class="button" type="submit">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

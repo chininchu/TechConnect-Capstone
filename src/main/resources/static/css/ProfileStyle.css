@@ -17,14 +17,13 @@
 
 .button-group {
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    margin-left: 700px;
-    display: flex;
-    height: fit-content;
-
+    margin-top: 10px;
+    margin-left: 50px;
 }
 
+.button-group button {
+    margin-top: 10px;
+}
 
 .about-section {
     margin-left: 700px;
@@ -41,7 +40,7 @@
 }
 
 #event-input {
-    margin-left: 1050px;
+    margin-left: 1040px;
     color: white;
 }
 
@@ -51,7 +50,7 @@
 
 html, body {
     background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
-    background-repeat: no-repeat;
+    background-repeat: repeat-y, repeat-x;
     background-size: cover;
     height: 100%;
     margin: 0;
@@ -93,7 +92,7 @@ html, body {
 }
 
 .navbar-text {
-    margin-left: 50px;
+    margin-left: 30px;
 }
 
 .welcome {
@@ -106,9 +105,10 @@ html, body {
     margin-left: 30px;
     display: flex;
     flex-direction: column;
+    margin-top: 45px;
 }
 
-#editbtn{
+#editbtn {
     background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
     color: #f2f2f2;
     background-size: 400%;
@@ -117,11 +117,9 @@ html, body {
     box-sizing: border-box;
     border-radius: 60px;
     z-index: 1;
-
-
 }
 
-#deletebtn{
+#deletebtn {
     background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
     color: floralwhite;
     background-size: 400%;
@@ -131,7 +129,6 @@ html, body {
     box-sizing: border-box;
     border-radius: 60px;
     z-index: 1;
-
 }
 
 #editbtn:before,
@@ -155,7 +152,7 @@ html, body {
 }
 
 #editbtn:hover,
-#deletebtn:hover{
+#deletebtn:hover {
     animation: animate 8s linear infinite;
 }
 
@@ -163,47 +160,42 @@ html, body {
     0% {
         background-position: 0;
     }
+
     100% {
         background-position: 400%;
     }
 }
 
-
-.content-table{
+.content-table {
     color: white;
     background-color: #170d31;
 }
 
-.content-body{
-   background-image: url("https://img.freepik.com/free-photo/wooden-floor-with-blackboard_1249-198.jpg?w=1380&t=st=1688340769~exp=1688341369~hmac=4fa37b16a59a0ba50028fe2bbb10ffc09c3b6239ed2e80d31b42eeba6d3fbf25");
+.content-body {
+    background-image: url("https://img.freepik.com/free-photo/wooden-floor-with-blackboard_1249-198.jpg?w=1380&t=st=1688340769~exp=1688341369~hmac=4fa37b16a59a0ba50028fe2bbb10ffc09c3b6239ed2e80d31b42eeba6d3fbf25");
     background-size: cover;
     color: #f2f2f2;
 }
 
-#calendar{
+
+
+.calendar-card-container {
+    display: flex;
+    justify-content: space-between;
     z-index: auto;
+    height: 40%;
+
 }
 
-#map {
-    width: 100%;
-    height: 200px;
-    background-color: lightgray;
-    margin-bottom: 20px;
-    margin-top: 45px;
-    margin-left: 10px;
-    border: 4px solid #f2f2f2;
-    padding: 10px;
-}
 
-#eventtitle{
+
+#eventtitle {
     color: floralwhite;
     background-color: #170d31;
-
 }
 
-.mt-3{
+.mt-3 {
     color: white;
-    background-image: url("https://img.freepik.com/free-photo/wooden-floor-with-blackboard_1249-198.jpg?w=1380&t=st=1688340769~exp=1688341369~hmac=4fa37b16a59a0ba50028fe2bbb10ffc09c3b6239ed2e80d31b42eeba6d3fbf25");
     background-size: cover;
     color: #f2f2f2;
     overflow-x: hidden;
@@ -231,5 +223,22 @@ html, body {
     }
 }
 
+#calendar{
+    width: 100%;
+    height: 400px;
+    flex: 1;
+    margin: auto;
+    background-color: floralwhite;
+    color: black;
+    border: #03a9f4 solid 10px;
+    margin-top: 45px;
+}
 
+.events-table-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
 
+h2{
+    text-align: center;
+}
