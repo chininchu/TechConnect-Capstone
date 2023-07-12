@@ -255,3 +255,27 @@ h2{
     margin-right: 10px;
 }
 
+
+
+
+/*PHONE MEDIA QUERY */
+
+@media (max-width: 881px) and (min-width: 425px) {
+    .image-box {
+        margin-top: 20px;
+        height: 300px; /* Adjust the height as desired */
+    }
+
+    .about-section {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #event-input {
+        margin-left: 10px;
+    }
+
+    #logout-input {
+        margin-left: 10px;
+    }
+}
