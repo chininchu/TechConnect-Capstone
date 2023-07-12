@@ -6,15 +6,6 @@
     flex: 1;
     border: #03a9f4 solid 10px;
 }
-/*#calendar{*/
-/*    width: 100%;*/
-/*    height: 400px;*/
-/*    flex: 1;*/
-/*    margin: auto;*/
-/*    background-color: floralwhite;*/
-/*    color: black;*/
-/*    border: #03a9f4 solid 10px;*/
-/*}*/
 
 
 html, body {
@@ -139,12 +130,14 @@ html, body {
 }
 
 .forms{
+    margin-top: 5em;
     list-style: none;
     display: flex;
-    margin-left: 20em;
+    margin-left: 5em;
+    margin-bottom: 2em;
 }
 .form-li{
-    padding: 3em;
+    /*padding: 1em;*/
 }
 .events{
     height: 550px;
@@ -172,17 +165,22 @@ html, body {
     white-space: nowrap; /* Prevent table cells from wrapping */
 }
 
-@media (max-width: 767px) {
-    #formcontent table {
-        width: auto; /* Allow the table to resize based on content on smaller screens */
-    }
+#interests-form{
+    display: flex;
 }
+
 
 h2{
     text-align: center;
     color: white;
 }
 
+
+@media (max-width: 767px) {
+    #formcontent table {
+        width: auto; /* Allow the table to resize based on content on smaller screens */
+    }
+}
 
 
 

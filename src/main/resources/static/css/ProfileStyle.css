@@ -58,6 +58,9 @@ html, body {
 .navbar-brand {
     font-family: "PT Serif";
     margin-left: 25px;
+
+
+
 }
 
 .navbar {
@@ -258,6 +261,7 @@ h2{
 
 
 
+
 /*PHONE MEDIA QUERY */
 
 @media (max-width: 881px) and (min-width: 425px) {
@@ -279,3 +283,9 @@ h2{
         margin-left: 10px;
     }
 }
+
+.navbar-nav .nav-link {
+    color: floralwhite;
+}
+
+

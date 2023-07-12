@@ -128,7 +128,7 @@
 <!------------------------DELETE--------------->
 
         <form th:action="@{/discussions/{id}/delete (id=${discussion.id})}" th:method="post">
-        <button th:if="${discussion.user.id == loggedInUser}"  class="btn btn-primary" type="submit">Delete Post</button>
+        <button th:if="${discussion.user.id == loggedInUser}"  id="delete-btn" class="btn btn-primary" type="submit">Delete Post</button>
         </form>
 <!------------->
     <br>
@@ -141,7 +141,7 @@
         <li><h5 th:text="${comment.title}"></h5></li>
         <li><p th:text="${comment.content}"></p></li>
         <li><form th:action="@{/comments/{id}/delete (id=${comment.id})}" th:method="post">
-                <button class="btn btn-primary" th:if="${comment.user.id == loggedInUser}" type="submit" >Delete Comment</button>
+                <button class="btn btn-primary" id="delete-cmmt" th:if="${comment.user.id == loggedInUser}" type="submit" >Delete Comment</button>
             </form></li>
         </ul>
     </div>

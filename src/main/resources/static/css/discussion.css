@@ -76,4 +76,14 @@ html, body {
 }
 
 
-
+#delete-btn{
+    position: relative;
+    left: 10.2em;
+    bottom: 2.3em;
+    background-color: #17144f;
+    border: 0px;
+}
+#delete-cmmt{
+    background-color: #17144f;
+    border: 0px;
+}
