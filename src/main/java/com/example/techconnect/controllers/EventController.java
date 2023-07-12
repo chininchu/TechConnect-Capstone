@@ -58,14 +58,15 @@ public class EventController {
 //        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // Check if the user is logged in
-//        boolean isLoggedIn = principal != null;
+        boolean isLoggedIn = principal != null;
 
         // Pass the login status to the template
-//        model.addAttribute("isLoggedIn", isLoggedIn);
+        model.addAttribute("isLoggedIn", isLoggedIn);
 
         model.addAttribute("interests", interestRepository.findAll());
 
         model.addAttribute("events", eventRepository.findAll());
+
 
         // Retrieve events created by other organizers
 //        List<Event> otherOrganizerEvents = eventRepository.findAllByHostIdNot(loggedInUser.getId());
