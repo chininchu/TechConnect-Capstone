@@ -31,7 +31,7 @@ public class DiscussionController {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
     }
-//INITIAL PAGE VIEW ALL DISCUSSION
+    //INITIAL PAGE VIEW ALL DISCUSSION
     @GetMapping("/discussions")
     public String showDiscussions(Model model, Principal principal) {
 //        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -70,7 +70,7 @@ public class DiscussionController {
 
     }
 
-//    COMMENT ON A DISCUSSION
+    //    COMMENT ON A DISCUSSION
     @GetMapping("/discussion/{id}/comment")
     public String showCommentForm(@PathVariable Long id, Model model) {
         Discussion discussionId = discussionRepository.findById(id).get();
@@ -79,7 +79,7 @@ public class DiscussionController {
         return "discussions-test";
     }
 
-//POSTMAPPING COMMENT ON DISCUSSION
+    //POSTMAPPING COMMENT ON DISCUSSION
     @PostMapping("/discussion/{id}/comment")
     public String createComment(@PathVariable Long id, @ModelAttribute Comment comment){
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -97,7 +97,7 @@ public class DiscussionController {
         return "redirect:/discussions";
 
     }
-//DELETE YOUR COMMENT
+    //DELETE YOUR COMMENT
     @PostMapping("/comments/{id}/delete")
     public String deleteComment(@ModelAttribute Comment comment, @PathVariable long id) {
         comment.setUser(new User());
@@ -106,7 +106,7 @@ public class DiscussionController {
         return "redirect:/discussions";
     }
 
-//    POST A DISCUSSION
+    //    POST A DISCUSSION
     @PostMapping("/discussion/create")
     public String createDiscussion(@ModelAttribute Discussion discussion,Model model) {
 
@@ -153,16 +153,16 @@ public class DiscussionController {
         model.addAttribute("title", discussion.getTitle());
 
 //          discussion1.setUser(discussion.getUser());
-            discussion1.setId(id);
-            discussion1.setTitle(discussion.getTitle());
-            discussion1.setCreatedAt(LocalDateTime.now());
-            discussion1.setContent(discussion.getContent());
+        discussion1.setId(id);
+        discussion1.setTitle(discussion.getTitle());
+        discussion1.setCreatedAt(LocalDateTime.now());
+        discussion1.setContent(discussion.getContent());
 
 
-            discussionRepository.save(discussion1);
+        discussionRepository.save(discussion1);
 
-            return "redirect:/discussions";
-
-        }
+        return "redirect:/discussions";
 
     }
+
+}
