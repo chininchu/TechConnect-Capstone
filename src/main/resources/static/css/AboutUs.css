@@ -10,6 +10,7 @@ body{
 .navbar-brand {
     font-family: "PT Serif";
     margin-left: 25px;
+    text-transform: uppercase;
 }
 
 .navbar {
@@ -73,9 +74,8 @@ body{
     background-size: contain;
 
 }
-li{
-    padding: 2em;
-}
+
+
 .aboutus-header,.names{
     color: white;
     justify-content: center;
@@ -124,3 +124,6 @@ a{
 .contact-link{
     color: white;
 }
+
+
+
