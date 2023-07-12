@@ -74,7 +74,7 @@ public class EventController {
 //        model.addAttribute("otherOrganizerEvents", otherOrganizerEvents);
 
 
-        return "api_eventsp_test";
+        return "AllEvents";
 
     }
 
