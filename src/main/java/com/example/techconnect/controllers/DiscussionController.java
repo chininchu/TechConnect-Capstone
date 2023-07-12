@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,8 +33,15 @@ public class DiscussionController {
     }
 //INITIAL PAGE VIEW ALL DISCUSSION
     @GetMapping("/discussions")
-    public String showDiscussions(Model model) {
+    public String showDiscussions(Model model, Principal principal) {
 //        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Check if the user is logged in
+        boolean isLoggedIn = principal != null;
+
+        // Pass the login status to the template
+        model.addAttribute("isLoggedIn", isLoggedIn);
+
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             model.addAttribute("loggedInUser", null);
 
@@ -128,7 +136,8 @@ public class DiscussionController {
         Discussion discussion = discussionRepository.findById(id).get();
         System.out.println(discussion);
         model.addAttribute("discussion", discussion);
-
+        model.addAttribute("content", discussion.getContent());
+        model.addAttribute("title", discussion.getTitle());
 
         return "discussions-test";
 
@@ -140,6 +149,8 @@ public class DiscussionController {
     public String editDiscussion(@PathVariable long id,@ModelAttribute Discussion discussion,Model model,@ModelAttribute User user) {
         Discussion discussion1 = discussionRepository.findById(id).get();
         model.addAttribute("discussion", discussion1);
+        model.addAttribute("content", discussion.getContent());
+        model.addAttribute("title", discussion.getTitle());
 
 //          discussion1.setUser(discussion.getUser());
             discussion1.setId(id);

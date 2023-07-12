@@ -54,6 +54,7 @@ html, body {
     background-image: linear-gradient(to bottom, #270936, #1F0C34, #170D31, #110D2D, #0B0C29, #090C28, #070D26, #050D25, #060F27, #06112A, #06132C, #06152F);
     position: relative;
     border: gray solid 1px;
+    color: white;
 }
 
 #events {
@@ -66,11 +67,9 @@ html, body {
 .card-text {
     color: floralwhite;
     overflow: hidden;
+    font-size: 20px;
 }
 
-h5 {
-    color: floralwhite;
-}
 
 #links {
     color: floralwhite;
@@ -80,27 +79,28 @@ h5 {
     display: flex;
     margin-left: 50px;
     height: 40vh;
+
 }
 
 .card-container {
     overflow: hidden;
 }
 
-@keyframes scrollRightToLeft {
+@keyframes slideRightToLeft {
     0% {
         transform: translateX(100%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(0%);
     }
 }
 
 .card-row {
     display: flex;
-    animation: slideRightToLeft linear infinite;
     overflow: hidden;
     white-space: nowrap;
-    animation: scrollRightToLeft 30s linear infinite;
+    animation: slideRightToLeft 8s linear forwards;
+    justify-content: center;
 }
 
 .btn {
@@ -149,26 +149,7 @@ h5 {
     }
 }
 
-h1 {
-    text-transform: uppercase;
-    font-family: verdana;
-    font-size: 12em;
-    color: #F5F5F5;
-    text-shadow: 1px 1px 1px #919191,
-    1px 2px 1px #919191,
-    1px 3px 1px #919191,
-    1px 4px 1px #919191,
-    1px 5px 1px #919191,
-    1px 6px 1px #919191,
-    1px 7px 1px #919191,
-    1px 8px 1px #919191,
-    1px 9px 1px #919191,
-    1px 10px 1px #919191,
-    1px 18px 6px rgba(16, 16, 16, 0.4),
-    1px 22px 10px rgba(16, 16, 16, 0.2),
-    1px 25px 35px rgba(16, 16, 16, 0.2),
-    1px 30px 60px rgba(16, 16, 16, 0.4);
-}
+
 
 #site-photo {
     display: flex;
@@ -188,5 +169,13 @@ h1 {
 }
 
 .card-title{
-    color: floralwhite;
+    overflow: hidden;
+}
+
+.list{
+    font-size: 25px;
+}
+
+h1{
+    font-family: "PT Serif";
 }

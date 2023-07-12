@@ -3,8 +3,13 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/discussion.css}">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Forum</title>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.ico}">
+    <link rel="manifest" th:href="@{../static/images/site.webmanifest}">
 </head>
 <!-----------BODY--------------------->
 <body>
@@ -12,60 +17,60 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-light" id="title" href="/templates/index.html">TechConnect</a>
+    <a class="navbar-brand text-light" id="title" href="/">TechConnect</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link text-light" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+
+                <a class="nav-link" href="/AboutUs">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/events/allevent">Events</a>
+                <a class="nav-link text-light" href="/events/allevent">Events</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/discussions">Forum</a>
+                <a class="nav-link text-light" href="/discussions">Forum</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
+                <a class="nav-link text-light" href="/profile">Profile</a>
             </li>
         </ul>
     </div>
-    <div>
+    <div class="logout">
         <!-- If the user is logged in, show the "Logout" button -->
         <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>
 
         <!-- If the user is logged out, show the "Login" button -->
         <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none">Login</a>
 
-        <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>
+
     </div>
 </nav>
-<div class="discussion-div">
-<div class="card">
+<div class="container">
+    <div class="discussion-div">
+        <div class="card">
     <div class="card-header">
-     <h3> Post a Discussion</h3>
+     <h3> Post a Forum</h3>
     </div>
-    <div class="card-body">
-        <form th:action="@{/discussion/create}" th:object="${discussion}" th:method="POST">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Title</label>
-            <input type="text" class="form-control title-create" id="exampleFormControlInput1" th:field="*{title}">
+            <form th:action="@{/discussion/create}" th:object="${discussion}" th:method="POST">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Title</label>
+                    <input type="text" class="form-control title-create" id="exampleFormControlInput1" th:field="*{title}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+                    <textarea class="form-control content-create" id="exampleFormControlTextarea1" th:field="*{content}" rows="3"></textarea>
+                </div>
+                <input id="time" type="hidden" th:field="*{createdAt}">
+                <a th:href="@{/LoginPage}"><button th:if="${loggedInUser == null}" class="btn btn-primary" type="submit">Please Log in To Post</button></a>
+                <button th:if="${loggedInUser != null}"  class="btn btn-primary" type="submit">Submit</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-            <textarea class="form-control content-create" id="exampleFormControlTextarea1" th:field="*{content}" rows="3"></textarea>
-        </div>
-            <input id="time" type="hidden" th:field="*{createdAt}">
-            <a th:href="@{/LoginPage}"><button th:if="${loggedInUser == null}" class="btn btn-primary" type="submit">Please Log in To Post</button></a>
-            <button th:if="${loggedInUser != null}"  class="btn btn-primary" type="submit">Submit</button>
-        </form>
-    </div>
-</div>
 <!--DISCUSSIONS-->
 <div th:each="discussion : ${discussions1}"  class="card">
 
@@ -76,7 +81,7 @@
        <h4 th:text="${discussion.user.username}"></h4>
         <p th:text="${discussion.content}"></p>
         <button  class="btn btn-primary" type="button" id="replyBtn">Reply</button>
-        <button  th:if="${discussion.user.id == loggedInUser}" type="button"  class="btn btn-primary" data-bs-toggle="modal" th:data-bs-target="'#exampleModal-' + ${discussion.id}">
+        <button  th:if="${discussion.user.id == loggedInUser}" type="button"  class="btn btn-primary edit-discussion-button" data-bs-toggle="modal" th:data-bs-target="'#exampleModal-' + ${discussion.id}">
             Edit Post
         </button>
 <!----------------EDIT MODAL------------------>
@@ -91,11 +96,11 @@
                         <form th:action="@{/discussion/{id}/edit (id=${discussion.id})}" th:object="${discussion}" th:method="POST">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput2" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput2" th:field="*{title}" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput2" th:field="*{title}" required th:value="${discussion.title}">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea2" class="form-label">Content</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea2" th:field="*{content}" rows="3"></textarea>
+                                <label for="exampleFormControlTextarea2" class="form-label" >Content</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea2" th:field="*{content}" rows="3" th:text="${discussion.content}"></textarea>
                             </div>
                             <input  type="hidden" th:field="*{createdAt}" required>
                             <button  class="btn btn-primary" type="submit">Edit Post</button>
@@ -109,9 +114,11 @@
         </div>
         <!----------------COMMENT FORM--------------->
         <form th:action="@{/discussion/{id}/comment  (id=${discussion.id})}" style="display: none" th:object="${comment}"  th:method="POST"  class="commentForm">
-        <label for="title"></label>
+        <label for="title">Title</label>
+            <br>
         <input id="title1" type="text" th:field="*{title}">
-        <label for="comment"></label>
+            <br>
+        <label for="comment">Content</label>
         <textarea  th:field="*{content}" id="comment" name="comment" class="form-control"></textarea>
         <input id="discussion_id" type="hidden" th:field="*{discussion.id}">
         <input id="dateAndTime" type="hidden" th:field="*{createdAt}">
@@ -141,6 +148,7 @@
   </div>
 </div>
 </div>
+</div>
 <!---------------SCRIPT TAG------------------>
 <script>
     function openForm() {
@@ -155,6 +163,23 @@
     }
     openForm()
 
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.edit-discussion-button').click(function () {
+            var row = $(this).closest('.card-body');
+            var title = row.find('h2').text();
+            var content = row.find('p').text();
+
+            // Remove the date and time from the content
+            content = content.replace(/^\w+\s\d+\s[a-zA-Z]+\s[\d:]+\s(?:AM|PM)\s?/, '');
+
+            var formDiv = row.find('.modal-body');
+            formDiv.find('#exampleFormControlInput2').val(title);
+            formDiv.find('#exampleFormControlTextarea2').val(content);
+        });
+    });
 </script>
 
 </body>
