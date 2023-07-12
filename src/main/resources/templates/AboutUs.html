@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
+  <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">
+  <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.ico}">
+  <link rel="manifest" th:href="@{../static/images/site.webmanifest}">
+
   <link rel="stylesheet" type="text/css" th:href="@{/css/AboutUs.css}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
   <meta charset="UTF-8">
     <title>About Us</title>
 </head>
@@ -46,11 +51,7 @@
   </div>
 </nav>
 <script src="https://kit.fontawesome.com/3ba650e135.js" crossorigin="anonymous"></script>
-<div class="header">
-
-  <h1 class="aboutus-header">About Us</h1>
-  <p class="aboutus-paragraph">Welcome to TechConnect! We're a group of enthusiastic developers excited to introduce a platform that helps you discover and attend tech events nearby, facilitating networking and fostering new connections. As new developers ourselves, we understand the importance of building a strong professional network and the limited avenues available to do so. Our web app serves as a centralized hub, providing a comprehensive database of upcoming tech events, from coding workshops to panel discussions. Thank you for visiting, and if you have any questions or would like to connect, our contact information is provided below.</p>
-</div>
+<h1 class="aboutus-header">About Us</h1>
 <ul class="aboutus-ul">
   <li class="member-li">
     <span class="dot" id="andrew"></span>
@@ -90,7 +91,9 @@
     </ul>
   </li>
 </ul>
-
+<div class="header">
+  <p class="aboutus-paragraph">Welcome to TechConnect! We're a group of enthusiastic developers excited to introduce a platform that helps you discover and attend tech events nearby, facilitating networking and fostering new connections. As new developers ourselves, we understand the importance of building a strong professional network and the limited avenues available to do so. Our web app serves as a centralized hub, providing a comprehensive database of upcoming tech events, from coding workshops to panel discussions. Thank you for visiting, and if you have any questions or would like to connect, our contact information is provided below.</p>
+</div>
 
 
 </body>

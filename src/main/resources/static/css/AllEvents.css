@@ -1,20 +1,21 @@
 #map {
     /* the width and height may be set to any size */
     width: 100%;
-    height: 400px;
+    height: 550px;
     margin: auto;
     flex: 1;
     border: #03a9f4 solid 10px;
 }
-#calendar{
-    width: 100%;
-    height: 400px;
-    flex: 1;
-    margin: auto;
-    background-color: floralwhite;
-    color: black;
-    border: #03a9f4 solid 10px;
-}
+/*#calendar{*/
+/*    width: 100%;*/
+/*    height: 400px;*/
+/*    flex: 1;*/
+/*    margin: auto;*/
+/*    background-color: floralwhite;*/
+/*    color: black;*/
+/*    border: #03a9f4 solid 10px;*/
+/*}*/
+
 
 html, body {
     margin: 0;
@@ -137,6 +138,22 @@ html, body {
     }
 }
 
+.forms{
+    list-style: none;
+    display: flex;
+    margin-left: 20em;
+}
+.form-li{
+    padding: 3em;
+}
+.events{
+    height: 550px;
+    overflow: scroll;
+}
+.card{
+    margin: 2em;
+}
+
 #formcontent {
     text-align: center;
     width: 100%;
@@ -165,6 +182,7 @@ h2{
     text-align: center;
     color: white;
 }
+
 
 
 

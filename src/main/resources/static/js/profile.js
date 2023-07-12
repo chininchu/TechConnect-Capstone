@@ -6,11 +6,19 @@ document.addEventListener('DOMContentLoaded', function () {
         headerToolbar: {
             left: "prev,next",
             center: "title",
-            right: "dayGridMonth, timeGridWeek, timeGridDay ,list"
+            right: "dayGridMonth, timeGridWeek, timeGridDay"
 
         },
         events: [],
         selectable: true,
+        eventColor: '#378006',
+        eventClick:function(info) {
+          info.jsEvent.preventDefault(); // don't let the browser navigate
+
+          if (info.event.url) {
+                 window.open(info.event.url);
+                 }
+        },
         dayMaxEventRows: true, // for all non-TimeGrid views
         views: {
             timeGrid: {
@@ -22,33 +30,11 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     calendar.render()
 
-    mapboxgl.accessToken = MAPBOXAP_TOK;
-    const coordinates = document.getElementById('coordinates');
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: "mapbox://styles/mapbox/dark-v11",
-        center: [-95.7129, 37.0902],
-        marker: [-95.7129, 37.0902],
-        zoom: 3,
-    });
-    let marker = new mapboxgl.Marker({})
-        .setLngLat([-95.7129, 37.0902])
-        .addTo(map);
-
-
-    // USERS EVENTS ON MAP
-
-    fetch("/events/userEvents")
+    fetch("http://localhost:8080/events/userEvents")
         .then(response => {
             response.json().then(events => {
                     events.forEach(event => {
                         console.log(event.location);
-                        geocode(event.location,MAPBOXAP_TOK).then(function (result) {
-                            let mapCenter = ([result[0], result[1]])
-                            map.setCenter(mapCenter);
-                            map.setZoom(8)
-                            new mapboxgl.Marker().setLngLat(mapCenter).addTo(map);
-                            new mapboxgl.Popup().setLngLat(mapCenter).setHTML("<p>" + event.title + "</p>").addTo(map)
                             var eventArr = []
                             var newEvent = {}
                             newEvent.title = event.title
@@ -56,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             newEvent.allDay = true
                             newEvent.color = 'blue'
                             newEvent.display = 'block'
+                            newEvent.url = `http://localhost:8080/event/${event.id}/reviews`
                             calendar.addEvent(newEvent);
                             var events = calendar.getEvents();
                         })
                     })
                 })
-        })
 })
