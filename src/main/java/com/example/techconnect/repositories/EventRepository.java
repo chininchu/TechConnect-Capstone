@@ -22,6 +22,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("from Event where location like %:location%")
     List<Event> findEventByLocation(String location);
 
+//    @Query("from Event" +
+//            "JOIN attendance AND events.event_id = attendance.event_id " +
+//            "WHERE attendance.user_id = :userId")
+//    List<String> getAttendedEvents(@Param("userId") String userId);
+
     List<Event> findEventByTitleContainingIgnoreCase(String keyword);
 
 

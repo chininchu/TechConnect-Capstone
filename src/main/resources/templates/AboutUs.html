@@ -1,90 +1,233 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">-->
+<!--  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">-->
+<!--  <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">-->
+<!--  <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.ico}">-->
+<!--  <link rel="manifest" th:href="@{../static/images/site.webmanifest}">-->
+
+<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/AboutUs.css}">-->
+<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">-->
+<!--  <meta charset="UTF-8">-->
+<!--    <title>About Us</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--  <a class="navbar-brand text-light" id="title" href="/">TechConnect</a>-->
+<!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+<!--  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">-->
+<!--    <ul class="navbar-nav">-->
+
+<!--      <li class="nav-item active">-->
+<!--        <a class="nav-link" href="/">Home</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="/AboutUs">About</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="/profile">Profile</a>-->
+<!--        <a class="nav-link" href="/events/allevent">Events</a>-->
+<!--        <a class="nav-link" href="/discussions">Forum</a>-->
+
+
+<!--    </ul>-->
+<!--  </div>-->
+<!--  <div class="card-text-login">-->
+<!--    &lt;!&ndash;         If the user is logged in, show the "Logout" button &ndash;&gt;-->
+<!--    <a th:if="${isLoggedIn}" href="/logout" style="color: floralwhite; text-decoration: none">Logout</a>-->
+
+<!--    &lt;!&ndash; If the user is logged out, show the "Login" button &ndash;&gt;-->
+<!--    <a th:unless="${isLoggedIn}" href="/LoginPage" style="color: floralwhite; text-decoration: none">Login</a>-->
+<!--  </div>-->
+
+<!--  <div class="card-text-signup">-->
+<!--    <a href="/SignUpPage" style="color: floralwhite; text-decoration: none">SignUp</a>-->
+<!--  </div>-->
+<!--</nav>-->
+<!--<script src="https://kit.fontawesome.com/3ba650e135.js" crossorigin="anonymous"></script>-->
+<!--<h1 class="aboutus-header">About Us</h1>-->
+<!--<ul class="aboutus-ul">-->
+<!--  <li class="member-li">-->
+<!--    <span class="dot" id="andrew"></span>-->
+<!--    <ul class="inner-ul">-->
+<!--    <li class="inner-li"><h2 class="names">Andrew Chu</h2></li>-->
+<!--    <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/andrewchu50/">  LinkedIn</a></li>-->
+<!--    <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/chininchu">         Github</a></li>-->
+<!--    <li class="inner-li"><i class="fa-brands fa-salesforce"></i><a class="contact-link" href="https://trailblazer.me/id/andrewchu">         SalesForce</a></li>-->
+<!--    <li class="inner-li"><i class="fa-solid fa-globe"></i><a class="contact-link" href="https://chininchu.github.io/online-portfolio/" >         Portfolio</a></li>-->
+<!--    </ul>-->
+<!--  </li>-->
+
+<!--  <li class="member-li">-->
+<!--    <span class="dot" id="cole"></span>-->
+<!--    <ul class="inner-ul">-->
+<!--      <li class="inner-li"><h2 class="names">Cole Usher</h2></li>-->
+<!--      <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/cole-usher/">  LinkedIn</a></li>-->
+<!--      <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/coleausher">    Github</a></li>-->
+<!--    </ul>-->
+<!--  </li>-->
+<!--  <li class="member-li">-->
+<!--    <span class="dot" id="charles"></span>-->
+<!--    <ul class="inner-ul">-->
+<!--      <li class="inner-li"><h2 class="names">Charles Roland</h2></li>-->
+<!--      <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/charles-a-w-roland/">  LinkedIn</a></li>-->
+<!--      <li class="inner-li" ><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/CharlesRolo22">   Github</a></li>-->
+<!--    </ul>-->
+<!--  </li>-->
+<!--  <li class="member-li">-->
+<!--    <span class="dot" id="asia"></span>-->
+<!--    <ul class="inner-ul">-->
+<!--    <li class="inner-li"><h2 class="names">Asia Autrey</h2></li>-->
+<!--    <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/asia-autrey/">  LinkedIn</a></li>-->
+<!--    <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/Marie5646">    Github</a></li>-->
+<!--    <li class="inner-li"><i class="fa-solid fa-globe"></i><a class="contact-link" href="https://marie5646.github.io/">         Portfolio</a></li>-->
+
+<!--    </ul>-->
+<!--  </li>-->
+<!--</ul>-->
+<!--<div class="header">-->
+<!--  <p class="aboutus-paragraph">Welcome to TechConnect! We're a group of enthusiastic developers excited to introduce a platform that helps you discover and attend tech events nearby, facilitating networking and fostering new connections. As new developers ourselves, we understand the importance of building a strong professional network and the limited avenues available to do so. Our web app serves as a centralized hub, providing a comprehensive database of upcoming tech events, from coding workshops to panel discussions. Thank you for visiting, and if you have any questions or would like to connect, our contact information is provided below.</p>-->
+<!--</div>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">
-  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
-  <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">
-  <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.ico}">
-  <link rel="manifest" th:href="@{../static/images/site.webmanifest}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon-16x16.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.ico}">
+    <link rel="manifest" th:href="@{../static/images/site.webmanifest}">
 
-  <link rel="stylesheet" type="text/css" th:href="@{/css/AboutUs.css}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/AboutUs.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>About Us</title>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand text-light" id="title" href="/">TechConnect</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link text-light" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="/AboutUs">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="/events/allevent">Events</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="/discussions">Forum</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="/profile">Profile</a>
-      </li>
-    </ul>
-  </div>
 
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AboutUs">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/events/allevent">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/discussions">Forum</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
 </nav>
-<script src="https://kit.fontawesome.com/3ba650e135.js" crossorigin="anonymous"></script>
-<h1 class="aboutus-header">About Us</h1>
-<ul class="aboutus-ul">
-  <li class="member-li">
-    <span class="dot" id="andrew"></span>
-    <ul class="inner-ul">
-    <li class="inner-li"><h2 class="names">Andrew Chu</h2></li>
-    <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/andrewchu50/">  LinkedIn</a></li>
-    <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/chininchu">         Github</a></li>
-    <li class="inner-li"><i class="fa-brands fa-salesforce"></i><a class="contact-link" href="https://trailblazer.me/id/andrewchu">         SalesForce</a></li>
-    <li class="inner-li"><i class="fa-solid fa-globe"></i><a class="contact-link" href="https://chininchu.github.io/online-portfolio/" >         Portfolio</a></li>
-    </ul>
-  </li>
-
-  <li class="member-li">
-    <span class="dot" id="cole"></span>
-    <ul class="inner-ul">
-      <li class="inner-li"><h2 class="names">Cole Usher</h2></li>
-      <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/cole-usher/">  LinkedIn</a></li>
-      <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/coleausher">    Github</a></li>
-    </ul>
-  </li>
-  <li class="member-li">
-    <span class="dot" id="charles"></span>
-    <ul class="inner-ul">
-      <li class="inner-li"><h2 class="names">Charles Roland</h2></li>
-      <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/charles-a-w-roland/">  LinkedIn</a></li>
-      <li class="inner-li" ><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/CharlesRolo22">   Github</a></li>
-    </ul>
-  </li>
-  <li class="member-li">
-    <span class="dot" id="asia"></span>
-    <ul class="inner-ul">
-    <li class="inner-li"><h2 class="names">Asia Autrey</h2></li>
-    <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link" href="https://www.linkedin.com/in/asia-autrey/">  LinkedIn</a></li>
-    <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link" href="https://github.com/Marie5646">    Github</a></li>
-    <li class="inner-li"><i class="fa-solid fa-globe"></i><a class="contact-link" href="https://marie5646.github.io/">         Portfolio</a></li>
-
-    </ul>
-  </li>
-</ul>
-<div class="header">
-  <p class="aboutus-paragraph">Welcome to TechConnect! We're a group of enthusiastic developers excited to introduce a platform that helps you discover and attend tech events nearby, facilitating networking and fostering new connections. As new developers ourselves, we understand the importance of building a strong professional network and the limited avenues available to do so. Our web app serves as a centralized hub, providing a comprehensive database of upcoming tech events, from coding workshops to panel discussions. Thank you for visiting, and if you have any questions or would like to connect, our contact information is provided below.</p>
-</div>
 
 
+<main>
+    <script src="https://kit.fontawesome.com/3ba650e135.js" crossorigin="anonymous"></script>
+    <h1 class="aboutus-header">About Us</h1>
+    <ul class="aboutus-ul">
+        <li class="member-li">
+            <span class="dot" id="andrew"></span>
+            <ul class="inner-ul">
+                <li class="inner-li"><h2 class="names">Andrew Chu</h2></li>
+                <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link"
+                                                                             href="https://www.linkedin.com/in/andrewchu50/">
+                    LinkedIn</a></li>
+                <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link"
+                                                                           href="https://github.com/chininchu">
+                    Github</a></li>
+                <li class="inner-li"><i class="fa-brands fa-salesforce"></i><a class="contact-link"
+                                                                               href="https://trailblazer.me/id/andrewchu">
+                    SalesForce</a></li>
+                <li class="inner-li"><i class="fa-solid fa-globe"></i><a class="contact-link"
+                                                                         href="https://chininchu.github.io/online-portfolio/">
+                    Portfolio</a></li>
+            </ul>
+        </li>
+        <li class="member-li">
+            <span class="dot" id="cole"></span>
+            <ul class="inner-ul">
+                <li class="inner-li"><h2 class="names">Cole Usher</h2></li>
+                <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link"
+                                                                             href="https://www.linkedin.com/in/cole-usher/">
+                    LinkedIn</a></li>
+                <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link"
+                                                                           href="https://github.com/coleausher">
+                    Github</a></li>
+            </ul>
+        </li>
+        <li class="member-li">
+            <span class="dot" id="charles"></span>
+            <ul class="inner-ul">
+                <li class="inner-li"><h2 class="names">Charles Roland</h2></li>
+                <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link"
+                                                                             href="https://www.linkedin.com/in/charles-a-w-roland/">
+                    LinkedIn</a></li>
+                <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link"
+                                                                           href="https://github.com/CharlesRolo22">
+                    Github</a></li>
+            </ul>
+        </li>
+        <li class="member-li">
+            <span class="dot" id="asia"></span>
+            <ul class="inner-ul">
+                <li class="inner-li"><h2 class="names">Asia Autrey</h2></li>
+                <li class="inner-li"><i class="fa-brands fa-linkedin"></i><a class="contact-link"
+                                                                             href="https://www.linkedin.com/in/asia-autrey/">
+                    LinkedIn</a></li>
+                <li class="inner-li"><i class="fa-brands fa-github"></i><a class="contact-link"
+                                                                           href="https://github.com/Marie5646">
+                    Github</a></li>
+                <li class="inner-li"><i class="fa-solid fa-globe"></i><a class="contact-link"
+                                                                         href="https://marie5646.github.io/">
+                    Portfolio</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="header">
+        <p class="aboutus-paragraph">Welcome to TechConnect! We're a group of enthusiastic developers excited to
+            introduce a platform that helps you discover and attend tech events nearby, facilitating networking and
+            fostering new connections. As new developers ourselves, we understand the importance of building a strong
+            professional network and the limited avenues available to do so. Our web app serves as a centralized hub,
+            providing a comprehensive database of upcoming tech events, from coding workshops to panel discussions.
+            Thank you for visiting, and if you have any questions or would like to connect, our contact information is
+            provided below.</p>
+    </div>
+
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+

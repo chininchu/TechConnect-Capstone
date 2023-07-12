@@ -1,11 +1,135 @@
 
-body{
-     background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
-      background-size: cover;
-     z-index: -1;
+/*body{*/
+/*     background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);*/
+/*      background-size: cover;*/
+/*     z-index: -1;*/
 
+/*}*/
+
+
+/*.navbar-brand {*/
+/*    font-family: "PT Serif";*/
+/*    margin-left: 25px;*/
+/*}*/
+
+/*.navbar {*/
+/*    background-color: transparent;*/
+/*    box-shadow: none;*/
+/*    background-image: linear-gradient(to bottom, #270936, #1F0C34, #170D31, #110D2D, #0B0C29, #090C28, #070D26, #050D25, #060F27, #06112A, #06132C, #06152F);*/
+/*    position: relative;*/
+/*}*/
+
+/*.navbar::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    height: .1px;*/
+/*    background-color: darkgray;*/
+/*}*/
+
+/*.navbar-nav .nav-link {*/
+/*    color: floralwhite;*/
+/*}*/
+
+/*.dot {*/
+/*    height: 250px;*/
+/*    width: 250px;*/
+/*    background-color: #00f4ff;*/
+/*    border-radius: 50%;*/
+/*    display: inline-block;*/
+/*    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.44);*/
+/*    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.44);*/
+/*    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.44);*/
+/*}*/
+/*.aboutus-ul{*/
+/*    display: flex;*/
+/*    justify-content: space-evenly;*/
+/*    list-style: none;*/
+/*    !*padding: 2em;*!*/
+/*    margin-top: 5em;*/
+/*    margin-left: 2em;*/
+/*}*/
+
+/*#andrew{*/
+/*    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04Q7UPNMME-5630e022a31b-512");*/
+/*    background-size: contain;*/
+/*}*/
+/*#asia{*/
+/*    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PBL4JDHC-06a02c7498ee-512");*/
+/*    background-size: contain;*/
+
+/*}*/
+
+/*#cole{*/
+/*    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PWT7UA0H-d46b88c2bcd8-512");*/
+/*    background-size: contain;*/
+
+
+/*}*/
+/*#charles{*/
+/*    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PLNB6S2G-e25c7f386bc9-512");*/
+/*    background-size: contain;*/
+
+/*}*/
+/*li{*/
+/*    padding: 2em;*/
+/*}*/
+/*.aboutus-header,.names{*/
+/*    color: white;*/
+/*    justify-content: center;*/
+/*    font-family: "PT Serif", serif;*/
+/*    font-weight: bold;*/
+/*}*/
+/*.aboutus-paragraph{*/
+/*    font-family: "PT Serif", serif;*/
+/*    font-weight: normal;*/
+/*    justify-content: center;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    max-width: 900px;*/
+/*    font-size: 1.5vw;*/
+/*}*/
+/*.header{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    flex-direction: column;*/
+/*    margin-bottom: 2em;*/
+/*}*/
+/*.inner-ul{*/
+/*    list-style: none;*/
+/*    color: white;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    padding: -2em;*/
+/*}*/
+/*a{*/
+/*    color: white;*/
+/*}*/
+/*.aboutus-header{*/
+/*    font-size: 4vw;*/
+/*    margin-left: 10em;*/
+/*    margin-top: 1em;*/
+
+/*}*/
+/*.member-li{*/
+/*    margin-left: -5em;*/
+/*}*/
+/*.inner-li{*/
+/*    padding: .5em;*/
+/*}*/
+
+/*.contact-link{*/
+/*    color: white;*/
+/*}*/
+
+body {
+    background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
+    background-size: cover;
+    z-index: -1;
 }
-
 
 .navbar-brand {
     font-family: "PT Serif";
@@ -40,11 +164,12 @@ body{
     background-color: #00f4ff;
     border-radius: 50%;
     display: inline-block;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.44);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.44);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.44);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.44);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.44);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.44);
 }
-.aboutus-ul{
+
+.aboutus-ul {
     display: flex;
     justify-content: space-evenly;
     list-style: none;
@@ -53,36 +178,40 @@ body{
     margin-left: 2em;
 }
 
-#andrew{
+#andrew {
     background-image: url("https://ca.slack-edge.com/T029BRGN0-U04Q7UPNMME-5630e022a31b-512");
     background-size: contain;
 }
-#asia{
+
+#asia {
     background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PBL4JDHC-06a02c7498ee-512");
     background-size: contain;
-
 }
+
 
 #cole{
-    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PWT7UA0H-d46b88c2bcd8-512");
+    background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PWT7UA0H-fed00186ce3c-512");
     background-size: contain;
-
-
 }
-#charles{
+
+#charles {
     background-image: url("https://ca.slack-edge.com/T029BRGN0-U04PLNB6S2G-e25c7f386bc9-512");
     background-size: contain;
-
 }
 
+li {
+    padding: 2em;
+}
 
-.aboutus-header,.names{
+.aboutus-header,
+.names {
     color: white;
     justify-content: center;
     font-family: "PT Serif", serif;
     font-weight: bold;
 }
-.aboutus-paragraph{
+
+.aboutus-paragraph {
     font-family: "PT Serif", serif;
     font-weight: normal;
     justify-content: center;
@@ -91,13 +220,15 @@ body{
     max-width: 900px;
     font-size: 1.5vw;
 }
-.header{
+
+.header {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 2em;
 }
-.inner-ul{
+
+.inner-ul {
     list-style: none;
     color: white;
     display: flex;
@@ -105,25 +236,54 @@ body{
     align-items: center;
     padding: -2em;
 }
-a{
+
+a {
     color: white;
 }
-.aboutus-header{
+
+.aboutus-header {
     font-size: 4vw;
     margin-left: 10em;
     margin-top: 1em;
-
 }
-.member-li{
+
+.member-li {
     margin-left: -5em;
 }
-.inner-li{
+
+.inner-li {
     padding: .5em;
 }
 
-.contact-link{
+.contact-link {
     color: white;
 }
 
+@media (max-width: 768px) {
+    /* Styles for screens smaller than 768px */
+    .aboutus-header {
+        font-size: 3rem;
+        margin-left: 2em;
+    }
 
+    .member-li {
+        margin-left: 0;
+        text-align: center;
+    }
 
+    .inner-ul {
+        padding: 0;
+    }
+
+    .aboutus-paragraph {
+        font-size: 1rem;
+    }
+
+    .aboutus-ul {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+}
+
+/* Additional media queries and responsive styles can be added as needed */

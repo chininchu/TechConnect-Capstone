@@ -58,16 +58,6 @@
 
     </div>
 
-        <!--        <div>-->
-        <!--            &lt;!&ndash; If the user is logged in, show the "Logout" button &ndash;&gt;-->
-        <!--            <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>-->
-
-        <!--            &lt;!&ndash; If the user is logged out, show the "Login" button &ndash;&gt;-->
-        <!--            <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}"-->
-        <!--               style="color: floralwhite; text-decoration: none">Login</a>-->
-
-        <!--            <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>-->
-        <!--        </div>-->
 
     </div>
 </nav>
@@ -80,35 +70,9 @@
     </div>
 </div>
 
-<!--EVENT FORM-->
-
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="eventform col-6">-->
-<!--            <div class="card-event" id="1" style="width: 18rem;">-->
-<!--                <form autocomplete="off">-->
-<!--                    <div class="mb-3 col-6">-->
-<!--                        <label for="exampleFormControlInput1" class="form-label">Event Title</label>-->
-<!--                        <input type="email" class="form-control" id="exampleFormControlInput1">-->
-<!--                    </div>-->
-<!--                    <label for="eventstart-time">Choose Start time</label>-->
-<!--                    <input type="datetime-local" id="eventstart-time"-->
-<!--                           name="event-time" value="2023-06-12T19:30"-->
-<!--                           min="2023-06-07T00:00" max="2025-06-14T00:00">-->
-<!--                    <label for="eventend-time">Choose a End time</label>-->
-<!--                    <input type="datetime-local" id="eventend-time"-->
-<!--                           name="event-time" value="2023-06-12T19:30"-->
-<!--                           min="2023-06-07T00:00" max="2025-06-14T00:00">-->
-<!--                    <label for="address">Enter Event Address</label>-->
-<!--                    <input id="address" type="text" name="address">-->
-<!--                </form>-->
-<!--                <button type="button" id="rsvp" class="rsvpBtn btn-primary">RSVP</button>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<div class="search col-6">
+<!--<div class="search col-6">-->
 <ul class="forms">
-       <li class="form-li"> <form autocomplete="off">
+       <li class="form-li col-4 col-xs-2"> <form autocomplete="off">
             <label for="location">Location</label>
             <input type="text" id="location" name="location">
             <button type="submit" id="subBtn" value="Submit">Submit</button>
@@ -116,7 +80,7 @@
        </li>
 
         <!--SEARCH EVENT BY TITLE CONTAINING-->
-      <li class="form-li">
+      <li class="form-li col-4 col-xs-2">
         <form autocomplete="off">
             <label for="keyword">Keyword</label>
             <input type="text" id="keyword" name="keyword">
@@ -124,10 +88,9 @@
         </form>
       </li>
 
-
         <!--SEARCH EVENT BY INTEREST-->
-      <li class="form-li">
-        <form th:object="${interests}" style="width: 20em">
+      <li class="form-li col-4 col-xs-2">
+        <form th:object="${interests}" id="interests-form" style="width: 20em" >
             <label for="keyword">Interest</label>
             <select name="interests" id="interests" class="form-select" aria-label="Default select example">
                 <option th:each="interest : ${interests}" th:value="${interest.id}" th:text="${interest.interest}"></option>
@@ -135,7 +98,7 @@
         </form>
       </li>
 </ul>
-</div>
+<!--</div>-->
 <!--</div>-->
 <!--    </div>-->
 <!--</div>-->
@@ -152,51 +115,7 @@
             <div id="map"></div>
         </div>
 </div>
-
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-12">-->
-<!--            <h2 id="eventtitle">Events that you can register for</h2>-->
-<!--            <table id="formcontent">-->
-<!--                <thead>-->
-<!--                <tr id="content-table2">-->
-<!--                    <th>Title</th>-->
-<!--                    <th>Date/Time</th>-->
-<!--                    <th>Description</th>-->
-<!--                    <th>Location</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <tr th:each="event : ${otherOrganizerEvents}">-->
-<!--                    <td>-->
-<!--                        <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">-->
-<!--                            <span th:text="${event.title}"></span>-->
-<!--                        </a>-->
-<!--                    </td>-->
-<!--                    <td th:text="${event.dateTime}"></td>-->
-<!--                    <td th:text="${event.description}"></td>-->
-<!--                    <td th:text="${event.location}"></td>-->
-
-
-<!--                </tr>-->
-
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--        <div class="col-6">-->
-<!--            <div id="map"></div>-->
-<!--        </div>-->
-
-
-
-<!--</div>-->
-
-
-
-
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
