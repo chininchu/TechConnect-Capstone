@@ -58,6 +58,9 @@ html, body {
 .navbar-brand {
     font-family: "PT Serif";
     margin-left: 25px;
+
+
+
 }
 
 .navbar {
@@ -253,5 +256,9 @@ h2{
 
 .edit-delete-btn-container button {
     margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: floralwhite;
 }
 
