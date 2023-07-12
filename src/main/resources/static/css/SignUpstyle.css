@@ -12,28 +12,12 @@ html, body {
     top: 0;
     left: 0;
     width: 50%;
-    height: 90%;
+    height: 100%;
     object-fit: cover;
     margin-top: 50px;
     border: 1px;
     margin-bottom: 50px;
     border: 5px solid white;
-}
-
-
-
-.btn {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 20px;
-    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
-    color: floralwhite;
-    background-size: 400%;
-    text-transform: uppercase;
-    text-decoration: none;
-    box-sizing: border-box;
-    z-index: 1;
-
 }
 
 
@@ -55,7 +39,7 @@ html, body {
     right: -5%;
     bottom: -5%;
     z-index: -1;
-    background: linear-gradient(90deg, #f441a5, mediumpurple, #03a9f4);
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
     background-size: 400%;
     border-radius: 80px;
     filter: blur(20px);
@@ -137,7 +121,7 @@ form{
     height: 10%;
     margin-right: 20px;
     border-radius: 10px;
-    background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
     color: floralwhite;
     background-size: 400%;
     text-transform: uppercase;
@@ -155,7 +139,7 @@ form{
     right: -5%;
     bottom: -5%;
     z-index: -1;
-    background: linear-gradient(90deg, #f441a5, mediumpurple, #03a9f4);
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
     background-size: 400%;
     border-radius: 80px;
     filter: blur(20px);
@@ -198,9 +182,9 @@ form{
 }
 
 @media (max-width: 768px) {
-      html{
-          background-repeat: repeat;
-      }
+    html{
+        background-repeat: repeat;
+    }
 
     #site-photo{
         margin-left: 6em;
@@ -222,4 +206,49 @@ form{
         margin-top: 60px;
     }
 
+}
+
+
+
+
+.btn {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
+    color: floralwhite;
+    background-size: 400%;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-sizing: border-box;
+    z-index: 1;
+    border: white solid 1px;
+
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #270936, #f441a5, mediumpurple);
+    background-size: 400%;
+    border-radius: 80px;
+    filter: blur(20px);
+}
+
+.btn:hover {
+    animation: animate 8s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
 }

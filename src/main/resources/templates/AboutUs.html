@@ -16,36 +16,38 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand text-light" id="title" href="/templates/index.html">TechConnect</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/events/allevent">Events</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/discussions">Forum</a>
-      </li>
-      <li class="nav-item">
+
+      <a class="nav-link active text-light" aria-current="page" th:href="@{/}">Home</a>
+
         <a class="nav-link" href="/profile">Profile</a>
-      </li>
+
+        <a class="nav-link" href="/AboutUs">About</a>
+
+        <a class="nav-link" href="/events/allevent">Events</a>
+
+        <a class="nav-link" href="/discussions">Forum</a>
+
+
+
+
     </ul>
   </div>
-  <div>
-    <!-- If the user is logged in, show the "Logout" button -->
-    <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>
+  <div class="card-text-login">
+    <!--         If the user is logged in, show the "Logout" button -->
+    <a th:if="${isLoggedIn}" href="/logout" style="color: floralwhite; text-decoration: none">Logout</a>
 
     <!-- If the user is logged out, show the "Login" button -->
-    <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none">Login</a>
+    <a th:unless="${isLoggedIn}" href="/LoginPage" style="color: floralwhite; text-decoration: none">Login</a>
+  </div>
 
-    <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>
+  <div class="card-text-signup">
+    <a href="/SignUpPage" style="color: floralwhite; text-decoration: none">SignUp</a>
   </div>
 </nav>
 <script src="https://kit.fontawesome.com/3ba650e135.js" crossorigin="anonymous"></script>

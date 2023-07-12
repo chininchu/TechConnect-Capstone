@@ -47,6 +47,7 @@
         </ul>
     </div>
     <div>
+
     <div>
         <!-- If the user is logged in, show the "Logout" button -->
         <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>
@@ -55,6 +56,18 @@
         <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>
 
     </div>
+
+        <!--        <div>-->
+        <!--            &lt;!&ndash; If the user is logged in, show the "Logout" button &ndash;&gt;-->
+        <!--            <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>-->
+
+        <!--            &lt;!&ndash; If the user is logged out, show the "Login" button &ndash;&gt;-->
+        <!--            <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}"-->
+        <!--               style="color: floralwhite; text-decoration: none">Login</a>-->
+
+        <!--            <a th:href="@{/SignUpPage}" style="color: floralwhite; text-decoration: none">Sign Up</a>-->
+        <!--        </div>-->
+
     </div>
 </nav>
 
@@ -128,6 +141,7 @@
 
 
 <!--CALENDAR-->
+
 <div class="container">
     <div class="row">
         <div class="col-6">
@@ -137,6 +151,77 @@
             <div id="map"></div>
         </div>
 </div>
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <h2 id="eventtitle">Events that you can register for</h2>-->
+<!--            <table id="formcontent">-->
+<!--                <thead>-->
+<!--                <tr id="content-table2">-->
+<!--                    <th>Title</th>-->
+<!--                    <th>Date/Time</th>-->
+<!--                    <th>Description</th>-->
+<!--                    <th>Location</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr th:each="event : ${otherOrganizerEvents}">-->
+<!--                    <td>-->
+<!--                        <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">-->
+<!--                            <span th:text="${event.title}"></span>-->
+<!--                        </a>-->
+<!--                    </td>-->
+<!--                    <td th:text="${event.dateTime}"></td>-->
+<!--                    <td th:text="${event.description}"></td>-->
+<!--                    <td th:text="${event.location}"></td>-->
+
+
+<!--                </tr>-->
+
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--        <div class="col-6">-->
+<!--            <div id="map"></div>-->
+<!--        </div>-->
+
+
+
+<!--</div>-->
+
+
+<!-- The all events page has all the list of events that the user can now register for -->
+<div class="row mt-3">
+    <div class="col-md-12">
+        <h2 id="eventtitle">Events that you can register for</h2>
+        <table id="formcontent">
+            <thead>
+            <tr id="content-table2">
+                <th>Title</th>
+                <th>Date/Time</th>
+                <th>Description</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="event : ${events}">
+                <td>
+                    <a th:href="@{/event/{eventId}/reviews(eventId=${event.eventId})}">
+                        <span th:text="${event.title}"></span>
+                    </a>
+                </td>
+                <!--                <td th:text="${event.dateTime}"></td>-->
+                <td th:text="${#temporals.format(event.dateTime, 'dd MMM yyyy, HH:mm')}"></td>
+
+                <td th:text="${event.description}"></td>
+                <td th:text="${event.location}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 
