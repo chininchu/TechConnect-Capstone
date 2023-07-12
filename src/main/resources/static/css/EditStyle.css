@@ -5,6 +5,10 @@ html, body {
     height: 100vh;
     overflow: hidden;
 }
+body{
+    overflow-y: scroll; /* This will make the webpage vertically scrollable */
+    height: 100vh; /* This sets the height of the webpage to 100% of the viewport height */
+}
 
 
 #site-photo {
