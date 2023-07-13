@@ -59,11 +59,11 @@
      <h3> Create A Post</h3>
     </div>
             <form th:action="@{/discussion/create}" th:object="${discussion}" th:method="POST">
-                <div class="mb-3">
+                <div class="mb-3" style="padding: 1em">
                     <label for="exampleFormControlInput1" class="form-label">Title</label>
                     <input type="text" class="form-control title-create" id="exampleFormControlInput1" th:field="*{title}">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" style="padding: 1em">
                     <label for="exampleFormControlTextarea1" class="form-label">Content</label>
                     <textarea class="form-control content-create" id="exampleFormControlTextarea1" th:field="*{content}" rows="3"></textarea>
                 </div>
