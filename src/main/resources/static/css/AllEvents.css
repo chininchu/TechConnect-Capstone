@@ -44,7 +44,7 @@ html, body {
     color: floralwhite;
 }
 
-.card-event{
+.card-event {
     background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
     color: floralwhite;
     margin-top: 10px;
@@ -57,14 +57,14 @@ html, body {
 }
 
 
-
-.search{
+.search {
     color: floralwhite;
     display: flex;
 }
 
+
 .event-head{
-    padding: 2em;
+    padding: 1em;
     color:white;
     display: flex;
     text-align: center;
@@ -75,21 +75,23 @@ html, body {
 }
 
 
-#title{
-    color:white;
+#title {
+    color: white;
     font-family: "PT Serif";
     text-transform: uppercase;
 }
 
 
 .forms{
+    margin-top: 5em;
     list-style: none;
     display: flex;
     width: 60%;
     margin-left: 5em;
 }
+
 .form-li{
-    margin: 3em;
+    margin: 1em;
 }
 
 
@@ -123,6 +125,7 @@ button:before {
 button:hover {
     animation: animate 8s linear infinite;
 }
+
 @keyframes animate {
     0% {
         background-position: 0;
@@ -133,10 +136,11 @@ button:hover {
 }
 
 .events{
-    height: 450px;
+    height: 550px;
     overflow: scroll;
 }
-.card{
+
+.card {
     margin: 2em;
 }
 
@@ -145,11 +149,19 @@ button:hover {
     height: 4em
 }
 
+#interests-form {
+    display: flex;
+}
+
+
+
 h2{
+
     text-align: center;
     color: white;
 }
-label{
+
+label {
     color: white;
 }
 
@@ -170,4 +182,23 @@ label{
 
 
 
+/* Styles for mobile screens */
+@media (max-width: 767px) {
+    .form-li {
+        width: 100%;
+    }
+
+    .form-li label {
+        display: block;
+        margin-bottom: 0.5em;
+    }
+
+    .forms {
+        flex-direction: column;
+    }
+
+    #map {
+        margin-top: 30px;
+    }
+}
 
