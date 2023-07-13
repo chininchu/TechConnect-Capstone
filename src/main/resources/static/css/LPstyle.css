@@ -109,21 +109,15 @@ html, body {
     text-decoration: none;
     font-family: sans-serif;
     text-align: center;
-}
-
-.signup {
     background: linear-gradient(90deg, #03A9F4, #270936, #F441A5, mediumpurple, #03A9F4);
-    color: floralwhite;
-    background-size: 400%;
-    margin-left: 10px;
-    text-transform: uppercase;
     box-sizing: border-box;
     border-radius: 60px;
     z-index: 1;
     position: relative;
+    background-size: 400%;
 }
 
-.signup:before {
+.btn:before {
     content: '';
     position: absolute;
     top: -5%;
@@ -137,10 +131,9 @@ html, body {
     filter: blur(20px);
 }
 
-.signup:hover {
+.btn:hover {
     animation: animate 8s linear infinite;
 }
-
 @keyframes animate {
     0% {
         background-position: 0;
@@ -149,6 +142,8 @@ html, body {
         background-position: 400%;
     }
 }
+
+
 
 
 

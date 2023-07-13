@@ -46,7 +46,7 @@
 
             <div class="navbar-nav ms-auto">
                 <div class="card-text-signup">
-                    <a href="/SignUpPage" style="color: floralwhite; text-decoration: none">SignUp</a>
+                    <a th:if="${isNotLoggedIn}" href="/SignUpPage" style="color: floralwhite; text-decoration: none">SignUp</a>
                 </div>
                 <div class="card-text-login">
                     <!-- If the user is logged in, show the "Logout" button -->
