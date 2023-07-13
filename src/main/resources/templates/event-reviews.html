@@ -47,7 +47,8 @@
             <a th:if="${isLoggedIn}" th:href="@{/logout}" style="color: floralwhite; text-decoration: none">Logout</a>
 
             <!-- If the user is logged out, show the "Login" button -->
-            <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}" style="color: floralwhite; text-decoration: none">Login</a>
+            <a th:unless="${isLoggedIn}" th:href="@{/LoginPage}"
+               style="color: floralwhite; text-decoration: none">Login</a>
 
 
         </div>
@@ -80,7 +81,9 @@
                     <td th:text="${event.location}"></td>
                     <td sec:authorize="isAuthenticated()">
                         <!-- Update the form in your HTML code -->
-                        <form th:if="${event.host != user && !isRegistered && #authentication.principal.id != event.host.id}" id="eventForm${event.eventId}" th:action="@{/attendee/{eventId}/register(eventId=${event.eventId})}" method="post">
+                        <form th:if="${event.host != user && !isRegistered && #authentication.principal.id != event.host.id}"
+                              id="eventForm${event.eventId}"
+                              th:action="@{/attendee/{eventId}/register(eventId=${event.eventId})}" method="post">
                             <input type="hidden" name="eventId" th:value="${event.eventId}">
                             <input type="hidden" name="eventTitle" th:value="${event.title}">
                             <button type="submit" class="btn btn-light">Register</button>
@@ -88,7 +91,9 @@
                     </td>
                     <!-- Unregister form -->
                     <td>
-                        <form th:if="${event.host != user && isRegistered}" th:action="@{/attendee/{eventId}/unregister(eventId=${event.eventId})}" method="post" onsubmit="return confirm('Are you sure you want to unregister for this event?');">
+                        <form th:if="${event.host != user && isRegistered}"
+                              th:action="@{/attendee/{eventId}/unregister(eventId=${event.eventId})}" method="post"
+                              onsubmit="return confirm('Are you sure you want to unregister for this event?');">
                             <button type="submit" class="btn btn-danger">Unregister</button>
                         </form>
                     </td>
@@ -99,9 +104,7 @@
     </div>
 
 
-
-
-<!--Event Review form -->
+    <!--Event Review form -->
 
     <div sec:authorize="isAuthenticated()">
         <div class="row">
@@ -123,7 +126,8 @@
                                     </div>
                                     <div class="dbox">
                                         <label for="reviewDescription">Description:</label>
-                                        <textarea id="reviewDescription" name="description" th:field="*{description}" required></textarea>
+                                        <textarea id="reviewDescription" name="description" th:field="*{description}"
+                                                  required></textarea>
                                     </div>
                                 </fieldset>
                             </div>
@@ -151,7 +155,7 @@
                                     </div>
                                 </fieldset>
                                 <div class="save">
-                                    <button type="submit" id="save">Save Review</button>
+                                    <button id="save">Save Review</button>
                                 </div>
                             </div>
                         </div>
@@ -163,14 +167,12 @@
     </div>
 
 
-
-
-<!--Event Reviews from other attendees -->
+    <!--Event Reviews from other attendees -->
 
     <div class="reviews">
-<h2>Event Reviews</h2>
+        <h2>Event Reviews</h2>
     </div>
-<h2>Average Rating: <span id="averageRating" th:text="${averageRating}"></span></h2>
+    <h2>Average Rating: <span id="averageRating" th:text="${averageRating}"></span></h2>
     <div class="reviews-table-container">
         <table class="text-light table table-striped">
             <thead>
@@ -178,35 +180,49 @@
                 <th>Review Title</th>
                 <th>Review Description</th>
                 <th>Review Rating</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
 
 
-    <tr th:each="review : ${reviews}">
-        <!-- Existing review display -->
-        <td class="review-title-display" th:text="${review.title}"></td>
-        <td class="review-description-display" th:text="${review.description}"></td>
-        <td th:text="${review.rating}"></td>
+            <tr th:each="review : ${reviews}">
+                <!-- Existing review display -->
+                <td class="review-title-display" th:text="${review.title}"></td>
+                <td class="review-description-display" th:text="${review.description}"></td>
+                <td th:text="${review.rating}"></td>
+                <td>
+                    <div sec:authorize="isAuthenticated()">
+                        <button class="edit-review-button" th:if="${#authentication.principal.id == review.user.id}">
+                            Edit
+                        </button>
+                        <form th:action="@{/event/{eventId}/reviews/{reviewId}/delete(eventId=${event.eventId}, reviewId=${review.id})}"
+                              method="post"
+                              onsubmit="return confirm('Are you sure you want to delete this review?');">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" th:if="${#authentication.principal.id == review.user.id}">Delete
+                            </button>
+                        </form>
+                    </div>
+                    <!-- Edit review form -->
+                    <form class="edit-review-form"
+                          th:action="@{/event/{eventId}/reviews/{reviewId}/edit(eventId=${event.eventId}, reviewId=${review.id})}"
+                          method="post"
+                          style="display: none;">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title2" name="title" class="edit-review-title" value=""/>
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" class="edit-review-description"></textarea>
+                        <button type="submit">Update Review</button>
+                    </form>
+                </td>
+            </tr>
 
-            <div sec:authorize="isAuthenticated()">
-                <button class="edit-review-button" th:if="${#authentication.principal.id == review.user.id}">Edit
-                </button>
-                <form th:action="@{/event/{eventId}/reviews/{reviewId}/delete(eventId=${event.eventId}, reviewId=${review.id})}"
-                      method="post"
-                      onsubmit="return confirm('Are you sure you want to delete this review?');">
-                    <input type="hidden" name="_method" value="delete"/>
-                    <button type="submit" th:if="${#authentication.principal.id == review.user.id}">Delete</button>
-                </form>
-            </div>
 
-
-
-    </tr>
             </tbody>
         </table>
     </div>
-   </div>
+</div>
 <script>
     $(document).ready(function () {
         $('.edit-review-button').click(function () {
