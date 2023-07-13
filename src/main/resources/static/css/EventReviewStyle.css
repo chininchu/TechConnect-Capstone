@@ -5,6 +5,7 @@ html, body {
     background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 .navbar-brand {
@@ -358,5 +359,9 @@ th {
     100% {
         background-position: 400%;
     }
+}
+
+.table-striped{
+    border: #03A9F4 solid 5px;
 }
 
