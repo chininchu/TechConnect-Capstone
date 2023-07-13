@@ -269,7 +269,10 @@ th {
     border-radius: 40px;
     filter: blur(20px);
 }
-
+#toggle-button{
+    color: white;
+    background-color: white;
+}
 #reg:hover {
     animation: animate 8s linear infinite;
 }

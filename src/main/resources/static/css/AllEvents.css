@@ -95,7 +95,9 @@ html, body {
     margin-left: 6em;
     margin-top: 1em;
 }
-
+#toggle-button{
+    color: white;
+}
 button {
     text-transform: uppercase;
     text-decoration: none;

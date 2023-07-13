@@ -323,6 +323,10 @@ h2{
 .btn:hover {
     animation: animate 8s linear infinite;
 }
+#toggle-button{
+    color: white;
+    background-color: white;
+}
 @keyframes animate {
     0% {
         background-position: 0;

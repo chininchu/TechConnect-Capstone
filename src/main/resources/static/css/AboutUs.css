@@ -258,6 +258,10 @@ a {
 .contact-link {
     color: white;
 }
+#toggle-button{
+    color: white;
+    background-color: white;
+}
 
 @media (max-width: 768px) {
     /* Styles for screens smaller than 768px */

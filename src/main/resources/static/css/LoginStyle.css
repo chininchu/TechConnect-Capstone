@@ -212,6 +212,13 @@ img{
 
 }
 
+label{
+    font-family: "Comic Sans MS";
+}
 
+#toggle-button{
+    color: white;
+    background-color: white;
+}
 
 

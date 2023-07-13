@@ -13,6 +13,7 @@ html, body {
     font-family: "PT Serif";
     margin-left: 25px;
     color: floralwhite;
+    text-transform: uppercase;
 }
 
 .navbar {
@@ -140,7 +141,7 @@ html, body {
     color: floralwhite;
     font-size: 100px;
     transition: 0.5s;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Comic Sans MS";
     text-transform: uppercase;
     margin-top: 40px;
 
@@ -185,4 +186,11 @@ img {
     object-fit: cover;
 }
 
+label{
+    font-family: "Comic Sans MS";
+}
 
+#toggle-button{
+    color: white;
+    background-color: white;
+}

@@ -45,4 +45,7 @@ html, body {
 #profile{
     margin-left: 1100px;
 }
-
+#toggle-button{
+    color: white;
+    background-color: white;
+}
