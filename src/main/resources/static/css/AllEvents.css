@@ -15,6 +15,7 @@ html, body {
     background-image: linear-gradient(to bottom, #270936, #1f0c34, #170d31, #110d2d, #0b0c29, #090c28, #070d26, #050d25, #060f27, #06112a, #06132c, #06152f);
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: auto;
 }
 
 .navbar-brand {
@@ -93,6 +94,45 @@ html, body {
 .subbtn{
     margin-left: 6em;
     margin-top: 1em;
+}
+
+button {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+    text-align: center;
+    background: linear-gradient(90deg, #03A9F4, #270936, #F441A5, mediumpurple, #03A9F4);
+    box-sizing: border-box;
+    border-radius: 60px;
+    z-index: 1;
+    position: relative;
+    background-size: 400%;
+}
+
+button:before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    z-index: -1;
+    background: linear-gradient(90deg, #03A9F4, #270936, #F441A5, mediumpurple, #03A9F4);
+    background-size: 400%;
+    border-radius: 40px;
+    filter: blur(20px);
+}
+
+button:hover {
+    animation: animate 8s linear infinite;
+}
+@keyframes animate {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 400%;
+    }
 }
 
 .events{

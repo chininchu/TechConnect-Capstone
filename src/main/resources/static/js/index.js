@@ -11,7 +11,7 @@ function upcomingEvents(){
                     html += `<div class="card-body">`
                     html += `<h5 class="card-title" style="color: #03A9F4">${events[i].title}</h5>`
                     html += `<p class="card-text">${events[i].description}</p>`
-                    html += `<a href="/event/${events[i].id}/reviews" class="btn btn-light">Read More</a>`
+                    html += `<a href="/event/${events[i].id}/reviews" class="btn text-light" id="read">Read More</a>`
                     html += `</div>`
                     html += `</div>`
                     html += `</div>`

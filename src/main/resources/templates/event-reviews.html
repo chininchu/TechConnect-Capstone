@@ -86,7 +86,7 @@
                               th:action="@{/attendee/{eventId}/register(eventId=${event.eventId})}" method="post">
                             <input type="hidden" name="eventId" th:value="${event.eventId}">
                             <input type="hidden" name="eventTitle" th:value="${event.title}">
-                            <button type="submit" class="btn btn-light">Register</button>
+                            <button id="reg" type="submit" class="btn text-light">Register</button>
                         </form>
                     </td>
                     <!-- Unregister form -->
@@ -94,7 +94,7 @@
                         <form th:if="${event.host != user && isRegistered}"
                               th:action="@{/attendee/{eventId}/unregister(eventId=${event.eventId})}" method="post"
                               onsubmit="return confirm('Are you sure you want to unregister for this event?');">
-                            <button type="submit" class="btn btn-danger">Unregister</button>
+                            <button type="submit" class="btn text-light btn-danger">Unregister</button>
                         </form>
                     </td>
                 </tr>

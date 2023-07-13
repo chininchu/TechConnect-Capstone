@@ -72,11 +72,10 @@
 
 <!--<div class="search col-6">-->
 <ul class="forms">
-
        <li class="form-li col-4"> <form autocomplete="off">
             <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" name="location">
-            <button type="submit" id="subBtn" class="subbtn" value="Submit">Submit</button>
+            <input type="text" id="location" class="form-control" name="location">
+           <button class="btn text-light subbtn"  type="submit" id="subBtn" value="Submit">Submit</button>
         </form>
        </li>
         <!--SEARCH EVENT BY TITLE CONTAINING-->
@@ -84,15 +83,18 @@
         <form autocomplete="off">
             <label for="keyword">Keyword</label>
             <input type="text" class="form-control" id="keyword" name="keyword">
-            <button type="submit" id="subBtn3" class="subbtn" value="Submit">Submit</button>
+            <button class="btn text-light subbtn" type="submit" id="subBtn3" value="Submit">Submit</button>
+
         </form>
       </li>
         <!--SEARCH EVENT BY INTEREST-->
       <li class="form-li col-4">
+          <form>
           <label for="keyword">Interest</label>
             <select class="form-select" th:object="${interests}" name="interests" id="interests" aria-label="Default select example">
                 <option th:each="interest : ${interests}" th:value="${interest.id}" th:text="${interest.interest}"></option>
-            </select><button type="submit" class="subbtn" id="subBtn2" value="Submit">Submit</button>
+            </select><button class="btn text-light" class="subbtn" type="submit" id="subBtn2" value="Submit">Submit</button>
+        </form>
       </li>
 </ul>
 
