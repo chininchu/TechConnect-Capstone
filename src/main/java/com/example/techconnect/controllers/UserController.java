@@ -258,6 +258,11 @@ public class UserController {
     public String index(Model model, Principal principal) {
         // Check if the user is logged in
         boolean isLoggedIn = principal != null;
+        boolean isNotLoggedIn = !isLoggedIn;
+
+        // Pass the login status to the template
+        model.addAttribute("isNotLoggedIn", isNotLoggedIn);
+
 
         // Pass the login status to the template
         model.addAttribute("isLoggedIn", isLoggedIn);
