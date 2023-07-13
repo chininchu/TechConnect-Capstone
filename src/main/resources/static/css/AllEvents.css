@@ -63,6 +63,7 @@ html, body {
 }
 
 .event-head{
+    padding: 1em;
     color:white;
     display: flex;
     text-align: center;
@@ -124,7 +125,9 @@ h2{
     text-align: center;
     color: white;
 }
-
+label{
+    color: white;
+}
 
 @media (max-width: 767px) {
     #formcontent table {
