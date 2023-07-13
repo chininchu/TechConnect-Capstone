@@ -43,15 +43,12 @@
 </div>
 
 
-<form th:action="@{/event/create}" th:object="${event}" method="post">
+<form th:action="@{/event/{eventId}/edit (eventId=${event.eventId})}" th:object="${event}" method="post">
 
 
     <div class="container">
 
         <div class="row">
-
-
-
 
 
             <div class="col-6 col-lg-6">
@@ -66,7 +63,8 @@
                     <label>
                         <select th:field="*{interest}">
                             <option value="">-- Select an Interest --</option>
-                            <option th:each="interest : ${interests}" th:value="${interest.id}" th:text="${interest.interest}"></option>
+                            <option th:each="interest : ${interests}" th:value="${interest.id}"
+                                    th:text="${interest.interest}"></option>
                         </select>
                     </label>
 
@@ -82,6 +80,9 @@
                     <label for="description">Description:</label>
                     <textarea id="description" th:field="*{description}" required></textarea>
                     <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+
+                    <input type="hidden" th:hidden="${event}" th:field="*{interest}"/>
+                    <input type="hidden" th:hidden="${event}" th:field="*{host}"/>
 
                     <button class="button">Update Event</button>
 
