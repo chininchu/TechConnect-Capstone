@@ -132,6 +132,8 @@ public class EventController {
         // Retrieve the event by its id from the repository
         Event event = eventRepository.findById(eventId).get();
 
+        model.addAttribute("interests", interestRepository.findAll());
+
         // Add the retrieved event to the model
         model.addAttribute("event", event);
 
