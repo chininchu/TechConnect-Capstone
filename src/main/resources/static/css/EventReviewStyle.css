@@ -226,3 +226,19 @@ th {
 .delete-review-button {
     padding: 5px 10px;
 }
+.buttons{
+    display: flex;
+    list-style: none;
+    border-radius: 20px;
+
+}
+.button{
+}
+#delete-btn{
+    background-color: #0B0C29;
+    color: white;
+    margin-right: 1.5em;
+}
+#edit-btn{
+    margin-right: 1em;
+}

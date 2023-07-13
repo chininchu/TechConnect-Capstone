@@ -135,19 +135,23 @@
                             <td th:text="${event.description}"></td>
                             <td th:text="${event.location}"></td>
                             <td>
-                                <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
-                                    <button class="btn btn-light">Edit</button>
+                                <ul class="buttons">
+                              <li class="button">  <a th:href="@{/event/{eventId}/edit (eventId=${event.eventId})}">
+                                    <button id="edit-btn" class="btn btn-light">Edit</button>
                                 </a>
+                              </li>
+                                <li class="button">
                                 <form th:action="@{/event/{eventId}/delete (eventId=${event.eventId})}" method="post">
                                     <input type="hidden" name="hostId" th:value="${event.host}"/>
                                     <input type="hidden" name="interestId" th:value="${event.interest}"/>
                                     <!--                            <button type="submit" class="btn btn-light">Delete</button>-->
 
-                                    <button type="submit" class="btn btn-light" onclick="confirmDeleteEvent(event)">
+                                    <button type="submit" id="delete-btn" class="btn btn-light" onclick="confirmDeleteEvent(event)">
                                         Delete
                                     </button>
-
                                 </form>
+                                </li>
+                                </ul>
                             </td>
                         </tr>
                     </table>
