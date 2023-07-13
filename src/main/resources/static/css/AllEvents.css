@@ -93,8 +93,9 @@ html, body {
 .form-li{
     margin: 1em;
 }
-
-
+#toggle-button{
+    color: white;
+}
 button {
     text-transform: uppercase;
     text-decoration: none;

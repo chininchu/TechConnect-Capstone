@@ -259,3 +259,7 @@ form{
         background-position: 400%;
     }
 }
+#toggle-button{
+    color: white;
+    background-color: white;
+}

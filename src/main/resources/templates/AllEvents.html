@@ -24,32 +24,26 @@
 <body>
 <!--SCRIPT TAGS-->
 <script type="text/javascript" th:src="@{/js/mapbox_geocoder.js}"></script>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" id="title" href="/">TechConnect</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav text-light">
-            <li class="nav-item active">
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="/">TechConnect</a>
+        <button class="navbar-toggler" id="toggle-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
+            <div class="navbar-nav">
+
                 <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/AboutUs">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/events/allevent">Events</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/discussions">Forum</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
-            </li>
-        </ul>
-    </div>
-    <div>
+                <a class="nav-link" href="/AboutUs">About</a>
+                <a class="nav-link" href="/events/allevent">Events</a>
+                <a class="nav-link" href="/discussions">Forum</a>
+            </div>
+
 
         <div>
             <!-- If the user is logged in, show the "Logout" button -->
@@ -59,12 +53,27 @@
                style="color: floralwhite; text-decoration: none; margin-right: 5px">Login</a>
 
 
+            <div class="navbar-nav ms-auto">
+                <div class="card-text-signup">
+                    <a th:if="${isNotLoggedIn}" href="/SignUpPage" style="color: floralwhite; text-decoration: none">SignUp</a>
+                </div>
+                <div class="card-text-login">
+                    <!-- If the user is logged in, show the "Logout" button -->
+                    <a th:if="${isLoggedIn}" href="/logout" style="color: floralwhite; text-decoration: none">Logout</a>
+
+
+                    <!-- If the user is logged out, show the "Login" button -->
+                    <a th:unless="${isLoggedIn}" href="/LoginPage" style="color: floralwhite; text-decoration: none">Login</a>
+                </div>
+            </div>
+
         </div>
 
 
+
+        </div>
     </div>
 </nav>
-
 <div class="container">
     <div class="row">
         <div class="event-head">
@@ -76,13 +85,6 @@
 <!--<div class="search col-6">-->
 <ul class="forms">
 
-    <li class="form-li col-4 col-xs-2">
-        <form autocomplete="off">
-            <label for="location">Location</label>
-            <input type="text" id="location" name="location">
-            <button class="btn text-light" type="submit" id="subBtn" value="Submit">Submit</button>
-        </form>
-    </li>
 
 
 
@@ -100,6 +102,7 @@
 
         <form autocomplete="off">
             <label for="keyword">Keyword</label>
+
             <div class="input-group">
                 <input type="text" class="form-control" id="keyword" name="keyword">
                 <button type="submit" id="subBtn3" class="btn text-light subbtn" style="margin-left: 10px" value="Submit">Submit</button>

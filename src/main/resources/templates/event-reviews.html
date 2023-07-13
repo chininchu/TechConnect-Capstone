@@ -18,7 +18,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand text-light" id="title" href="/">TechConnect</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    <button class="navbar-toggler" id="toggle-button" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -76,7 +76,7 @@
                 <tbody>
                 <tr>
                     <td th:text="${event.title}"></td>
-                    <td th:text="${event.dateTime}"></td>
+                    <td th:text="${#temporals.format(event.dateTime,'EEE dd MMMM HH:mm a')}"></td>
                     <td th:text="${event.description}"></td>
                     <td th:text="${event.location}"></td>
                     <td sec:authorize="isAuthenticated()">
