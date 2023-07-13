@@ -146,7 +146,7 @@ public class EventController {
     @PostMapping("/event/{eventId}/edit")
     public String editEvents(@ModelAttribute Event event, @PathVariable long eventId) {
 
-        // Update the event's details with the form data
+//         Update the event's details with the form data
         event.setHost(event.getHost());
         event.setInterest(event.getInterest());
         event.setEventId(eventId);
