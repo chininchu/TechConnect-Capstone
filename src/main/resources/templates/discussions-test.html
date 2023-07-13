@@ -21,7 +21,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" disabled>
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link text-light" href="/">Home</a>
@@ -54,19 +54,19 @@
     <div class="discussion-div">
         <div class="card">
     <div class="card-header">
-     <h3> Post a Forum</h3>
+     <h3> Create A Post</h3>
     </div>
             <form th:action="@{/discussion/create}" th:object="${discussion}" th:method="POST">
-                <div class="mb-3">
+                <div class="mb-3" style="padding: 1em">
                     <label for="exampleFormControlInput1" class="form-label">Title</label>
                     <input type="text" class="form-control title-create" id="exampleFormControlInput1" th:field="*{title}">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" style="padding: 1em">
                     <label for="exampleFormControlTextarea1" class="form-label">Content</label>
                     <textarea class="form-control content-create" id="exampleFormControlTextarea1" th:field="*{content}" rows="3"></textarea>
                 </div>
                 <input id="time" type="hidden" th:field="*{createdAt}">
-                <a th:href="@{/LoginPage}"><button th:if="${loggedInUser == null}" class="btn btn-primary" type="submit">Please Log in To Post</button></a>
+                <a th:href="@{/LoginPage}"><button th:if="${loggedInUser == null}" class="btn btn-primary" id="postlog" type="submit">Please Log in To Post</button></a>
                 <button th:if="${loggedInUser != null}"  class="btn btn-primary" type="submit">Submit</button>
             </form>
         </div>

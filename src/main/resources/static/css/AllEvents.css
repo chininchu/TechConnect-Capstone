@@ -1,7 +1,7 @@
 #map {
     /* the width and height may be set to any size */
     width: 100%;
-    height: 550px;
+    height: 400px;
     margin: auto;
     flex: 1;
     border: #03a9f4 solid 10px;
@@ -62,13 +62,15 @@ html, body {
     display: flex;
 }
 
-.event-head {
+
+.event-head{
     padding: 1em;
-    color: white;
+    color:white;
     display: flex;
     text-align: center;
     justify-content: center;
-    font-family: "PT Serif";
+    font-family: "PT Serif", serif;
+    margin-left: 3em;
     text-transform: uppercase;
 }
 
@@ -80,17 +82,18 @@ html, body {
 }
 
 
-.forms {
+.forms{
     margin-top: 5em;
     list-style: none;
     display: flex;
+    width: 60%;
     margin-left: 5em;
-    margin-bottom: 2em;
 }
 
-.form-li {
-    padding: 1em;
+.form-li{
+    margin: 1em;
 }
+
 
 button {
     text-transform: uppercase;
@@ -132,7 +135,7 @@ button:hover {
     }
 }
 
-.events {
+.events{
     height: 550px;
     overflow: scroll;
 }
@@ -141,22 +144,9 @@ button:hover {
     margin: 2em;
 }
 
-#formcontent {
-    text-align: center;
-    width: 100%;
-    overflow-x: auto; /* Add overflow-x property to enable horizontal scrolling */
-    max-height: 400px;
-    overflow-y: auto;
-}
 
-#formcontent table {
-    width: 100%; /* Set the table width to 100% */
-}
-
-#formcontent th,
-#formcontent td {
-    padding: 10px;
-    white-space: nowrap; /* Prevent table cells from wrapping */
+.interest{
+    height: 4em
 }
 
 #interests-form {
@@ -164,7 +154,9 @@ button:hover {
 }
 
 
-h2 {
+
+h2{
+
     text-align: center;
     color: white;
 }
@@ -173,11 +165,21 @@ label {
     color: white;
 }
 
-@media (max-width: 767px) {
-    #formcontent table {
-        width: auto; /* Allow the table to resize based on content on smaller screens */
+@media (max-width: 575.98px) {
+    .forms{
+        margin-left: 10em;
     }
+
+
 }
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em; /* Add margin bottom for spacing */
+}
+
+
 
 
 /* Styles for mobile screens */
