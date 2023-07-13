@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     calendar.render()
 
-    fetch("https://techconnect.expert/events/userEvents")
+    fetch("/events/userEvents")
         .then(response => {
             response.json().then(events => {
                     events.forEach(event => {
