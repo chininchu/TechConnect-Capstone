@@ -6,6 +6,7 @@ html, body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .navbar-brand {
     font-family: "PT Serif";
     margin-left: 25px;
@@ -65,12 +66,12 @@ html, body {
     margin-bottom: 10px;
 }
 
-th{
+th {
     color: floralwhite;
 }
 
 
-.reviewhead{
+.reviewhead {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -78,11 +79,11 @@ th{
     margin-bottom: 10px;
 }
 
-fieldset{
+fieldset {
     color: white;
 }
 
-#save{
+#save {
     background: linear-gradient(90deg, #03a9f4, #270936, #f441a5, mediumpurple, #03a9f4);
     color: floralwhite;
     background-size: 400%;
@@ -96,7 +97,7 @@ fieldset{
 
 }
 
-#save:before{
+#save:before {
     content: '';
     position: absolute;
     top: -5%;
@@ -111,8 +112,7 @@ fieldset{
 }
 
 
-
-#save:hover{
+#save:hover {
     animation: animate 8s linear infinite;
 }
 
@@ -126,7 +126,7 @@ fieldset{
 }
 
 
-h2{
+h2 {
     color: white;
 }
 
@@ -152,7 +152,7 @@ h2{
     margin-top: 1rem;
 }
 
-.ratetab{
+.ratetab {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -198,7 +198,7 @@ h2{
     resize: horizontal;
 }
 
-.reviews{
+.reviews {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -215,4 +215,14 @@ thead {
 
 th {
     color: white; /* Set the text color for <th> tags */
+}
+
+.edit-review-buttons {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.edit-review-button-inline,
+.delete-review-button {
+    padding: 5px 10px;
 }
