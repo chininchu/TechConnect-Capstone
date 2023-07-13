@@ -194,7 +194,7 @@
                 <td>
                     <div sec:authorize="isAuthenticated()">
                         <ul class="buttons">
-                      <li id="edit-btn"class="button"> <button class="edit-review-button" th:if="${#authentication.principal.id == review.user.id}">
+                      <li id="edit-btn" class="button"> <button class="edit-review-button text-light" th:if="${#authentication.principal.id == review.user.id}">
                             Edit
                         </button>
                       </li>
