@@ -75,7 +75,7 @@
        <li class="form-li col-4 col-xs-2"> <form autocomplete="off">
             <label for="location">Location</label>
             <input type="text" id="location" name="location">
-            <button type="submit" id="subBtn" value="Submit">Submit</button>
+           <button class="btn text-light"  type="submit" id="subBtn" value="Submit">Submit</button>
         </form>
        </li>
 
@@ -84,7 +84,7 @@
         <form autocomplete="off">
             <label for="keyword">Keyword</label>
             <input type="text" id="keyword" name="keyword">
-            <button type="submit" id="subBtn3" value="Submit">Submit</button>
+            <button class="btn text-light" type="submit" id="subBtn3" value="Submit">Submit</button>
         </form>
       </li>
 
@@ -94,7 +94,7 @@
             <label for="keyword">Interest</label>
             <select name="interests" id="interests" class="form-select" aria-label="Default select example">
                 <option th:each="interest : ${interests}" th:value="${interest.id}" th:text="${interest.interest}"></option>
-            </select><button type="submit" id="subBtn2" value="Submit">Submit</button>
+            </select><button class="btn text-light"  type="submit" id="subBtn2" value="Submit">Submit</button>
         </form>
       </li>
 </ul>
